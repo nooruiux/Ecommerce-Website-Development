@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { Icon } from "./Icon";
 import type { Product } from "@/types";
 import { useCart } from "@/store/cart";
 
@@ -19,7 +19,7 @@ export function AddToCartIcon({ product }: { product: Product }) {
       }}
       className="absolute -top-px -right-px size-8 rounded-full focus-ring transition-transform duration-(--duration-fast) before:absolute before:-inset-1.5 before:content-[''] hover:scale-110"
     >
-      <Image src="/icons/plus-circle.svg" alt="" width={32} height={32} />
+      <Icon name="plus-circle" size={32} className="rounded-full text-warning" />
     </button>
   );
 }

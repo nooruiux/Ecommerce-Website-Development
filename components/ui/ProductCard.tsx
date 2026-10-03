@@ -1,7 +1,8 @@
-import Image from "next/image";
+import { AssetImage } from "./AssetImage";
 import Link from "next/link";
 import type { Product } from "@/types";
 import { cn } from "@/lib/cn";
+import { Chip } from "./Chip";
 import { PriceTag } from "./PriceTag";
 import { Rating } from "./Rating";
 import { AddToCartIcon } from "./AddToCartIcon";
@@ -21,6 +22,10 @@ export function ProductCard({
   className?: string;
 }) {
   const href = `/product/${product.slug}`;
+  // Sale: show the current price in the 172px row; the struck price lives on the PDP and cart.
+  const discount = product.salePrice
+    ? Math.round((1 - product.salePrice / product.price) * 100)
+    : 0;
   return (
     <article
       className={cn(
@@ -34,7 +39,7 @@ export function ProductCard({
         tabIndex={-1}
         aria-hidden="true"
       >
-        <Image
+        <AssetImage
           src={product.images[0]}
           alt=""
           fill
@@ -42,8 +47,13 @@ export function ProductCard({
           sizes="(min-width: 90rem) 200px, (min-width: 48rem) 30vw, 46vw"
           className="object-cover transition-transform duration-(--duration-base) ease-(--ease-standard) group-hover:scale-105"
         />
+        {discount > 0 && (
+          <Chip tone="pending" className="absolute top-2 left-2 font-semibold">
+            −{discount}%
+          </Chip>
+        )}
       </Link>
-      <div className="flex flex-1 flex-col gap-4 rounded-b-sm border-x border-b border-border bg-surface px-3.5 pt-1 pb-5">
+      <div className="flex flex-1 flex-col gap-4 rounded-b-sm border-x border-b border-border bg-surface px-3.5 pt-1 pb-5.25">
         <div className="flex flex-col gap-1">
           <div className="flex flex-col gap-2">
             <h3 className="font-body text-body-xl font-semibold text-text">
@@ -51,17 +61,17 @@ export function ProductCard({
                 {product.name}
               </Link>
             </h3>
-            <p className="text-caption text-text-muted">{product.description}</p>
+            <p className="line-clamp-3 text-caption text-text-muted">{product.description}</p>
           </div>
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="flex min-h-4.5 flex-wrap items-center gap-2">
             <span className="text-body-md leading-none font-semibold text-primary">
               {product.soldLabel}
             </span>
             <Rating value={product.rating} count={product.reviewCount} />
           </div>
         </div>
-        <div className="mt-auto flex items-center justify-between gap-2">
-          <PriceTag price={product.price} salePrice={product.salePrice} />
+        <div className="mt-auto flex flex-wrap items-center justify-between gap-2">
+          <PriceTag price={product.salePrice ?? product.price} highlight={discount > 0} />
           <div className="relative flex h-8 items-center rounded-pill border border-border pr-8 pl-2">
             <Link
               href={href}

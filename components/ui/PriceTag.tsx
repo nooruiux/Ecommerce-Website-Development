@@ -6,11 +6,13 @@ export function PriceTag({
   price,
   salePrice,
   size = "md",
+  highlight = false,
   className,
 }: {
   price: number;
   salePrice?: number;
   size?: "md" | "lg";
+  highlight?: boolean;
   className?: string;
 }) {
   const onSale = salePrice !== undefined && salePrice < price;
@@ -21,7 +23,7 @@ export function PriceTag({
         className={cn(
           "font-bold text-text",
           size === "lg" ? "font-heading text-h5" : "text-body-xl",
-          onSale && "text-highlight",
+          (onSale || highlight) && "text-highlight",
         )}
       >
         <span className="sr-only">{onSale ? "Sale price " : "Price "}</span>

@@ -1,10 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 
-// Persisted stores read localStorage on the client only; render 0 until mounted.
+const subscribe = () => () => {};
+
+// Persisted stores read localStorage on the client only; render server values until hydrated.
 export function useHydrated() {
-  const [hydrated, setHydrated] = useState(false);
-  useEffect(() => setHydrated(true), []);
-  return hydrated;
+  return useSyncExternalStore(
+    subscribe,
+    () => true,
+    () => false,
+  );
 }

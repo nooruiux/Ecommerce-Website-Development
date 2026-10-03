@@ -3,7 +3,7 @@ import { Open_Sans, Plus_Jakarta_Sans, Poppins, Source_Serif_4 } from "next/font
 // Headlines
 export const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
   variable: "--font-poppins",
 });
@@ -11,7 +11,7 @@ export const poppins = Poppins({
 // Body. Figma uses "Source Serif Pro", published on Google Fonts as "Source Serif 4".
 export const sourceSerif = Source_Serif_4({
   subsets: ["latin"],
-  weight: ["400", "600", "700"],
+  axes: ["opsz"],
   display: "swap",
   variable: "--font-source-serif",
 });

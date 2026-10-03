@@ -63,20 +63,3 @@ export const concerns: Concern[] = [
     category: "hair-care",
   },
 ];
-
-export const brands = [
-  "Anycubic",
-  "BIQU",
-  "BCN3D",
-  "Creality",
-  "Wasp",
-  "Elegoo",
-  "Flashforge",
-  "Formbot",
-  "Formlabs",
-  "MakerBot",
-  "Modix",
-  "Phrozen",
-  "Tiertime",
-  "Ultimaker",
-];

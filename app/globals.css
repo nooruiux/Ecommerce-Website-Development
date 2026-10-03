@@ -42,6 +42,8 @@
   --color-gray-100: #171725;
   --color-gray-search: #f8f8f8; /* search category segment */
   --color-gray-toggle: #edf2f7; /* toggle off track */
+  --color-sage: #e4eee4; /* hero background 317:420 */
+  --color-watermark: rgb(249 249 249 / 0.88); /* hero "Skin Care" 317:434 */
 
   --color-line: #e3e7ec; /* Additional Colors/Line */
   --color-line-dark: #282837; /* Additional Colors/Line dark */
@@ -69,6 +71,9 @@
   --color-surface-subtle: var(--color-gray-20);
 
   --color-text: var(--color-ink);
+  --color-text-heading: rgb(32 32 32 / 0.96); /* section titles 317:492 */
+  --color-text-footer: rgb(45 45 45 / 0.72); /* footer blurb 317:1487 */
+  --color-text-input-soft: rgb(0 0 0 / 0.56); /* newsletter placeholder 317:1465 */
   --color-on-accent: var(--color-white-soft);
   --color-text-strong: rgb(0 0 0 / 0.8); /* "Account" label */
   --color-text-subtle: rgb(0 0 0 / 0.72); /* "All Category" */
@@ -78,12 +83,16 @@
   --color-border: rgb(0 0 0 / 0.08); /* card borders */
   --color-border-field: rgb(0 0 0 / 0.64); /* form fields */
   --color-border-search: rgb(32 32 32 / 0.08);
+  --color-border-faint: rgb(0 0 0 / 0.04); /* promo cards 317:1293 */
 
   /* ---------- Typography ---------- */
   --font-heading: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
   --font-body: var(--font-source-serif), ui-serif, Georgia, serif;
   --font-sans: var(--font-open-sans), ui-sans-serif, system-ui, sans-serif;
   --font-label: var(--font-plus-jakarta), ui-sans-serif, system-ui, sans-serif;
+
+  /* Source Serif 4 at opsz 20 matches Source Serif Pro metrics (measured against Figma line breaks) */
+  --font-body-variation: "opsz" 20;
 
   /* Figma letterSpacing 0.5 = 0.5% of font size */
   --tracking-figma: 0.005em;
@@ -109,6 +118,16 @@
   --text-h6--line-height: 1.75rem; /* 28 */
   --text-h6--letter-spacing: var(--tracking-figma);
 
+  /* Hero watermark (317:434) */
+  --text-display: 6.75rem; /* 108 */
+  --text-display--line-height: 8.125rem; /* 130 */
+  --text-display--letter-spacing: var(--tracking-figma);
+
+  /* Newsletter sub line, Poppins Regular 18/28 (317:1462) */
+  --text-lead: 1.125rem;
+  --text-lead--line-height: 1.75rem;
+  --text-lead--letter-spacing: var(--tracking-figma);
+
   /* Body (Source Serif) */
   --text-body-xl: 1.125rem; /* 18 */
   --text-body-xl--line-height: 1.875rem; /* 30 */
@@ -130,6 +149,11 @@
   --text-caption: 0.875rem;
   --text-caption--line-height: 1.375rem;
   --text-caption--letter-spacing: var(--tracking-figma);
+
+  /* Caption body text-18/30 reg (Source Serif 4, no tracking) */
+  --text-caption-lg: 1.125rem;
+  --text-caption-lg--line-height: 1.875rem;
+  --text-caption-lg--letter-spacing: var(--tracking-none);
 
   /* Paragraph 1-16 reg (Open Sans) */
   --text-paragraph: 1rem;
@@ -160,6 +184,7 @@
   /* ---------- Shadows ---------- */
   --shadow-card: 8px 8px 16px rgb(0 0 0 / 0.04); /* product card 317:519 */
   --shadow-modal: 12px 12px 28px rgb(0 0 0 / 0.16); /* question card 172:4145 */
+  --shadow-promo: 12px 12px 56px rgb(0 0 0 / 0.08); /* promo cards 317:1293 */
   --shadow-drawer: var(--shadow-modal);
 
   /* ---------- Layout ---------- */
@@ -170,6 +195,7 @@
   --spacing-header: 6rem; /* 96 navbar */
   --spacing-touch: 2.75rem; /* 44 minimum touch target */
   --spacing-card: 12.5rem; /* 200 product card */
+  --spacing-section: 6rem; /* 96 vertical rhythm between Home sections */
 
   /* ---------- Breakpoints (375 / 768 / 1024 / 1440) ---------- */
   --breakpoint-*: initial;
@@ -229,8 +255,9 @@
     background: var(--color-surface);
     color: var(--color-text);
     font-family: var(--font-body);
+    font-optical-sizing: none;
+    font-variation-settings: var(--font-body-variation);
     -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
   }
   h1,
   h2,
