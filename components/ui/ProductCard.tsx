@@ -1,0 +1,79 @@
+import Image from "next/image";
+import Link from "next/link";
+import type { Product } from "@/types";
+import { cn } from "@/lib/cn";
+import { PriceTag } from "./PriceTag";
+import { Rating } from "./Rating";
+import { AddToCartIcon } from "./AddToCartIcon";
+
+/*
+ * Figma 317:519 — 200x200 image (border l/r/t, radius-top 4) + 200 body
+ * (bg white, border b/l/r). Title 18/30 semibold, description 14/22 muted,
+ * "500+ Sold" primary + rating, price + "Buy Now" pill with plus icon.
+ */
+export function ProductCard({
+  product,
+  priority = false,
+  className,
+}: {
+  product: Product;
+  priority?: boolean;
+  className?: string;
+}) {
+  const href = `/product/${product.slug}`;
+  return (
+    <article
+      className={cn(
+        "group relative flex w-full flex-col drop-shadow-[var(--shadow-card)]",
+        className,
+      )}
+    >
+      <Link
+        href={href}
+        className="relative block aspect-square overflow-hidden rounded-t-sm border-x border-t border-border bg-surface-subtle focus-ring"
+        tabIndex={-1}
+        aria-hidden="true"
+      >
+        <Image
+          src={product.images[0]}
+          alt=""
+          fill
+          priority={priority}
+          sizes="(min-width: 90rem) 200px, (min-width: 48rem) 30vw, 46vw"
+          className="object-cover transition-transform duration-(--duration-base) ease-(--ease-standard) group-hover:scale-105"
+        />
+      </Link>
+      <div className="flex flex-1 flex-col gap-4 rounded-b-sm border-x border-b border-border bg-surface px-3.5 pt-1 pb-5">
+        <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-2">
+            <h3 className="font-body text-body-xl font-semibold text-text">
+              <Link href={href} className="rounded-xs focus-ring hover:text-primary-hover">
+                {product.name}
+              </Link>
+            </h3>
+            <p className="text-caption text-text-muted">{product.description}</p>
+          </div>
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="text-body-md leading-none font-semibold text-primary">
+              {product.soldLabel}
+            </span>
+            <Rating value={product.rating} count={product.reviewCount} />
+          </div>
+        </div>
+        <div className="mt-auto flex items-center justify-between gap-2">
+          <PriceTag price={product.price} salePrice={product.salePrice} />
+          <div className="relative flex h-8 items-center rounded-pill border border-border pr-8 pl-2">
+            <Link
+              href={href}
+              className="rounded-xs text-body-md leading-none font-semibold whitespace-nowrap text-text focus-ring hover:text-primary-hover"
+            >
+              Buy Now
+              <span className="sr-only">: {product.name}</span>
+            </Link>
+            <AddToCartIcon product={product} />
+          </div>
+        </div>
+      </div>
+    </article>
+  );
+}

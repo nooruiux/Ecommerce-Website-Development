@@ -1,0 +1,255 @@
+@import "tailwindcss";
+
+/*
+ * Nattarol design tokens.
+ * Source: Figma file IZu9OqsPkarImQz9n31q42 (variables + Style Guide 88:485).
+ * Default Tailwind palettes, radii and shadows are reset so only these tokens exist.
+ */
+@theme {
+  /* ---------- Reset Tailwind defaults ---------- */
+  --color-*: initial;
+  --radius-*: initial;
+  --shadow-*: initial;
+  --drop-shadow-*: initial;
+  --font-*: initial;
+  --text-*: initial;
+
+  /* ---------- Raw palette (Figma variables) ---------- */
+  --color-transparent: transparent;
+  --color-current: currentColor;
+  --color-white: #ffffff; /* Main Colors/Neautral, Secondary/white */
+  --color-white-soft: #fefefe; /* Additional Colors/White */
+  --color-black: #000000; /* used at alpha in Figma (text, borders) */
+  --color-ink: #202020; /* Additional Colors/Black, Text */
+
+  --color-cyan-50: #c9e8ea; /* Main Colors/Primary */
+  --color-cyan-500: #3cb9d1; /* Primary (Home page) */
+  --color-blue-500: #1aa9e5; /* Main Color/Primary (Style Guide) */
+  --color-peach-100: #fae1d8; /* Main Colors/Secondary */
+  --color-charcoal: #414042; /* Main Colors/Accent */
+  --color-orange: #ff784b; /* Additional Colors/Orange */
+  --color-purple: #936dff; /* Additional Colors/Purple */
+
+  --color-gray-10: #fdfdfd;
+  --color-gray-20: #ecf1f6;
+  --color-gray-30: #e3e9ed;
+  --color-gray-40: #d1d8dd;
+  --color-gray-50: #bfc6cc;
+  --color-gray-60: #9ca4ab;
+  --color-gray-70: #78828a;
+  --color-gray-80: #66707a;
+  --color-gray-90: #434e58;
+  --color-gray-100: #171725;
+  --color-gray-search: #f8f8f8; /* search category segment */
+  --color-gray-toggle: #edf2f7; /* toggle off track */
+
+  --color-line: #e3e7ec; /* Additional Colors/Line */
+  --color-line-dark: #282837; /* Additional Colors/Line dark */
+
+  --color-success: #00c566;
+  --color-error: #e53935;
+  --color-warning: #facc15;
+  --color-success-tint: #e6f9f0; /* chip backgrounds (Style Guide 2:170) */
+  --color-error-tint: #ffeded;
+  --color-error-chip: #ff4747;
+  --color-pending-tint: #fff2ed;
+  --color-warning-tint: #fffae8;
+  --color-purple-tint: #f4f0ff;
+
+  /* ---------- Semantic colors ---------- */
+  --color-primary: var(--color-cyan-500);
+  --color-primary-light: var(--color-cyan-50);
+  --color-primary-hover: var(--color-blue-500);
+  --color-secondary: var(--color-peach-100);
+  --color-accent: var(--color-charcoal);
+  --color-highlight: var(--color-orange);
+
+  --color-surface: var(--color-white);
+  --color-surface-muted: var(--color-gray-search);
+  --color-surface-subtle: var(--color-gray-20);
+
+  --color-text: var(--color-ink);
+  --color-on-accent: var(--color-white-soft);
+  --color-text-strong: rgb(0 0 0 / 0.8); /* "Account" label */
+  --color-text-subtle: rgb(0 0 0 / 0.72); /* "All Category" */
+  --color-text-muted: rgb(0 0 0 / 0.64); /* product description */
+  --color-text-placeholder: rgb(0 0 0 / 0.48); /* inputs */
+
+  --color-border: rgb(0 0 0 / 0.08); /* card borders */
+  --color-border-field: rgb(0 0 0 / 0.64); /* form fields */
+  --color-border-search: rgb(32 32 32 / 0.08);
+
+  /* ---------- Typography ---------- */
+  --font-heading: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-source-serif), ui-serif, Georgia, serif;
+  --font-sans: var(--font-open-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-label: var(--font-plus-jakarta), ui-sans-serif, system-ui, sans-serif;
+
+  /* Figma letterSpacing 0.5 = 0.5% of font size */
+  --tracking-figma: 0.005em;
+  --tracking-none: 0em;
+
+  /* Headlines (Poppins) */
+  --text-h1: 3.5rem; /* 56 */
+  --text-h1--line-height: 4rem; /* 64 */
+  --text-h1--letter-spacing: var(--tracking-figma);
+  --text-h2: 3rem; /* 48 */
+  --text-h2--line-height: 3.5rem; /* 56 */
+  --text-h2--letter-spacing: var(--tracking-figma);
+  --text-h3: 2.5rem; /* 40 */
+  --text-h3--line-height: 3rem; /* 48 */
+  --text-h3--letter-spacing: var(--tracking-figma);
+  --text-h4: 2rem; /* 32 */
+  --text-h4--line-height: 2.5rem; /* 40 */
+  --text-h4--letter-spacing: var(--tracking-figma);
+  --text-h5: 1.5rem; /* 24 */
+  --text-h5--line-height: 2rem; /* 32 */
+  --text-h5--letter-spacing: var(--tracking-figma);
+  --text-h6: 1.25rem; /* 20 */
+  --text-h6--line-height: 1.75rem; /* 28 */
+  --text-h6--letter-spacing: var(--tracking-figma);
+
+  /* Body (Source Serif) */
+  --text-body-xl: 1.125rem; /* 18 */
+  --text-body-xl--line-height: 1.875rem; /* 30 */
+  --text-body-xl--letter-spacing: var(--tracking-figma);
+  --text-body-lg: 1rem; /* 16 */
+  --text-body-lg--line-height: 1.75rem; /* 28 */
+  --text-body-lg--letter-spacing: var(--tracking-figma);
+  --text-body-md: 0.875rem; /* 14 */
+  --text-body-md--line-height: 1.625rem; /* 26 */
+  --text-body-md--letter-spacing: var(--tracking-figma);
+  --text-body-sm: 0.75rem; /* 12 */
+  --text-body-sm--line-height: 1.25rem; /* 20 */
+  --text-body-sm--letter-spacing: var(--tracking-figma);
+  --text-body-xs: 0.625rem; /* 10 */
+  --text-body-xs--line-height: 1.375rem; /* 22 */
+  --text-body-xs--letter-spacing: var(--tracking-figma);
+
+  /* Product description: 14 / 22 (node 317:526) */
+  --text-caption: 0.875rem;
+  --text-caption--line-height: 1.375rem;
+  --text-caption--letter-spacing: var(--tracking-figma);
+
+  /* Paragraph 1-16 reg (Open Sans) */
+  --text-paragraph: 1rem;
+  --text-paragraph--line-height: 1.5;
+  --text-paragraph--letter-spacing: var(--tracking-none);
+
+  /* Labels (Plus Jakarta Sans) */
+  --text-label-lg: 1rem;
+  --text-label-lg--line-height: 1.5rem;
+  --text-label-lg--letter-spacing: var(--tracking-figma);
+  --text-label-md: 0.875rem;
+  --text-label-md--line-height: 1.375rem;
+  --text-label-md--letter-spacing: var(--tracking-figma);
+  --text-label-sm: 0.75rem;
+  --text-label-sm--line-height: 1.25rem;
+  --text-label-sm--letter-spacing: var(--tracking-figma);
+
+  /* ---------- Radius ---------- */
+  --radius-xs: 2px; /* search category segment */
+  --radius-sm: 4px; /* fields, cards, dark buttons */
+  --radius-md: 8px; /* tertiary button */
+  --radius-lg: 12px; /* small pill button */
+  --radius-xl: 20px; /* normal pill button */
+  --radius-2xl: 24px; /* modal, large pill button */
+  --radius-pill: 60px; /* Buy Now */
+  --radius-full: 9999px; /* avatars, category circles, badges, toggle */
+
+  /* ---------- Shadows ---------- */
+  --shadow-card: 8px 8px 16px rgb(0 0 0 / 0.04); /* product card 317:519 */
+  --shadow-modal: 12px 12px 28px rgb(0 0 0 / 0.16); /* question card 172:4145 */
+  --shadow-drawer: var(--shadow-modal);
+
+  /* ---------- Layout ---------- */
+  --container-content: 80rem; /* 1280 */
+  --spacing-gutter: 5rem; /* 80 desktop gutter */
+  --spacing-gutter-tablet: 2rem;
+  --spacing-gutter-mobile: 1rem;
+  --spacing-header: 6rem; /* 96 navbar */
+  --spacing-touch: 2.75rem; /* 44 minimum touch target */
+  --spacing-card: 12.5rem; /* 200 product card */
+
+  /* ---------- Breakpoints (375 / 768 / 1024 / 1440) ---------- */
+  --breakpoint-*: initial;
+  --breakpoint-sm: 23.4375rem; /* 375 */
+  --breakpoint-md: 48rem; /* 768 */
+  --breakpoint-lg: 64rem; /* 1024 */
+  --breakpoint-xl: 90rem; /* 1440 */
+
+  /* ---------- Motion ---------- */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --duration-fast: 150ms;
+  --duration-base: 250ms;
+
+  /* ---------- State tokens ---------- */
+  --opacity-disabled: 0.4;
+
+  --animate-skeleton: skeleton 1.4s ease-in-out infinite;
+  @keyframes skeleton {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+}
+
+/* Container: 1280 content + responsive gutters */
+@utility container-page {
+  width: 100%;
+  margin-inline: auto;
+  max-width: calc(var(--container-content) + 2 * var(--spacing-gutter));
+  padding-inline: var(--spacing-gutter-mobile);
+  @media (width >= 48rem) {
+    padding-inline: var(--spacing-gutter-tablet);
+  }
+  @media (width >= 90rem) {
+    padding-inline: var(--spacing-gutter);
+  }
+}
+
+/* Focus = 2px primary ring with 2px offset */
+@utility focus-ring {
+  outline: 2px solid transparent;
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background: var(--color-surface);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
