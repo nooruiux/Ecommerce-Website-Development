@@ -12,7 +12,7 @@ import { getProduct, products } from "@/data/products";
 import { reviewsFor } from "@/data/reviews";
 import { FREE_SHIPPING_FROM } from "@/lib/cart/totals";
 import { formatPrice } from "@/lib/format";
-import { JsonLd, breadcrumbLd, productLd } from "@/lib/seo";
+import { JsonLd, breadcrumbLd, ogBase, productLd } from "@/lib/seo";
 
 export function generateStaticParams() {
   return products.map((p) => ({ slug: p.slug }));
@@ -31,6 +31,7 @@ export async function generateMetadata({
     description: product.description,
     alternates: { canonical: url },
     openGraph: {
+      ...ogBase,
       title: product.name,
       description: product.description,
       url,
@@ -74,7 +75,7 @@ export default async function ProductPage({ params }: PageProps<"/product/[slug]
           <ProductGallery images={product.images} name={product.name} />
           <div className="flex flex-col gap-6">
             <div className="flex flex-col gap-3">
-              <p className="text-body-md font-semibold text-primary">{product.soldLabel}</p>
+              <p className="text-body-md font-semibold text-primary-strong">{product.soldLabel}</p>
               <h1 className="font-heading text-h4 font-semibold text-text xl:text-h3">
                 {product.name}
               </h1>
@@ -96,7 +97,10 @@ export default async function ProductPage({ params }: PageProps<"/product/[slug]
           </div>
         </div>
 
-        <section aria-label="Product details" className="py-8">
+        <section aria-labelledby="product-details" className="py-8">
+          <h2 id="product-details" className="sr-only">
+            Product details
+          </h2>
           <Tabs
             tabs={[
               {

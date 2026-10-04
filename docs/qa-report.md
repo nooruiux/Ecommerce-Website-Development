@@ -97,3 +97,59 @@ Logo 300×47 at (570, 58) and card 552×677 at (444, 169): identical to Figma.
 No horizontal overflow at 360 / 375 / 768 / 1024 / 1440 on any route (production build).
 
 Pending: image-level comparison once Figma assets are available.
+
+## Phase 5: production quality
+
+### SEO
+
+- `metadata.title.template` = `%s | Nattoral`; every route has its own title and description.
+- `noindex, follow`: /cart, /checkout, /order-confirmation, /login, /register, /wishlist, /compare, 404, and /shop?q= search results.
+- `/primitives` returns 404 in production (`notFound()` when `NODE_ENV === "production"`); excluded from the sitemap and disallowed in robots.txt.
+- `sitemap.xml`: 44 URLs (home, shop, 4 categories, 36 products, consultation, ask). No noindex or filtered URLs.
+- `robots.txt`: allow `/`, disallow `/checkout`, `/cart`, `/primitives`; points to the sitemap.
+- JSON-LD: Organization + WebSite (SearchAction → `/shop?q=`) on home; Product + BreadcrumbList on product pages; BreadcrumbList on shop/category.
+- Open Graph image: `app/opengraph-image.tsx` (brand colours + wordmark), shared via `ogBase` on every page; product pages use the product photo.
+- Favicon and apple-touch-icon: generated placeholders (`app/icon.tsx`, `app/apple-icon.tsx`). Replace with `app/icon.png` / `app/apple-icon.png` once the logo is exported.
+
+### Accessibility (axe-core 4, WCAG 2.2 AA + best practices)
+
+15 routes × 1440 / 375 (cart seeded): **0 violations**.
+
+Fixed in this pass: rating labels on plain spans (role="img"), `<p>` inside `<dl>`, keyboard access to the mobile testimonial scroller, product-tab heading order, duplicate search landmark on 404, and colour contrast (below).
+
+Every route has exactly one `h1`, it is the first heading, and no heading levels are skipped.
+
+#### Colour contrast vs tokens
+
+| Token | Value | On white | Use |
+|---|---|---|---|
+| text | #202020 | 16.3:1 | body |
+| text-muted (black 64%) | | 6.7:1 | descriptions |
+| text-placeholder (black 48%) | | 3.7:1 | placeholders only |
+| primary (Figma) | #3CB9D1 | 2.3:1 ✗ | fills, swatches only |
+| **primary-strong** (derived) | #267D8E | 4.8:1 | "500+ Sold", focus ring |
+| highlight (Figma) | #FF784B | 2.6:1 ✗ | fills only |
+| **highlight-strong** (derived) | #AB4E2F | 5.4:1 | sale prices, sale badge |
+| success (Figma) | #00C566 | 2.3:1 ✗ | fills only |
+| **success-strong** (derived) | #008543 | 4.7:1 | "In stock", confirmations |
+| error (Figma) | #E53935 | 4.2:1 ✗ (small text) | fills only |
+| **error-strong** (derived) | #D63531 | 4.8:1 | error messages |
+| gray-60 → gray-80 | #66707A | 5.0:1 | brand placeholder wordmarks |
+
+The four `*-strong` tokens are `color-mix(in oklab, <figma token>, black)`, the lightest mix that clears 4.5:1. They are a deliberate deviation: the Figma text colours fail WCAG AA.
+
+### Lighthouse 13 (mobile, simulated throttling, production build, images missing)
+
+| Route | Performance | Accessibility | Best practices | SEO | LCP | TBT | CLS |
+|---|---|---|---|---|---|---|---|
+| / | 92 | 100 | 100 | 100 | 3.3 s | 90 ms | 0 |
+| /shop | 91 | 100 | 100 | 100 | 3.5 s | 110 ms | 0 |
+| /product/sebiaclear-gel-p01 | 92 | 100 | 100 | 100 | 3.3 s | 90 ms | 0 |
+| /checkout | 91 | 100 | 100 | 63* | 3.5 s | 90 ms | 0 |
+| /consultation | 90 | 100 | 100 | 100 | 3.5 s | 130 ms | 0 |
+
+\* Only failing SEO audit is `is-crawlable`: /checkout is intentionally `noindex`.
+
+Performance fixes: inlined CSS (`experimental.inlineCss`), Drawer / Modal / Toaster code-split and loaded on first open (Framer Motion out of the initial bundle), stable-height checkout placeholder (CLS 0.198 → 0). Initial run: / 82 (TBT 350 ms), /checkout 82 (CLS 0.198).
+
+Scores must be re-measured once real images are in (the hero photo becomes the LCP element; it is already `priority`).

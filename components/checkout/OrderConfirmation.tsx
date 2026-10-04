@@ -33,7 +33,7 @@ export function OrderConfirmation() {
     <div className="mx-auto flex max-w-138 flex-col items-center gap-6 rounded-2xl bg-surface p-6 text-center shadow-modal md:p-10">
       <span
         aria-hidden="true"
-        className="inline-flex size-16 items-center justify-center rounded-full bg-success-tint text-h4 text-success"
+        className="inline-flex size-16 items-center justify-center rounded-full bg-success-tint text-h4 text-success-strong"
       >
         ✓
       </span>

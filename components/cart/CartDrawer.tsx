@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback } from "react";
-import { Drawer } from "@/components/ui/Drawer";
+import { Drawer } from "@/components/ui/LazyOverlays";
 import { ButtonLink } from "@/components/ui/Button";
 import { cartTotals, resolveLines } from "@/lib/cart/totals";
 import { useCart } from "@/store/cart";

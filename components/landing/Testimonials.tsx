@@ -42,7 +42,11 @@ export function Testimonials() {
           <p className="sr-only" aria-live="polite">
             Featured: {featured.name}
           </p>
-          <ul className="flex snap-x snap-mandatory [scrollbar-width:none] items-center gap-6 overflow-x-auto px-px pb-4 md:justify-center xl:overflow-visible xl:px-3.75 xl:pb-0 [&::-webkit-scrollbar]:hidden">
+          <ul
+            tabIndex={0}
+            aria-label="Customer testimonials"
+            className="flex snap-x snap-mandatory [scrollbar-width:none] items-center gap-6 overflow-x-auto px-px pb-4 focus-ring md:justify-center xl:overflow-visible xl:px-3.75 xl:pb-0 [&::-webkit-scrollbar]:hidden"
+          >
             {ordered.map((t, i) => {
               const isFeatured = i === 1;
               return (

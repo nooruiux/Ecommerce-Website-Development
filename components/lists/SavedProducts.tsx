@@ -45,7 +45,7 @@ export function WishlistGrid() {
           <button
             type="button"
             onClick={() => remove(p.id)}
-            className="min-h-touch rounded-xs text-body-md text-text-muted underline focus-ring hover:text-error"
+            className="min-h-touch rounded-xs text-body-md text-text-muted underline focus-ring hover:text-error-strong"
           >
             Remove<span className="sr-only"> {p.name} from wishlist</span>
           </button>

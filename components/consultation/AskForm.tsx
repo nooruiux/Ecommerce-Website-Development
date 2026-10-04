@@ -34,7 +34,7 @@ export function AskForm({
       {sent ? (
         <p
           role="status"
-          className="w-full rounded-sm bg-success-tint px-4 py-3 text-body-lg text-success"
+          className="w-full rounded-sm bg-success-tint px-4 py-3 text-body-lg text-success-strong"
         >
           Thanks! Our consultants will get back to you within one business day.
         </p>

@@ -47,7 +47,7 @@ function CouponForm() {
         </Button>
       </div>
       {message && (
-        <p id="coupon-message" role="alert" className="text-body-sm text-error">
+        <p id="coupon-message" role="alert" className="text-body-sm text-error-strong">
           {message}
         </p>
       )}

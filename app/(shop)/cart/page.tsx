@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 import { CartPageView } from "@/components/cart/CartPageView";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 
-export const metadata: Metadata = { title: "Cart", robots: { index: false } };
+export const metadata: Metadata = {
+  title: "Cart",
+  description: "Review the items in your Nattoral cart.",
+  robots: { index: false, follow: true },
+};
 
 export default function CartPage() {
   return (

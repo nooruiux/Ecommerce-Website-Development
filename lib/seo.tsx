@@ -4,6 +4,16 @@ import { site } from "./site";
 
 export const absoluteUrl = (path: string) => new URL(path, site.url).toString();
 
+// Next replaces (not merges) nested openGraph objects, so every page spreads this base.
+export const ogBase = {
+  type: "website" as const,
+  siteName: site.name,
+  locale: "en_US",
+  images: [
+    { url: "/opengraph-image", width: 1200, height: 630, alt: `${site.name}: ${site.tagline}` },
+  ],
+};
+
 export function JsonLd({ data }: { data: Record<string, unknown> }) {
   return (
     <script
@@ -35,6 +45,23 @@ export function organizationLd() {
     url: site.url,
     logo: absoluteUrl("/images/brand/logo.png"),
     email: site.email,
+  };
+}
+
+export function websiteLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: site.name,
+    url: site.url,
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${absoluteUrl("/shop")}?q={search_term_string}`,
+      },
+      "query-input": "required name=search_term_string",
+    },
   };
 }
 

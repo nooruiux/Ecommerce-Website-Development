@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useCallback, useContext, useState, type ReactNode } from "react";
-import { Modal } from "@/components/ui/Modal";
+import { Modal } from "@/components/ui/LazyOverlays";
 import { AskForm } from "./AskForm";
 
 const AskContext = createContext<(message?: string) => void>(() => {});

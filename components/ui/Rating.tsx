@@ -13,7 +13,7 @@ export function Rating({
 }) {
   const label = `Rated ${value.toFixed(1)} out of 5${count ? ` from ${count} reviews` : ""}`;
   return (
-    <span className={cn("inline-flex items-center gap-1", className)} aria-label={label}>
+    <span role="img" className={cn("inline-flex items-center gap-1", className)} aria-label={label}>
       <Icon name="star" size={16} className="text-warning" />
       <span aria-hidden="true" className="text-body-md leading-none font-semibold text-text">
         {value.toFixed(1)}

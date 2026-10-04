@@ -1,3 +1,4 @@
+import { ogBase } from "@/lib/seo";
 import type { Metadata } from "next";
 import { AskForm } from "@/components/consultation/AskForm";
 import { Logo } from "@/components/layout/Logo";
@@ -5,6 +6,7 @@ import { Logo } from "@/components/layout/Logo";
 export const metadata: Metadata = {
   title: "Ask us a question",
   description: "Send a question to our skincare consultants.",
+  openGraph: { ...ogBase, url: "/ask" },
   alternates: { canonical: "/ask" },
 };
 

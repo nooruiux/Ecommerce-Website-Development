@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 import { WishlistGrid } from "@/components/lists/SavedProducts";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 
-export const metadata: Metadata = { title: "Wishlist", robots: { index: false } };
+export const metadata: Metadata = {
+  title: "Wishlist",
+  description: "Products you saved to your Nattoral wishlist.",
+  robots: { index: false, follow: true },
+};
 
 export default function Page() {
   return (

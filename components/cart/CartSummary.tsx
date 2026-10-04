@@ -17,20 +17,20 @@ export function CartSummary({
         <dd>{formatPrice(totals.listSubtotal)}</dd>
       </div>
       {totals.discount > 0 && (
-        <div className={cn(row, "text-highlight")}>
+        <div className={cn(row, "text-highlight-strong")}>
           <dt>Discount</dt>
           <dd>−{formatPrice(totals.discount)}</dd>
         </div>
       )}
-      <div className={row}>
+      <div className="flex flex-wrap items-center justify-between text-body-md text-text">
         <dt>Shipping</dt>
         <dd>{totals.shipping === 0 ? "Free" : formatPrice(totals.shipping)}</dd>
+        {totals.shipping > 0 && (
+          <dd className="mt-1 w-full text-body-sm text-text-muted">
+            Free shipping on orders over {formatPrice(FREE_SHIPPING_FROM)}.
+          </dd>
+        )}
       </div>
-      {totals.shipping > 0 && (
-        <p className="text-body-sm text-text-muted">
-          Free shipping on orders over {formatPrice(FREE_SHIPPING_FROM)}.
-        </p>
-      )}
       <div className="mt-2 flex items-center justify-between border-t border-line pt-3">
         <dt className="font-heading text-h6 font-semibold">Total</dt>
         <dd className="font-heading text-h6 font-semibold">{formatPrice(totals.total)}</dd>

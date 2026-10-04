@@ -48,7 +48,7 @@ export function ProductCard({
           className="object-cover transition-transform duration-(--duration-base) ease-(--ease-standard) group-hover:scale-105"
         />
         {discount > 0 && (
-          <Chip tone="pending" className="absolute top-2 left-2 font-semibold">
+          <Chip tone="sale" className="absolute top-2 left-2 font-semibold">
             −{discount}%
           </Chip>
         )}
@@ -64,7 +64,7 @@ export function ProductCard({
             <p className="line-clamp-3 text-caption text-text-muted">{product.description}</p>
           </div>
           <div className="flex min-h-4.5 flex-wrap items-center gap-2">
-            <span className="text-body-md leading-none font-semibold text-primary">
+            <span className="text-body-md leading-none font-semibold text-primary-strong">
               {product.soldLabel}
             </span>
             <Rating value={product.rating} count={product.reviewCount} />

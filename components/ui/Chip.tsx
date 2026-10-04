@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
 // Style Guide chip (2:170)
-export type ChipTone = "success" | "failed" | "pending" | "refund" | "unpaid";
+export type ChipTone = "success" | "failed" | "pending" | "refund" | "unpaid" | "sale";
 
 const tones: Record<ChipTone, string> = {
   success: "bg-success-tint text-success",
@@ -10,6 +10,8 @@ const tones: Record<ChipTone, string> = {
   pending: "bg-pending-tint text-highlight",
   refund: "bg-warning-tint text-warning",
   unpaid: "bg-purple-tint text-purple",
+  // Derived for the product-card discount badge: pending tint + AA-safe orange text
+  sale: "bg-pending-tint text-highlight-strong",
 };
 
 export function Chip({

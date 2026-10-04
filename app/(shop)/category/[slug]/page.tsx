@@ -1,3 +1,4 @@
+import { ogBase } from "@/lib/seo";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { CatalogView } from "@/components/catalog/CatalogView";
@@ -23,7 +24,12 @@ export async function generateMetadata({
     title: category.name,
     description: category.description,
     alternates: { canonical: url },
-    openGraph: { title: category.name, description: category.description, url },
+    openGraph: {
+      ...ogBase,
+      title: category.name,
+      description: category.description,
+      url,
+    },
   };
 }
 

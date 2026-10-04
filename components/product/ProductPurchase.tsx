@@ -88,7 +88,10 @@ function PurchasePanel({ product, variant }: { product: Product; variant: Produc
         </ul>
       </div>
 
-      <p className={cn("text-body-md", soldOut ? "text-error" : "text-success")} aria-live="polite">
+      <p
+        className={cn("text-body-md", soldOut ? "text-error-strong" : "text-success-strong")}
+        aria-live="polite"
+      >
         {soldOut
           ? "Sold out in this size"
           : variant.stock < 10

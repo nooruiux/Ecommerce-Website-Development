@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useCallback, useMemo, useOptimistic, useState, useTransition } from "react";
 import { Button } from "@/components/ui/Button";
 import { Checkbox, Radio } from "@/components/ui/Choice";
-import { Drawer } from "@/components/ui/Drawer";
+import { Drawer } from "@/components/ui/LazyOverlays";
 import { brands } from "@/data/brands";
 import { categories, concerns } from "@/data/catalog";
 import { activeFilterCount, applyFilters, hrefFor, ratingOptions } from "@/lib/catalog/query";
@@ -132,7 +132,7 @@ function PriceInputs({
     if (parse(lo) !== min || parse(hi) !== max) onCommit(parse(lo), parse(hi));
   };
   const field =
-    "h-touch w-full rounded-sm border border-border-field px-3 text-body-md text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary";
+    "h-touch w-full rounded-sm border border-border-field px-3 text-body-md text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-strong";
   return (
     <div className="flex items-center gap-2">
       {[

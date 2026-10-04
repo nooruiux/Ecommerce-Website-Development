@@ -67,7 +67,7 @@ export function CartLineItem({
           <button
             type="button"
             onClick={removeWithUndo}
-            className="min-h-touch rounded-xs px-2 text-body-md text-text-muted underline focus-ring hover:text-error"
+            className="min-h-touch rounded-xs px-2 text-body-md text-text-muted underline focus-ring hover:text-error-strong"
           >
             Remove<span className="sr-only"> {product.name}</span>
           </button>

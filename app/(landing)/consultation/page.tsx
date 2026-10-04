@@ -1,3 +1,4 @@
+import { ogBase } from "@/lib/seo";
 import type { Metadata } from "next";
 import {
   ConsultantsSection,
@@ -14,7 +15,11 @@ export const metadata: Metadata = {
   title: "Skincare consultation",
   description: "Book a skin, hair or feeding consultation with our cosmetologists.",
   alternates: { canonical: "/consultation" },
-  openGraph: { title: "Skincare consultation", url: "/consultation" },
+  openGraph: {
+    ...ogBase,
+    title: "Skincare consultation",
+    url: "/consultation",
+  },
 };
 
 // Figma Landing 143:64. Section rhythm at 1440: 120 after hero, 112 between sections, 96 / 64 at the end.

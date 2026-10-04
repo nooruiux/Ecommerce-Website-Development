@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { ConsultationBanner } from "@/components/sections/ConsultationBanner";
 import { Hero } from "@/components/sections/Hero";
 import { Newsletter } from "@/components/sections/Newsletter";
@@ -6,11 +7,18 @@ import { ProductSection } from "@/components/sections/ProductSection";
 import { PromoBanners } from "@/components/sections/PromoBanners";
 import { TopCategories } from "@/components/sections/TopCategories";
 import { byTag } from "@/data/products";
+import { JsonLd, organizationLd, websiteLd } from "@/lib/seo";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 // Figma Home Page 317:338. Vertical rhythm: 96px between sections (64 before New Arrivals, 112 before newsletter).
 export default function HomePage() {
   return (
     <>
+      <JsonLd data={organizationLd()} />
+      <JsonLd data={websiteLd()} />
       <Hero />
       <div className="flex flex-col gap-16 pt-16 xl:gap-0 xl:pt-24">
         <TopCategories />

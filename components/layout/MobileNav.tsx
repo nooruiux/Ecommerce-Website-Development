@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useCallback, useState } from "react";
-import { Drawer } from "@/components/ui/Drawer";
+import { Drawer } from "@/components/ui/LazyOverlays";
 import { ButtonLink } from "@/components/ui/Button";
 import { MenuIcon } from "@/components/ui/glyphs";
 import { mainNav } from "@/data/navigation";

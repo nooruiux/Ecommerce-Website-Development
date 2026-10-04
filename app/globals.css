@@ -65,6 +65,13 @@
   --color-primary: var(--color-cyan-500);
   --color-primary-light: var(--color-cyan-50);
   --color-primary-hover: var(--color-blue-500);
+  /* AA-safe text / focus variant of the Figma primary (#3CB9D1 is 2.3:1 on white) → #267D8E, 4.8:1 */
+  --color-primary-strong: color-mix(in oklab, var(--color-primary) 75%, black);
+  /* AA-safe text variant of the Figma orange (#FF784B is 2.6:1 on white) */
+  --color-highlight-strong: color-mix(in oklab, var(--color-highlight) 74%, black);
+  /* AA-safe text variants of the Figma alert colors (success 2.3:1, error 4.0:1 on white) */
+  --color-success-strong: color-mix(in oklab, var(--color-success) 75%, black);
+  --color-error-strong: color-mix(in oklab, var(--color-error) 95%, black);
   --color-secondary: var(--color-peach-100);
   --color-accent: var(--color-charcoal);
   --color-highlight: var(--color-orange);
@@ -253,7 +260,7 @@
 @utility focus-ring {
   outline: 2px solid transparent;
   &:focus-visible {
-    outline: 2px solid var(--color-primary);
+    outline: 2px solid var(--color-primary-strong);
     outline-offset: 2px;
   }
 }
@@ -279,7 +286,7 @@
     font-family: var(--font-heading);
   }
   :focus-visible {
-    outline: 2px solid var(--color-primary);
+    outline: 2px solid var(--color-primary-strong);
     outline-offset: 2px;
   }
   @media (prefers-reduced-motion: reduce) {

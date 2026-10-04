@@ -13,7 +13,7 @@ const control = cn(
   "peer relative size-6 shrink-0 cursor-pointer appearance-none rounded-full border-2 border-gray-30 bg-surface",
   "transition-colors duration-(--duration-fast) hover:border-primary-hover",
   "checked:border-primary-hover checked:bg-primary-hover",
-  "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary",
+  "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-strong",
   "disabled:cursor-not-allowed disabled:opacity-(--opacity-disabled)",
 );
 

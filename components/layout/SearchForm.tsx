@@ -4,11 +4,20 @@ import { cn } from "@/lib/cn";
 
 // Figma 317:345 — 548x48, 1.2px accent border, category segment, Search button.
 // Plain GET form: works without JavaScript.
-export function SearchForm({ className, id = "site-search" }: { className?: string; id?: string }) {
+export function SearchForm({
+  className,
+  id = "site-search",
+  label = "Site search",
+}: {
+  className?: string;
+  id?: string;
+  label?: string;
+}) {
   return (
     <form
       action="/shop"
       role="search"
+      aria-label={label}
       className={cn(
         "flex h-12 w-full items-stretch overflow-hidden rounded-sm border-[1.2px] border-accent",
         className,

@@ -1,12 +1,16 @@
 import type { Metadata, Viewport } from "next";
 import { fontVariables } from "@/lib/fonts";
+import { ogBase } from "@/lib/seo";
+import { site } from "@/lib/site";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
-  title: { default: "Nattoral — Skin Care, Hair Care & Personal Care", template: "%s | Nattoral" },
-  description:
-    "Shop skin care, hair care, personal care and mom & baby products, and book a skincare consultation.",
+  metadataBase: new URL(site.url),
+  title: { default: `${site.name} | ${site.tagline}`, template: `%s | ${site.name}` },
+  description: site.description,
+  applicationName: site.name,
+  openGraph: { ...ogBase, url: "/" },
+  twitter: { card: "summary_large_image" },
 };
 
 export const viewport: Viewport = {

@@ -126,11 +126,11 @@ export function CheckoutView() {
   const resolved = useMemo(() => (hydrated ? resolveLines(lines) : []), [hydrated, lines]);
   const totals = cartTotals(resolved, delivery);
 
-  if (!hydrated) return <Skeleton className="h-[40rem] w-full" />;
+  if (!hydrated) return <Skeleton className="min-h-160 w-full" />;
 
   if (resolved.length === 0 && !placing) {
     return (
-      <div className="flex flex-col items-center gap-4 rounded-sm border border-border px-6 py-16 text-center">
+      <div className="flex min-h-160 flex-col items-center justify-center gap-4 rounded-sm border border-border px-6 py-16 text-center">
         <p className="font-heading text-h5 font-semibold">Your cart is empty</p>
         <ButtonLink href="/shop" size="lg">
           Continue shopping

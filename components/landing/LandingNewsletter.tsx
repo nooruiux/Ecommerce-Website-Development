@@ -25,7 +25,7 @@ export function LandingNewsletter() {
           placeholder="Enter your email address"
           aria-invalid={status === "error" || undefined}
           aria-describedby="landing-newsletter-status"
-          className="min-w-0 flex-1 bg-accent px-4 text-body-md text-white placeholder:text-text-inverse-soft focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-primary"
+          className="min-w-0 flex-1 bg-accent px-4 text-body-md text-white placeholder:text-text-inverse-soft focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-primary-strong"
         />
         <button
           type="submit"

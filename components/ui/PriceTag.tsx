@@ -23,7 +23,7 @@ export function PriceTag({
         className={cn(
           "font-bold text-text",
           size === "lg" ? "font-heading text-h5" : "text-body-xl",
-          (onSale || highlight) && "text-highlight",
+          (onSale || highlight) && "text-highlight-strong",
         )}
       >
         <span className="sr-only">{onSale ? "Sale price " : "Price "}</span>

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useCallback, useState } from "react";
 import { ButtonLink } from "@/components/ui/Button";
-import { Drawer } from "@/components/ui/Drawer";
+import { Drawer } from "@/components/ui/LazyOverlays";
 import { MenuIcon } from "@/components/ui/glyphs";
 import { landingNav, services } from "@/data/consultation";
 

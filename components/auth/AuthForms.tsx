@@ -14,7 +14,7 @@ function Done({ text }: { text: string }) {
   return (
     <p
       role="status"
-      className="w-full rounded-sm bg-success-tint px-4 py-3 text-body-md text-success"
+      className="w-full rounded-sm bg-success-tint px-4 py-3 text-body-md text-success-strong"
     >
       {text}
     </p>
@@ -142,7 +142,7 @@ export function RegisterForm() {
             }
           />
           {form.errors.terms && (
-            <p id="terms-error" role="alert" className="text-body-sm text-error">
+            <p id="terms-error" role="alert" className="text-body-sm text-error-strong">
               {form.errors.terms}
             </p>
           )}

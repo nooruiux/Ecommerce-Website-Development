@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 import { CheckoutView } from "@/components/checkout/CheckoutView";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 
-export const metadata: Metadata = { title: "Checkout", robots: { index: false } };
+export const metadata: Metadata = {
+  title: "Checkout",
+  description: "Complete your Nattoral order: contact, shipping, delivery and payment.",
+  robots: { index: false, follow: true },
+};
 
 export default function CheckoutPage() {
   return (

@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 import { CompareTable } from "@/components/lists/SavedProducts";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 
-export const metadata: Metadata = { title: "Compare products", robots: { index: false } };
+export const metadata: Metadata = {
+  title: "Compare products",
+  description: "Compare Nattoral products side by side.",
+  robots: { index: false, follow: true },
+};
 
 export default function Page() {
   return (

@@ -34,7 +34,7 @@ export function PopularBrands() {
                   className="object-contain"
                 />
               ) : (
-                <span className="font-heading text-h6 font-semibold tracking-figma text-gray-60 uppercase">
+                <span className="font-heading text-h6 font-semibold tracking-figma text-gray-80 uppercase">
                   {b.name}
                 </span>
               )}

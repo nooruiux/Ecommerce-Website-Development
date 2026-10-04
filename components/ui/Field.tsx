@@ -7,7 +7,7 @@ import { cn } from "@/lib/cn";
 export const fieldBase = cn(
   "w-full rounded-sm border border-border-field bg-surface px-4 font-body text-body-lg text-text",
   "placeholder:text-text-placeholder transition-colors duration-(--duration-fast)",
-  "hover:border-accent focus-visible:border-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary",
+  "hover:border-accent focus-visible:border-primary-strong focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-strong",
   "disabled:cursor-not-allowed disabled:opacity-(--opacity-disabled)",
   "aria-invalid:border-error",
 );
@@ -33,7 +33,7 @@ function FieldShell({ label, error, hint, id, children, className, hideLabel }: 
       </label>
       {children}
       {error ? (
-        <p id={`${id}-error`} role="alert" className="text-body-sm text-error">
+        <p id={`${id}-error`} role="alert" className="text-body-sm text-error-strong">
           {error}
         </p>
       ) : hint ? (
