@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { IntentLink as Link } from "@/components/ui/IntentLink";
 import { useCallback, useState } from "react";
 import { ButtonLink } from "@/components/ui/Button";
 import { Drawer } from "@/components/ui/LazyOverlays";
@@ -23,7 +23,7 @@ export function LandingMobileNav() {
         onClick={() => setOpen(true)}
         aria-label="Open menu"
         aria-expanded={open}
-        className="inline-flex size-touch items-center justify-center rounded-sm focus-ring hover:text-primary-hover"
+        className="inline-flex size-touch items-center justify-center rounded-sm focus-ring hover:text-primary-hover-strong"
       >
         <MenuIcon />
       </button>
@@ -45,7 +45,7 @@ export function LandingMobileNav() {
                 <Link
                   href={l.href}
                   onClick={close}
-                  className="flex min-h-touch items-center px-4 font-heading text-body-lg text-text focus-ring hover:text-primary-hover"
+                  className="flex min-h-touch items-center px-4 font-heading text-body-lg text-text focus-ring hover:text-primary-hover-strong"
                 >
                   {l.label}
                 </Link>

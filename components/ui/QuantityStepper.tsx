@@ -20,7 +20,7 @@ export function QuantityStepper({
 }) {
   const btn = cn(
     "focus-ring inline-flex size-touch items-center justify-center text-h6 text-text",
-    "transition-colors hover:text-primary-hover disabled:opacity-(--opacity-disabled)",
+    "transition-colors hover:text-primary-hover-strong disabled:opacity-(--opacity-disabled)",
   );
   return (
     <div

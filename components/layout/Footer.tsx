@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { IntentLink as Link } from "@/components/ui/IntentLink";
 import { AssetImage } from "@/components/ui/AssetImage";
 import { Icon } from "@/components/ui/Icon";
 import { footerCompany, footerService, socialLinks } from "@/data/navigation";
@@ -12,7 +12,7 @@ import { site } from "@/lib/site";
  */
 const heading = "text-body-xl font-semibold whitespace-nowrap text-text";
 const link =
-  "focus-ring rounded-xs text-body-lg whitespace-nowrap text-text-muted hover:text-primary-hover";
+  "focus-ring rounded-xs text-body-lg whitespace-nowrap text-text-muted hover:text-primary-hover-strong";
 
 export function Footer() {
   return (
@@ -41,7 +41,7 @@ export function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={s.label}
-                    className="inline-flex size-touch items-center justify-center rounded-full text-text focus-ring hover:text-primary-hover"
+                    className="inline-flex size-touch items-center justify-center rounded-full text-text focus-ring hover:text-primary-hover-strong"
                   >
                     <Icon name={s.icon} size={28} className="rounded-full" />
                   </a>

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { IntentLink as Link } from "@/components/ui/IntentLink";
 import { cn } from "@/lib/cn";
 
 // Real links (crawlable, back/forward safe). Outline buttons from the Style Guide.
@@ -22,7 +22,7 @@ export function Pagination({
             <Link
               href={hrefForPage(page - 1)}
               rel="prev"
-              className={cn(item, "w-auto border-accent px-4 hover:text-primary-hover")}
+              className={cn(item, "w-auto border-accent px-4 hover:text-primary-hover-strong")}
             >
               Previous
             </Link>
@@ -57,7 +57,7 @@ export function Pagination({
             <Link
               href={hrefForPage(page + 1)}
               rel="next"
-              className={cn(item, "w-auto border-accent px-4 hover:text-primary-hover")}
+              className={cn(item, "w-auto border-accent px-4 hover:text-primary-hover-strong")}
             >
               Next
             </Link>

@@ -64,11 +64,14 @@
   /* ---------- Semantic colors ---------- */
   --color-primary: var(--color-cyan-500);
   --color-primary-light: var(--color-cyan-50);
-  --color-primary-hover: var(--color-blue-500);
+  --color-primary-hover: var(
+    --color-blue-500
+  ); /* background-only hovers behind dark text (6.1:1) */
+  /* AA-safe hover for text and for fills behind white text (#1AA9E5 is 2.7:1) → #107AA7, 4.8:1 */
+  --color-primary-hover-strong: color-mix(in oklab, var(--color-primary-hover) 79%, black);
   /* AA-safe text / focus variant of the Figma primary (#3CB9D1 is 2.3:1 on white) → #267D8E, 4.8:1 */
   --color-primary-strong: color-mix(in oklab, var(--color-primary) 75%, black);
-  /* AA-safe text variant of the Figma orange (#FF784B is 2.6:1 on white) */
-  --color-highlight-strong: color-mix(in oklab, var(--color-highlight) 74%, black);
+
   /* AA-safe text variants of the Figma alert colors (success 2.3:1, error 4.0:1 on white) */
   --color-success-strong: color-mix(in oklab, var(--color-success) 75%, black);
   --color-error-strong: color-mix(in oklab, var(--color-error) 95%, black);
@@ -104,9 +107,6 @@
   --font-body: var(--font-source-serif), ui-serif, Georgia, serif;
   --font-sans: var(--font-open-sans), ui-sans-serif, system-ui, sans-serif;
   --font-label: var(--font-plus-jakarta), ui-sans-serif, system-ui, sans-serif;
-
-  /* Source Serif 4 at opsz 40 reproduces the Source Serif Pro line breaks in Figma (measured on Home + Landing copy) */
-  --font-body-variation: "opsz" 40;
 
   /* Figma letterSpacing 0.5 = 0.5% of font size */
   --tracking-figma: 0.005em;
@@ -273,8 +273,6 @@
     background: var(--color-surface);
     color: var(--color-text);
     font-family: var(--font-body);
-    font-optical-sizing: none;
-    font-variation-settings: var(--font-body-variation);
     -webkit-font-smoothing: antialiased;
   }
   h1,

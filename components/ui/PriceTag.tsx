@@ -1,18 +1,17 @@
 import { cn } from "@/lib/cn";
 import { formatPrice } from "@/lib/format";
 
-// Figma price (317:533): Source Serif Bold 18/30. Sale price derived: struck original in text-muted.
+// Figma price (317:533): Source Serif Bold 18/30. Sale: current price in text colour + struck original (muted);
+// the orange badge is the sale signal.
 export function PriceTag({
   price,
   salePrice,
   size = "md",
-  highlight = false,
   className,
 }: {
   price: number;
   salePrice?: number;
   size?: "md" | "lg";
-  highlight?: boolean;
   className?: string;
 }) {
   const onSale = salePrice !== undefined && salePrice < price;
@@ -23,7 +22,6 @@ export function PriceTag({
         className={cn(
           "font-bold text-text",
           size === "lg" ? "font-heading text-h5" : "text-body-xl",
-          (onSale || highlight) && "text-highlight-strong",
         )}
       >
         <span className="sr-only">{onSale ? "Sale price " : "Price "}</span>

@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useMemo, useState, type ReactNode } from "react";
 import { CartSummary } from "@/components/cart/CartSummary";
 import { AssetImage } from "@/components/ui/AssetImage";
-import { Button, ButtonLink } from "@/components/ui/Button";
+import { Button } from "@/components/ui/Button";
 import { Checkbox, Radio } from "@/components/ui/Choice";
 import { Input, Select } from "@/components/ui/Field";
 import { Skeleton } from "@/components/ui/Skeleton";
@@ -126,20 +126,11 @@ export function CheckoutView() {
   const resolved = useMemo(() => (hydrated ? resolveLines(lines) : []), [hydrated, lines]);
   const totals = cartTotals(resolved, delivery);
 
-  if (!hydrated) return <Skeleton className="min-h-160 w-full" />;
-
-  if (resolved.length === 0 && !placing) {
-    return (
-      <div className="flex min-h-160 flex-col items-center justify-center gap-4 rounded-sm border border-border px-6 py-16 text-center">
-        <p className="font-heading text-h5 font-semibold">Your cart is empty</p>
-        <ButtonLink href="/shop" size="lg">
-          Continue shopping
-        </ButtonLink>
-      </div>
-    );
-  }
+  // The form is server-rendered; cart-dependent parts fill in after hydration (no skeleton swap, no shift).
+  const empty = hydrated && resolved.length === 0 && !placing;
 
   const placeOrder = form.handleSubmit((values) => {
+    if (empty) return;
     setPlacing(true);
     // Payment is UI only: card fields never leave the browser and are not stored.
     const order = {
@@ -157,11 +148,13 @@ export function CheckoutView() {
     router.push("/order-confirmation");
   });
 
-  const summary = (
+  const summary = hydrated ? (
     <div className="flex flex-col gap-6">
       <SummaryItems lines={resolved} />
       <CartSummary totals={totals} />
     </div>
+  ) : (
+    <Skeleton className="h-64 w-full" />
   );
 
   return (
@@ -177,22 +170,34 @@ export function CheckoutView() {
             <span className="group-open:hidden">Show</span>
             <span className="hidden group-open:inline">Hide</span> order summary
           </span>
-          <span>{formatPrice(totals.total)}</span>
+          <span>{hydrated ? formatPrice(totals.total) : "—"}</span>
         </summary>
         <div className="border-t border-line p-4">{summary}</div>
       </details>
 
       <div className="flex flex-col gap-8">
-        <p className="text-body-md text-text-muted">
-          Checking out as a guest.{" "}
-          <Link
-            href="/login?next=/checkout"
-            className="rounded-xs text-text underline focus-ring hover:text-primary-hover"
-          >
-            Log in
-          </Link>{" "}
-          for faster checkout.
-        </p>
+        {empty ? (
+          <p role="status" className="text-body-md text-text">
+            Your cart is empty.{" "}
+            <Link
+              href="/shop"
+              className="rounded-xs underline focus-ring hover:text-primary-hover-strong"
+            >
+              Continue shopping
+            </Link>
+          </p>
+        ) : (
+          <p className="text-body-md text-text-muted">
+            Checking out as a guest.{" "}
+            <Link
+              href="/login?next=/checkout"
+              className="rounded-xs text-text underline focus-ring hover:text-primary-hover-strong"
+            >
+              Log in
+            </Link>{" "}
+            for faster checkout.
+          </p>
+        )}
 
         <Step n={1} title="Contact">
           <div className="grid gap-4 md:grid-cols-2">
@@ -348,8 +353,15 @@ export function CheckoutView() {
           </div>
         </Step>
 
-        <Button type="submit" size="lg" fullWidth loading={placing} className="lg:hidden">
-          Place order · {formatPrice(totals.total)}
+        <Button
+          type="submit"
+          size="lg"
+          fullWidth
+          loading={placing}
+          disabled={empty}
+          className="lg:hidden"
+        >
+          Place order{hydrated && !empty ? ` · ${formatPrice(totals.total)}` : ""}
         </Button>
       </div>
 
@@ -362,7 +374,7 @@ export function CheckoutView() {
           Order summary
         </h2>
         {summary}
-        <Button type="submit" size="lg" fullWidth loading={placing}>
+        <Button type="submit" size="lg" fullWidth loading={placing} disabled={empty}>
           Place order
         </Button>
       </aside>

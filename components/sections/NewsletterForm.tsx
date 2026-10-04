@@ -40,7 +40,7 @@ export function NewsletterForm() {
         />
         <button
           type="submit"
-          className="h-12 shrink-0 rounded-pill bg-accent px-6 font-label text-label-lg font-semibold text-white focus-ring transition-colors hover:bg-primary-hover"
+          className="h-12 shrink-0 rounded-pill bg-accent px-6 font-label text-label-lg font-semibold text-white focus-ring transition-colors hover:bg-primary-hover-strong"
         >
           Subscribe
         </button>

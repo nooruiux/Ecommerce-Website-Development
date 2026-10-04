@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { IntentLink as Link } from "@/components/ui/IntentLink";
 import { cn } from "@/lib/cn";
 
 export type Crumb = { label: string; href?: string };
@@ -15,7 +15,7 @@ export function Breadcrumb({ items, className }: { items: Crumb[]; className?: s
               {item.href && !last ? (
                 <Link
                   href={item.href}
-                  className="rounded-xs text-text-muted focus-ring hover:text-primary-hover"
+                  className="rounded-xs text-text-muted focus-ring hover:text-primary-hover-strong"
                 >
                   {item.label}
                 </Link>

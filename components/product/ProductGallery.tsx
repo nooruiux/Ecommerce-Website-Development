@@ -46,7 +46,8 @@ export function ProductGallery({ images, name }: { images: string[]; name: strin
               src={src}
               alt={i === 0 ? name : `${name}, view ${i + 1}`}
               fill
-              priority={i === 0}
+              loading={i === 0 ? "eager" : "lazy"}
+              fetchPriority={i === 0 ? "high" : "auto"}
               sizes="(min-width: 64rem) 40vw, 100vw"
               className="object-cover"
             />

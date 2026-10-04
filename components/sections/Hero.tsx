@@ -18,7 +18,8 @@ export function Hero() {
             src={homeAssets.hero.src}
             alt="Skin care bottles and jars arranged on a stone tray"
             fill
-            priority
+            fetchPriority="high"
+            loading="eager"
             sizes="(min-width: 90rem) 589px, 100vw"
             className="object-cover"
             fallbackClassName="bg-gray-30"

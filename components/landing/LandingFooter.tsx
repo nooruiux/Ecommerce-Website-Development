@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { IntentLink as Link } from "@/components/ui/IntentLink";
 import { Logo } from "@/components/layout/Logo";
 import { Icon } from "@/components/ui/Icon";
 import { landingNav } from "@/data/consultation";
@@ -12,7 +12,7 @@ import { LandingNewsletter } from "./LandingNewsletter";
  */
 const heading = "text-body-lg font-bold text-text";
 const link =
-  "focus-ring rounded-xs text-body-lg whitespace-nowrap text-text-subtle hover:text-primary-hover";
+  "focus-ring rounded-xs text-body-lg whitespace-nowrap text-text-subtle hover:text-primary-hover-strong";
 
 export function LandingFooter() {
   return (
@@ -74,7 +74,7 @@ export function LandingFooter() {
                 </a>
                 <a
                   href="tel:+1880262685467"
-                  className="rounded-xs text-body-md focus-ring hover:text-primary-hover"
+                  className="rounded-xs text-body-md focus-ring hover:text-primary-hover-strong"
                 >
                   +1880 26268 5467
                 </a>
@@ -88,7 +88,7 @@ export function LandingFooter() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={s.label}
-                    className="inline-flex size-touch items-center justify-center rounded-full focus-ring hover:text-primary-hover"
+                    className="inline-flex size-touch items-center justify-center rounded-full focus-ring hover:text-primary-hover-strong"
                   >
                     <Icon name={s.icon} size={32} className="rounded-full" />
                   </a>

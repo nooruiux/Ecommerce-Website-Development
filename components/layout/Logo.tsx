@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { IntentLink as Link } from "@/components/ui/IntentLink";
 import { AssetImage } from "@/components/ui/AssetImage";
 import { brandAssets } from "@/lib/assets";
 import { cn } from "@/lib/cn";
@@ -30,7 +30,7 @@ export function Logo({
         alt={site.name}
         width={width}
         height={Math.round((width * h) / w)}
-        priority
+        loading="eager"
         className={variant === "landing" ? "object-cover" : undefined}
       />
     </Link>

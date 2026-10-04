@@ -1,9 +1,10 @@
 "use client";
 
-import Link from "next/link";
+import { IntentLink as Link } from "@/components/ui/IntentLink";
 import { useSearchParams } from "next/navigation";
 import { Suspense, useState } from "react";
 import { Button } from "@/components/ui/Button";
+import { Chip } from "@/components/ui/Chip";
 import { PriceTag } from "@/components/ui/PriceTag";
 import { QuantityStepper } from "@/components/ui/QuantityStepper";
 import { cn } from "@/lib/cn";
@@ -54,7 +55,14 @@ function PurchasePanel({ product, variant }: { product: Product; variant: Produc
 
   return (
     <div className="flex flex-col gap-6">
-      <PriceTag price={list} salePrice={sale} size="lg" />
+      <div className="flex flex-wrap items-center gap-3">
+        <PriceTag price={list} salePrice={sale} size="lg" />
+        {sale !== undefined && sale < list && (
+          <Chip tone="sale" className="font-semibold">
+            −{Math.round((1 - sale / list) * 100)}%
+          </Chip>
+        )}
+      </div>
 
       <div className="flex flex-col gap-3">
         <p className="text-body-lg font-semibold">

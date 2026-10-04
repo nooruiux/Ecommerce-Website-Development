@@ -81,7 +81,7 @@ export function CompareTable() {
               <th key={p.id} scope="col" className="p-4 align-top">
                 <Link
                   href={`/product/${p.slug}`}
-                  className="rounded-xs font-heading text-h6 font-semibold focus-ring hover:text-primary-hover"
+                  className="rounded-xs font-heading text-h6 font-semibold focus-ring hover:text-primary-hover-strong"
                 >
                   {p.name}
                 </Link>

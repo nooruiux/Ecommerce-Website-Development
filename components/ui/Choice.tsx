@@ -12,7 +12,7 @@ type ChoiceProps = Omit<ComponentProps<"input">, "type"> & {
 const control = cn(
   "peer relative size-6 shrink-0 cursor-pointer appearance-none rounded-full border-2 border-gray-30 bg-surface",
   "transition-colors duration-(--duration-fast) hover:border-primary-hover",
-  "checked:border-primary-hover checked:bg-primary-hover",
+  "checked:border-primary-hover-strong checked:bg-primary-hover-strong",
   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-strong",
   "disabled:cursor-not-allowed disabled:opacity-(--opacity-disabled)",
 );
@@ -95,13 +95,13 @@ export function Toggle({
       className={cn(
         "relative inline-flex h-6 w-11 shrink-0 items-center rounded-full focus-ring transition-colors duration-(--duration-base)",
         "disabled:opacity-(--opacity-disabled)",
-        checked ? "bg-primary-hover" : "bg-gray-toggle",
+        checked ? "bg-primary-hover-strong" : "bg-gray-toggle",
       )}
     >
       <span
         className={cn(
           "absolute top-0 size-6 rounded-full border-2 bg-white transition-[left] duration-(--duration-base)",
-          checked ? "left-5 border-primary-hover" : "left-0 border-gray-toggle",
+          checked ? "left-5 border-primary-hover-strong" : "left-0 border-gray-toggle",
         )}
       />
     </button>

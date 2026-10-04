@@ -192,7 +192,7 @@ export function FilterPanel({ filters, basePath, fixedCategory }: Props) {
             <button
               type="button"
               onClick={() => go(cleared)}
-              className="min-h-touch rounded-xs text-body-md text-text-muted underline focus-ring hover:text-primary-hover"
+              className="min-h-touch rounded-xs text-body-md text-text-muted underline focus-ring hover:text-primary-hover-strong"
             >
               Clear all
             </button>

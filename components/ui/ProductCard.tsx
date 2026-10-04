@@ -1,5 +1,5 @@
 import { AssetImage } from "./AssetImage";
-import Link from "next/link";
+import { IntentLink as Link } from "@/components/ui/IntentLink";
 import type { Product } from "@/types";
 import { cn } from "@/lib/cn";
 import { Chip } from "./Chip";
@@ -43,7 +43,7 @@ export function ProductCard({
           src={product.images[0]}
           alt=""
           fill
-          priority={priority}
+          loading={priority ? "eager" : "lazy"}
           sizes="(min-width: 90rem) 200px, (min-width: 48rem) 30vw, 46vw"
           className="object-cover transition-transform duration-(--duration-base) ease-(--ease-standard) group-hover:scale-105"
         />
@@ -57,7 +57,7 @@ export function ProductCard({
         <div className="flex flex-col gap-1">
           <div className="flex flex-col gap-2">
             <h3 className="font-body text-body-xl font-semibold text-text">
-              <Link href={href} className="rounded-xs focus-ring hover:text-primary-hover">
+              <Link href={href} className="rounded-xs focus-ring hover:text-primary-hover-strong">
                 {product.name}
               </Link>
             </h3>
@@ -71,11 +71,11 @@ export function ProductCard({
           </div>
         </div>
         <div className="mt-auto flex flex-wrap items-center justify-between gap-2">
-          <PriceTag price={product.salePrice ?? product.price} highlight={discount > 0} />
+          <PriceTag price={product.salePrice ?? product.price} />
           <div className="relative flex h-8 items-center rounded-pill border border-border pr-8 pl-2">
             <Link
               href={href}
-              className="rounded-xs text-body-md leading-none font-semibold whitespace-nowrap text-text focus-ring hover:text-primary-hover"
+              className="rounded-xs text-body-md leading-none font-semibold whitespace-nowrap text-text focus-ring hover:text-primary-hover-strong"
             >
               Buy Now
               <span className="sr-only">: {product.name}</span>

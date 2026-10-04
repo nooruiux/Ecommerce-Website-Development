@@ -29,7 +29,7 @@ export function LandingNewsletter() {
         />
         <button
           type="submit"
-          className="w-22.75 shrink-0 bg-primary-light px-3 text-body-md text-black focus-ring hover:bg-primary-hover hover:text-white"
+          className="w-22.75 shrink-0 bg-primary-light px-3 text-body-md text-black focus-ring hover:bg-primary-hover-strong hover:text-white"
         >
           Subscribe
         </button>

@@ -85,7 +85,7 @@ export function Testimonials() {
               onClick={() => move(side === "left" ? -1 : 1)}
               aria-label={side === "left" ? "Previous testimonial" : "Next testimonial"}
               className={cn(
-                "absolute top-51 hidden size-touch items-center justify-center rounded-full bg-surface shadow-soft focus-ring hover:text-primary-hover xl:inline-flex",
+                "absolute top-51 hidden size-touch items-center justify-center rounded-full bg-surface shadow-soft focus-ring hover:text-primary-hover-strong xl:inline-flex",
                 side === "left" ? "-left-1.5" : "-right-1.5",
               )}
             >

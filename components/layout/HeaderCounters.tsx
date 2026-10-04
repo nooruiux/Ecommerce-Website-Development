@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { IntentLink as Link } from "@/components/ui/IntentLink";
 import { CountBadge } from "@/components/ui/CountBadge";
 import { Icon } from "@/components/ui/Icon";
 import { selectCartCount, useCart } from "@/store/cart";
@@ -9,7 +9,7 @@ import { useHydrated } from "@/store/useHydrated";
 import { cn } from "@/lib/cn";
 
 const iconButton =
-  "focus-ring relative inline-flex size-touch items-center justify-center rounded-sm hover:text-primary-hover";
+  "focus-ring relative inline-flex size-touch items-center justify-center rounded-sm hover:text-primary-hover-strong";
 
 // Figma 317:362 / 317:370 / 317:376 — 24px icons with a count badge.
 export function HeaderCounters({ compact = false }: { compact?: boolean }) {

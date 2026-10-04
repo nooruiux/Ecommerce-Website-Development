@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { IntentLink as Link } from "@/components/ui/IntentLink";
 import { AssetImage } from "@/components/ui/AssetImage";
 import { PriceTag } from "@/components/ui/PriceTag";
 import { QuantityStepper } from "@/components/ui/QuantityStepper";
@@ -49,7 +49,7 @@ export function CartLineItem({
             <Link
               href={`/product/${product.slug}`}
               onClick={onNavigate}
-              className="block truncate rounded-xs text-body-lg font-semibold text-text focus-ring hover:text-primary-hover"
+              className="block truncate rounded-xs text-body-lg font-semibold text-text focus-ring hover:text-primary-hover-strong"
             >
               {product.name}
             </Link>

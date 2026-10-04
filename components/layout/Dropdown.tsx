@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { IntentLink as Link } from "@/components/ui/IntentLink";
 import { useEffect, useId, useRef, useState, type ReactNode } from "react";
 import { cn } from "@/lib/cn";
 import { Icon } from "@/components/ui/Icon";
@@ -13,12 +13,15 @@ export function Dropdown({
   trigger,
   align = "left",
   triggerClassName,
+  hoverClassName = "hover:text-primary-hover-strong",
 }: {
   label: string;
   links: NavLink[];
   trigger?: ReactNode;
   align?: "left" | "right";
   triggerClassName?: string;
+  /** Hover treatment for the trigger. On the primary-light bar use an underline (colour change fails AA). */
+  hoverClassName?: string;
 }) {
   const [open, setOpen] = useState(false);
   const root = useRef<HTMLDivElement>(null);
@@ -52,7 +55,8 @@ export function Dropdown({
         aria-controls={id}
         onClick={() => setOpen((v) => !v)}
         className={cn(
-          "inline-flex min-h-touch items-center gap-2 rounded-xs focus-ring hover:text-primary-hover",
+          "inline-flex min-h-touch items-center gap-2 rounded-xs focus-ring",
+          hoverClassName,
           triggerClassName,
         )}
       >

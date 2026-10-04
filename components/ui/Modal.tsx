@@ -47,7 +47,7 @@ export function Modal({
               type="button"
               onClick={onClose}
               aria-label="Close"
-              className="absolute top-3 right-3 z-10 inline-flex size-touch items-center justify-center rounded-sm text-text focus-ring hover:text-primary-hover"
+              className="absolute top-3 right-3 z-10 inline-flex size-touch items-center justify-center rounded-sm text-text focus-ring hover:text-primary-hover-strong"
             >
               <CloseIcon />
             </button>

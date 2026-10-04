@@ -64,7 +64,7 @@ export function Drawer({
                 type="button"
                 onClick={onClose}
                 aria-label="Close"
-                className="inline-flex size-touch items-center justify-center rounded-sm focus-ring hover:text-primary-hover"
+                className="inline-flex size-touch items-center justify-center rounded-sm focus-ring hover:text-primary-hover-strong"
               >
                 <CloseIcon />
               </button>

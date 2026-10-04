@@ -17,7 +17,7 @@ export function CartSummary({
         <dd>{formatPrice(totals.listSubtotal)}</dd>
       </div>
       {totals.discount > 0 && (
-        <div className={cn(row, "text-highlight-strong")}>
+        <div className={row}>
           <dt>Discount</dt>
           <dd>−{formatPrice(totals.discount)}</dd>
         </div>

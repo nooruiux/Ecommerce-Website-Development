@@ -75,6 +75,7 @@ export function Header() {
                     label={group.label}
                     links={group.links}
                     triggerClassName="text-body-lg text-text"
+                    hoverClassName="hover:underline underline-offset-4"
                   />
                 </li>
               ))}

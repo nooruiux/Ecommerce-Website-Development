@@ -104,9 +104,9 @@ Pending: image-level comparison once Figma assets are available.
 
 - `metadata.title.template` = `%s | Nattoral`; every route has its own title and description.
 - `noindex, follow`: /cart, /checkout, /order-confirmation, /login, /register, /wishlist, /compare, 404, and /shop?q= search results.
-- `/primitives` returns 404 in production (`notFound()` when `NODE_ENV === "production"`); excluded from the sitemap and disallowed in robots.txt.
+- `/primitives` returns 404 in production (`notFound()` when `NODE_ENV === "production"`); excluded from the sitemap.
 - `sitemap.xml`: 44 URLs (home, shop, 4 categories, 36 products, consultation, ask). No noindex or filtered URLs.
-- `robots.txt`: allow `/`, disallow `/checkout`, `/cart`, `/primitives`; points to the sitemap.
+- `robots.txt`: allow `/`, disallow only `/primitives`; points to the sitemap. /cart and /checkout are deliberately crawlable so crawlers can read their `noindex` (a robots-blocked URL can still be indexed from external links).
 - JSON-LD: Organization + WebSite (SearchAction → `/shop?q=`) on home; Product + BreadcrumbList on product pages; BreadcrumbList on shop/category.
 - Open Graph image: `app/opengraph-image.tsx` (brand colours + wordmark), shared via `ogBase` on every page; product pages use the product photo.
 - Favicon and apple-touch-icon: generated placeholders (`app/icon.tsx`, `app/apple-icon.tsx`). Replace with `app/icon.png` / `app/apple-icon.png` once the logo is exported.
@@ -121,35 +121,49 @@ Every route has exactly one `h1`, it is the first heading, and no heading levels
 
 #### Colour contrast vs tokens
 
-| Token | Value | On white | Use |
+| Token | Value | Contrast | Use |
 |---|---|---|---|
-| text | #202020 | 16.3:1 | body |
-| text-muted (black 64%) | | 6.7:1 | descriptions |
-| text-placeholder (black 48%) | | 3.7:1 | placeholders only |
-| primary (Figma) | #3CB9D1 | 2.3:1 ✗ | fills, swatches only |
-| **primary-strong** (derived) | #267D8E | 4.8:1 | "500+ Sold", focus ring |
-| highlight (Figma) | #FF784B | 2.6:1 ✗ | fills only |
-| **highlight-strong** (derived) | #AB4E2F | 5.4:1 | sale prices, sale badge |
-| success (Figma) | #00C566 | 2.3:1 ✗ | fills only |
-| **success-strong** (derived) | #008543 | 4.7:1 | "In stock", confirmations |
-| error (Figma) | #E53935 | 4.2:1 ✗ (small text) | fills only |
-| **error-strong** (derived) | #D63531 | 4.8:1 | error messages |
-| gray-60 → gray-80 | #66707A | 5.0:1 | brand placeholder wordmarks |
+| text | #202020 | 16.3:1 on white | body, sale prices |
+| text-muted (black 64%) | | 6.7:1 on white | descriptions, struck original price |
+| text-placeholder (black 48%) | | 3.7:1 on white | placeholders only |
+| primary (Figma) | #3CB9D1 | 2.3:1 on white ✗ | fills / swatches only |
+| **primary-strong** (derived) | #267D8E | 4.8:1 on white | "500+ Sold", focus ring |
+| primary-hover (Figma) | #1AA9E5 | 6.1:1 behind #202020 | background-only hovers behind dark text |
+| **primary-hover-strong** (derived) | #107AA7 | 4.8:1 (white text on it / as text on white) | all text hovers, fills behind white text, outline-button hover border, checked checkbox / radio / toggle |
+| highlight (Figma orange) | #FF784B | **6.2:1 behind #202020** | sale badge fill (dark text) |
+| success (Figma) | #00C566 | 2.3:1 on white ✗ | fills only |
+| **success-strong** (derived) | #008543 | 4.7:1 on white | "In stock", confirmations |
+| error (Figma) | #E53935 | 4.2:1 on white ✗ (small text) | fills only |
+| **error-strong** (derived) | #D63531 | 4.8:1 on white | error messages |
+| gray-80 | #66707A | 5.0:1 on white | brand placeholder wordmarks |
 
-The four `*-strong` tokens are `color-mix(in oklab, <figma token>, black)`, the lightest mix that clears 4.5:1. They are a deliberate deviation: the Figma text colours fail WCAG AA.
+The `*-strong` tokens are `color-mix(in oklab, <figma token>, black)`, the lightest mix that clears 4.5:1. Sale styling keeps the brand orange: badge = #FF784B fill + #202020 text; sale price = text colour + struck original (no orange or brown text).
 
-### Lighthouse 13 (mobile, simulated throttling, production build, images missing)
+#### Hover states (manual check; axe does not cover hover)
 
-| Route | Performance | Accessibility | Best practices | SEO | LCP | TBT | CLS |
-|---|---|---|---|---|---|---|---|
-| / | 92 | 100 | 100 | 100 | 3.3 s | 90 ms | 0 |
-| /shop | 91 | 100 | 100 | 100 | 3.5 s | 110 ms | 0 |
-| /product/sebiaclear-gel-p01 | 92 | 100 | 100 | 100 | 3.3 s | 90 ms | 0 |
-| /checkout | 91 | 100 | 100 | 63* | 3.5 s | 90 ms | 0 |
-| /consultation | 90 | 100 | 100 | 100 | 3.5 s | 130 ms | 0 |
+Scripted: every visible link / button / tab on 9 routes hovered at 1440 (394 elements, 35 distinct hover styles) and text vs effective background measured. **0 below threshold**; lowest pair #D63531 on white 4.76:1. On the primary-light category bar and the Landing announcement bar the hover is an underline (no colour change), because #107AA7 on #C9E8EA is only 3.7:1.
 
-\* Only failing SEO audit is `is-crawlable`: /checkout is intentionally `noindex`.
+Border-only hovers around dark text (variant chips, gallery thumbnails, checkbox outline) keep #1AA9E5.
 
-Performance fixes: inlined CSS (`experimental.inlineCss`), Drawer / Modal / Toaster code-split and loaded on first open (Framer Motion out of the initial bundle), stable-height checkout placeholder (CLS 0.198 → 0). Initial run: / 82 (TBT 350 ms), /checkout 82 (CLS 0.198).
+### Lighthouse 13 (mobile, simulated Slow 4G + 4× CPU, production build, images missing)
 
-Scores must be re-measured once real images are in (the hero photo becomes the LCP element; it is already `priority`).
+Median of 5 runs (individual LCP runs in brackets).
+
+| Route | Perf | A11y | BP | SEO | LCP before (Phase 5) | LCP after | TBT | CLS | LCP element |
+|---|---|---|---|---|---|---|---|---|---|
+| / | 93 | 100 | 100 | 100 | 3.3 s | 3.0 s [3.0 3.0 3.0 3.0 2.3] | 119 ms | 0 | h1 "Shop Your Best Skin Care Products" (Poppins) |
+| /shop | 94 | 100 | 100 | 100 | 3.5 s | 2.9 s [2.7 2.9 3.0 3.1 2.7] | 120 ms | 0 | product description (Source Serif) |
+| /product/sebiaclear-gel-p01 | 94 | 100 | 100 | 100 | 3.3 s | 3.0 s [3.0 3.0 2.4 3.0 2.3] | 103 ms | 0 | product description (Source Serif) |
+| /checkout | 94 | 100 | 100 | 63* | 3.5 s | 3.0 s [3.0 2.4 3.0 2.4 3.0] | 95 ms | 0.001 | h1 "Checkout" |
+| /consultation | 96 | 100 | 100 | 100 | 3.5 s | **2.4 s** [2.4 2.4 2.6 2.4 2.4] | 139 ms | 0 | h1 (Poppins) |
+
+\* `is-crawlable` only: /checkout is intentionally `noindex`.
+
+Changes in this pass:
+- Source Serif 4 instanced at opsz 40 (weight axis kept), latin subset: 122 KB → 35 KB, self-hosted via `next/font/local`, `display: swap`, Times New Roman size-adjusted fallback. Visual output unchanged (Home 6541 px, Landing 6046 px, card 400 px).
+- Preload only the heading (Poppins) and body (Source Serif) fonts; Open Sans and Plus Jakarta Sans not preloaded. Preloaded font bytes ≈ 200 KB → 66 KB.
+- Viewport link prefetching removed (IntentLink: prefetch on hover / focus / touch); 38–56 KB of RSC prefetches no longer compete with fonts during load.
+- Checkout form is server-rendered (LCP no longer waits for hydration); empty cart swaps a one-line notice, no layout shift.
+- Images ready for assets: AVIF + WebP (`images.formats`), hero / Landing illustration / first gallery image use `fetchPriority="high"` + `loading="eager"` (Next 16 replaces `priority`).
+
+**LCP status: not yet < 2.5 s on 4 of 5 routes in the lab.** Every LCP element is text whose paint is gated by the web-font swap; the simulation is bimodal (≈2.3 s vs ≈3.0 s) depending on whether the swap lands before or after main-script evaluation. Once the Figma images are in, Home (hero photo), /shop and the product page (product photos) get image LCP elements, so they must be re-measured then. If text LCP remains above 2.5 s after that, next step: inline the Poppins 700 latin subset (8 KB) for the h1 as a data URI.

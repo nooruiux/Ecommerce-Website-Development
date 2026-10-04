@@ -58,7 +58,7 @@ export function SearchForm({
       />
       <button
         type="submit"
-        className="shrink-0 bg-accent px-6 text-body-lg leading-none font-semibold text-on-accent focus-ring transition-colors hover:bg-primary-hover"
+        className="shrink-0 bg-accent px-6 text-body-lg leading-none font-semibold text-on-accent focus-ring transition-colors hover:bg-primary-hover-strong"
       >
         Search
       </button>

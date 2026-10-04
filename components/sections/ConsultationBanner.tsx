@@ -39,7 +39,7 @@ export function ConsultationBanner() {
             </div>
             <ButtonLink
               href="/consultation"
-              className="gap-3 self-start bg-white-soft px-6 text-text hover:bg-primary-hover hover:text-on-accent"
+              className="gap-3 self-start bg-white-soft px-6 text-text hover:bg-primary-hover-strong hover:text-on-accent"
               iconLeft={<Icon name="calendar" size={20} />}
             >
               Book Appointment

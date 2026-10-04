@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { IntentLink as Link } from "@/components/ui/IntentLink";
 import { AssetImage } from "@/components/ui/AssetImage";
 import { brands } from "@/data/brands";
 

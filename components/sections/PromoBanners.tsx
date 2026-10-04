@@ -2,7 +2,7 @@ import { AssetImage } from "@/components/ui/AssetImage";
 import { buttonClasses } from "@/components/ui/Button";
 import { homeAssets } from "@/lib/assets";
 import { cn } from "@/lib/cn";
-import Link from "next/link";
+import { IntentLink as Link } from "@/components/ui/IntentLink";
 
 /*
  * Figma CTA 317:1291 — two 622/624 x 488 cards, radius 24, faint border, promo shadow,
@@ -36,7 +36,7 @@ export function PromoBanners() {
           <span
             className={cn(
               buttonClasses({ size: "lg" }),
-              "absolute right-0 bottom-0 rounded-tl-sm rounded-tr-sm rounded-br-2xl rounded-bl-sm group-hover:bg-primary-hover",
+              "absolute right-0 bottom-0 rounded-tl-sm rounded-tr-sm rounded-br-2xl rounded-bl-sm group-hover:bg-primary-hover-strong",
             )}
           >
             Shop Now

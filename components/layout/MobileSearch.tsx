@@ -14,7 +14,7 @@ export function MobileSearch() {
         aria-label={open ? "Close search" : "Open search"}
         aria-expanded={open}
         aria-controls="mobile-search"
-        className="inline-flex size-touch items-center justify-center rounded-sm focus-ring hover:text-primary-hover"
+        className="inline-flex size-touch items-center justify-center rounded-sm focus-ring hover:text-primary-hover-strong"
       >
         {open ? <CloseIcon /> : <SearchIcon />}
       </button>

@@ -56,7 +56,7 @@ export function Tabs({ tabs }: { tabs: { id: string; label: string; content: Rea
               "-mb-px min-h-touch shrink-0 border-b-2 px-4 font-heading text-h6 font-medium focus-ring transition-colors",
               i === active
                 ? "border-accent text-text"
-                : "border-transparent text-text-muted hover:text-primary-hover",
+                : "border-transparent text-text-muted hover:text-primary-hover-strong",
             )}
           >
             {t.label}

@@ -51,7 +51,7 @@ export function LoginForm() {
           <Checkbox label="Remember me" name="remember" />
           <Link
             href="/contact"
-            className="rounded-xs text-body-md text-text underline focus-ring hover:text-primary-hover"
+            className="rounded-xs text-body-md text-text underline focus-ring hover:text-primary-hover-strong"
           >
             Forgot password?
           </Link>
@@ -66,7 +66,7 @@ export function LoginForm() {
           New to the store?{" "}
           <Link
             href="/register"
-            className="rounded-xs text-text underline focus-ring hover:text-primary-hover"
+            className="rounded-xs text-text underline focus-ring hover:text-primary-hover-strong"
           >
             Create an account
           </Link>
@@ -128,7 +128,7 @@ export function RegisterForm() {
                 I agree to the{" "}
                 <Link
                   href="/about#terms"
-                  className="rounded-xs underline focus-ring hover:text-primary-hover"
+                  className="rounded-xs underline focus-ring hover:text-primary-hover-strong"
                 >
                   Terms and Conditions
                 </Link>
@@ -157,7 +157,7 @@ export function RegisterForm() {
           Already have an account?{" "}
           <Link
             href="/login"
-            className="rounded-xs text-text underline focus-ring hover:text-primary-hover"
+            className="rounded-xs text-text underline focus-ring hover:text-primary-hover-strong"
           >
             Log in
           </Link>

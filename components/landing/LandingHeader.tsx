@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { IntentLink as Link } from "@/components/ui/IntentLink";
 import { Dropdown } from "@/components/layout/Dropdown";
 import { Logo } from "@/components/layout/Logo";
 import { AssetImage } from "@/components/ui/AssetImage";
@@ -9,7 +9,7 @@ import { brandAssets } from "@/lib/assets";
 import { LandingMobileNav } from "./LandingMobileNav";
 
 const navLink =
-  "focus-ring rounded-xs font-heading text-body-lg leading-none text-text hover:text-primary-hover";
+  "focus-ring rounded-xs font-heading text-body-lg leading-none text-text hover:text-primary-hover-strong";
 
 /*
  * Figma Landing header 182:8588
@@ -26,7 +26,7 @@ export function LandingHeader() {
             Announcing Our Consultants to help our Clients 10% Discount
             <Link
               href="#consultants"
-              className="rounded-xs font-semibold underline underline-offset-4 focus-ring hover:text-primary-hover"
+              className="rounded-xs font-semibold underline underline-offset-4 focus-ring hover:decoration-2"
             >
               Learn More
             </Link>

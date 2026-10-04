@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { IntentLink as Link } from "@/components/ui/IntentLink";
 import { AssetImage } from "@/components/ui/AssetImage";
 import { concerns } from "@/data/catalog";
 import { SectionHeader } from "./SectionHeader";
@@ -28,7 +28,7 @@ export function TopCategories() {
                   fallbackClassName="rounded-full"
                 />
               </span>
-              <span className="font-heading text-body-lg font-medium text-text group-hover:text-primary-hover md:text-h6">
+              <span className="font-heading text-body-lg font-medium text-text group-hover:text-primary-hover-strong md:text-h6">
                 {c.name}
               </span>
             </Link>

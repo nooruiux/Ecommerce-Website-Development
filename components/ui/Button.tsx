@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { IntentLink as Link } from "@/components/ui/IntentLink";
 import type { ComponentProps, ReactNode } from "react";
 import { cn } from "@/lib/cn";
 import { Spinner } from "./Spinner";
@@ -14,11 +14,11 @@ type StyleProps = {
 
 // Figma: dark "Get Started" (2:199), light tint variant, "View All" outline (317:517), tertiary.
 const variants: Record<ButtonVariant, string> = {
-  solid: "bg-accent text-on-accent font-label hover:bg-primary-hover",
-  tint: "bg-primary-light text-black font-label hover:bg-primary-hover hover:text-on-accent",
+  solid: "bg-accent text-on-accent font-label hover:bg-primary-hover-strong",
+  tint: "bg-primary-light text-black font-label hover:bg-primary-hover-strong hover:text-on-accent",
   outline:
-    "border border-accent bg-surface text-black font-body hover:border-primary-hover hover:text-primary-hover",
-  ghost: "bg-transparent text-accent font-label hover:text-primary-hover",
+    "border border-accent bg-surface text-black font-body hover:border-primary-hover-strong hover:text-primary-hover-strong",
+  ghost: "bg-transparent text-accent font-label hover:text-primary-hover-strong",
 };
 
 // sm = View All (40), md = Submit/Search (48), lg = Get Started (56)
