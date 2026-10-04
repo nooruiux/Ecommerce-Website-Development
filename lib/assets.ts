@@ -25,10 +25,10 @@ export const homeAssets = {
 
 // Landing frame 143:64
 export const landingAssets = {
-  heroIllustration: { src: "/images/consultation/hero-illustration.svg", width: 646, height: 424 }, // 143:88
+  heroIllustration: { src: "/images/consultation/hero-illustration.webp", width: 646, height: 424 }, // 143:88 (2x render; 111KB as SVG)
   whyPhoto: { src: "/images/consultation/why-photo.webp", width: 490, height: 515 }, // 148:1195
   whyFrame: { src: "/images/consultation/why-frame.svg", width: 519, height: 542 }, // 148:1205
-  howConnector: { src: "/images/consultation/how-connector.svg", width: 915, height: 84 }, // 143:566
+  howConnector: { src: "/images/consultation/how-connector.svg", width: 917, height: 87 }, // 143:566
   storyPhoto: { src: "/images/consultation/story-photo.webp", width: 333, height: 349 }, // 143:543
   storyAvatarA: { src: "/images/consultation/story-avatar-a.webp", width: 40, height: 40 }, // 143:548
   storyAvatarB: { src: "/images/consultation/story-avatar-b.webp", width: 40, height: 40 }, // 143:553

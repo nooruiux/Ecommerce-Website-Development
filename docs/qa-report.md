@@ -167,3 +167,15 @@ Changes in this pass:
 - Images ready for assets: AVIF + WebP (`images.formats`), hero / Landing illustration / first gallery image use `fetchPriority="high"` + `loading="eager"` (Next 16 replaces `priority`).
 
 **LCP status: not yet < 2.5 s on 4 of 5 routes in the lab.** Every LCP element is text whose paint is gated by the web-font swap; the simulation is bimodal (≈2.3 s vs ≈3.0 s) depending on whether the swap lands before or after main-script evaluation. Once the Figma images are in, Home (hero photo), /shop and the product page (product photos) get image LCP elements, so they must be re-measured then. If text LCP remains above 2.5 s after that, next step: inline the Poppins 700 latin subset (8 KB) for the h1 as a data URI.
+
+## Figma asset export status
+
+Exported from Figma `IZu9OqsPkarImQz9n31q42` by rendering each node (www.figma.com is not reachable from the build container, so the REST image URLs could not be downloaded).
+
+- **Icons (27 SVG, svgo multipass)** in `/public/icons`: header, product card, social (Home footer 317:1443), Landing consultation/step icons, testimonial arrows, check (2:184). `arrow-*-circle` keep only the chevron (the button draws the circle and shadow); `consult-hair` viewBox trimmed to its 40px artwork.
+- **Photos (WebP q88)**: 36 product images (2x, 1px card stroke trimmed → 396x396), 6 category circles (2x), CTA left (2x), Landing story photo, avatars, consultants, testimonials (2x), newsletter cart/hand (2x PNG, alpha).
+- **Lower than 2x (render size cap)**: hero 1.25x, consultation banner 0.9x, CTA right 1x (drop shadow cropped off, CSS shadow kept), newsletter 1x, why-photo 1.25x, privacy 1.25x. To be replaced with 2x exports.
+- **Landing hero illustration**: 2x WebP render (the SVG export is 111 KB of paths).
+- **Logo** (317:344 / 143:70) is a raster image fill in Figma (300x47 source), so no true SVG exists; stored as a 2x PNG.
+- **Licensing note**: product images 317:1229 and 317:1250 (best-3-4, best-3-5) carry "Unsplash+" watermarks in the Figma file itself. They need licensed copies before production.
+- **Still missing**: App Store / Google Play badges (317:1322, 317:1395), Why-section dashed frame (148:1205), and the `app/icon.png` / `app/apple-icon.png` pair. Brand logos strip (317:647) stays excluded.
