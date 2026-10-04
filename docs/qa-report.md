@@ -33,13 +33,23 @@ These pages and components have no Figma frame. They are built only from the exi
 | Brand name in one constant (`lib/site.ts`) | "Nattoral", confirmed by the owner; matches the Figma logo and copyright. |
 | "Shop By Popular Brands" shows placeholder wordmarks | Figma tiles are real 3D-printer brand logos; replaced by neutral grayscale tiles (`data/brands.ts`) until real brands are supplied. Tile size, gap and border match 317:645. |
 | Product card on sale: current price + "−N%" chip on the image (badge-only) | Tested an inline struck compare-at price (text-body-xs, muted): the price row wraps and the card grows to 438px at 1440 (428 / 424 / 422 at 1024 / 768 / 375), stretching the whole grid row. Reverted to badge-only to keep the Figma 400px card. Struck price shows on PDP and cart. |
-| Body font uses `opsz` 20 | Source Serif 4 at opsz 20 reproduces the Source Serif Pro line breaks (default opsz 14 is ~7% wider and wraps card copy to 4 lines). |
+| Body font uses `opsz` 40 | Source Serif 4 at opsz 40 is the only optical size that reproduces the Source Serif Pro line breaks in all measured Figma copy (Home card description, Landing "Why" points and intro). opsz 14 / 20 wrap one extra line. |
 | Hero dots are decoration only | Only one slide is designed; dots are aria-hidden, pointer-events-none spans (no buttons, no cursor). |
 | Hero discount badge is SVG text | Circular text from 317:436 rebuilt as SVG `textPath` (crisp, accessible). |
 | Product grid 2 / 3 / 4 / 6 columns | 4 columns at 1024–1439 (6 would make cards ~150px wide); 6 at 1440 as in Figma. |
 | Mobile Home (< 768px) shows 8 products per section + full-width outline "View All" → /shop | UX deviation (approved): 36 cards in 2 columns made the mobile page ~13,000px long. Tablet and desktop unchanged. |
 | /shop, /category/[slug] | Derived. Filters (category, concern, price, rating, brand, in-stock) and sort live in URL search params; pagination is real links (12 per page); mobile filters in a bottom sheet with "Apply (N results)"; empty state with "Clear filters". |
 | /product/[slug] | Derived. Scroll-snap gallery (native swipe) + thumbnails, size variant in `?variant=`, quantity stepper, sticky mobile add-to-cart bar, trust row (cart / compare / check icons), Description / Reviews / Shipping tabs, related products, Product + BreadcrumbList JSON-LD. Gallery uses the other Figma photos of the same product name. |
+| Cart page | Derived. Quantity stepper, remove with Undo toast (restores position and quantity), coupon field (UI only: explains no codes are active), order summary, empty state → /shop. |
+| Checkout | Derived. One page, guest by default: Contact → Shipping → Delivery → Payment (UI only, nothing sent or stored). `autocomplete` / `inputmode` on every field, validation on blur, focus moves to the first invalid field, summary sticky on desktop and collapsible on mobile. "Place order" clears the cart → /order-confirmation. |
+| Login / Register | Derived from the "Ask Us A Question" card. Show/hide password toggle (`aria-pressed`), inline errors, `username` / `current-password` / `new-password` autocomplete. UI only. |
+| Toast | Derived: accent surface, polite live region. |
+| 404 | Derived: header search form + link to /shop. |
+| /consultation uses the Landing header and footer | As in Figma 143:64 (announcement bar, consultation nav, newsletter footer) via its own route-group layout. |
+| Figma copy typos corrected | "Serveys" → Surveys, "Consultans" → Consultants, "Appoinment" → Appointment, "Consultalting" → Consulting. |
+| Testimonial arrows rotate the featured (middle) card | Figma shows three cards with arrows; with three testimonials the arrows cycle which one is featured instead of scrolling. |
+| Landing hero illustration ships as one SVG | 143:88 is ~100 vector layers; exported as a single asset. |
+| "Have a Question" and consultant "Book Appointment" open the Ask modal | Matches "Questions 1" (172:5135); consultant buttons prefill the message. |
 | Assets | Figma image/icon exports blocked by the network policy. Slots render as neutral boxes of the exact size (`AssetImage`, `Icon`) until files land in /public. |
 
 ## Pixel QA per page
@@ -63,5 +73,27 @@ These pages and components have no Figma frame. They are built only from the exi
 | Page height | 6541 | 6541 |
 
 No horizontal overflow at 360 / 375 / 768 / 1024 / 1440 (production build). Root cause of the earlier 360px overflow: the product card price row (price + 109px Buy Now pill) could not shrink inside a 156px grid cell; fixed with a wrapping row and `min-w-0` grid cells.
+
+### /consultation (1440) vs Figma Landing 143:64
+
+| Section | Figma y / h | Build y / h |
+|---|---|---|
+| Header | 0 / 160 | 0 / 160 |
+| Hero | 232 / 424 | 232 / 424 |
+| Why consultation | 776 / 652 | 776 / 652 |
+| Consultations | 1540 / 700 | 1540 / 700 |
+| How it works | 2352 / 508 | 2352 / 508 |
+| Our Story | 2972 / 415 | 2972 / 415 |
+| Privacy (+ divider) | 3499 / 444 | 3499 / 444 |
+| Our Consultants | 3999 / 594 | 3999 / 596 |
+| Testimonials band | 4693 / 841 | 4691 / 841 |
+| Footer | 5598 / 450 | 5596 / 450 |
+| Page height | 6049 | 6046 |
+
+### /ask (1440) vs Figma Question 172:4148
+
+Logo 300×47 at (570, 58) and card 552×677 at (444, 169): identical to Figma.
+
+No horizontal overflow at 360 / 375 / 768 / 1024 / 1440 on any route (production build).
 
 Pending: image-level comparison once Figma assets are available.

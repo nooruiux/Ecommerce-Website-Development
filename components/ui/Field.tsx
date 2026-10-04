@@ -25,7 +25,10 @@ type FieldShellProps = {
 function FieldShell({ label, error, hint, id, children, className, hideLabel }: FieldShellProps) {
   return (
     <div className={cn("flex w-full flex-col gap-2", className)}>
-      <label htmlFor={id} className={cn("text-body-xl text-text", hideLabel && "sr-only")}>
+      <label
+        htmlFor={id}
+        className={cn("text-body-xl leading-5.5 text-text", hideLabel && "sr-only")}
+      >
         {label}
       </label>
       {children}
@@ -103,7 +106,7 @@ export function Textarea({
   wrapperClassName,
   className,
   id,
-  rows = 4,
+  rows = 3,
   ...props
 }: TextareaProps) {
   const autoId = useId();
@@ -115,7 +118,7 @@ export function Textarea({
         rows={rows}
         aria-invalid={error ? true : undefined}
         aria-describedby={error ? `${inputId}-error` : hint ? `${inputId}-hint` : undefined}
-        className={cn(fieldBase, "min-h-29 resize-y py-3.5", className)}
+        className={cn(fieldBase, "h-29.25 min-h-29.25 resize-y py-3.5", className)}
         {...props}
       />
     </FieldShell>

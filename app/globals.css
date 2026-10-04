@@ -28,6 +28,9 @@
   --color-peach-100: #fae1d8; /* Main Colors/Secondary */
   --color-charcoal: #414042; /* Main Colors/Accent */
   --color-orange: #ff784b; /* Additional Colors/Orange */
+  --color-navy: #005085; /* Main Color/Secondary (Landing "Customers Story") */
+  --color-amber: #ea9a28; /* Main Color/Accent 1 (Landing rating stars) */
+  --color-graphite: #2d2d2d; /* Landing body copy */
   --color-purple: #936dff; /* Additional Colors/Purple */
 
   --color-gray-10: #fdfdfd;
@@ -73,6 +76,10 @@
   --color-text: var(--color-ink);
   --color-text-heading: rgb(32 32 32 / 0.96); /* section titles 317:492 */
   --color-text-footer: rgb(45 45 45 / 0.72); /* footer blurb 317:1487 */
+  --color-text-soft: rgb(32 32 32 / 0.72); /* Landing hero paragraph 143:84 */
+  --color-text-inverse-soft: rgb(255 255 255 / 0.72); /* Landing newsletter placeholder 143:807 */
+  --color-tint-secondary: rgb(250 225 216 / 0.12); /* Our Story band 143:535 */
+  --color-tint-primary: rgb(201 232 234 / 0.12); /* Testimonial band 143:707 */
   --color-text-input-soft: rgb(0 0 0 / 0.56); /* newsletter placeholder 317:1465 */
   --color-on-accent: var(--color-white-soft);
   --color-text-strong: rgb(0 0 0 / 0.8); /* "Account" label */
@@ -91,8 +98,8 @@
   --font-sans: var(--font-open-sans), ui-sans-serif, system-ui, sans-serif;
   --font-label: var(--font-plus-jakarta), ui-sans-serif, system-ui, sans-serif;
 
-  /* Source Serif 4 at opsz 20 matches Source Serif Pro metrics (measured against Figma line breaks) */
-  --font-body-variation: "opsz" 20;
+  /* Source Serif 4 at opsz 40 reproduces the Source Serif Pro line breaks in Figma (measured on Home + Landing copy) */
+  --font-body-variation: "opsz" 40;
 
   /* Figma letterSpacing 0.5 = 0.5% of font size */
   --tracking-figma: 0.005em;
@@ -177,6 +184,7 @@
   --radius-md: 8px; /* tertiary button */
   --radius-lg: 12px; /* small pill button */
   --radius-xl: 20px; /* normal pill button */
+  --radius-card: 16px; /* Landing consultation cards, privacy image */
   --radius-2xl: 24px; /* modal, large pill button */
   --radius-pill: 60px; /* Buy Now */
   --radius-full: 9999px; /* avatars, category circles, badges, toggle */
@@ -185,6 +193,9 @@
   --shadow-card: 8px 8px 16px rgb(0 0 0 / 0.04); /* product card 317:519 */
   --shadow-modal: 12px 12px 28px rgb(0 0 0 / 0.16); /* question card 172:4145 */
   --shadow-promo: 12px 12px 56px rgb(0 0 0 / 0.08); /* promo cards 317:1293 */
+  --shadow-soft: 12px 12px 50px rgb(0 0 0 / 0.08); /* Figma effect "Low Opacity" (Landing cards) */
+  --shadow-chip: 4px 4px 24px rgb(0 0 0 / 0.08); /* Our Story floating chips 143:545 */
+  --shadow-badge: 0 0 41.5px rgb(0 0 0 / 0.08); /* video badge 148:1415 */
   --shadow-drawer: var(--shadow-modal);
 
   /* ---------- Layout ---------- */

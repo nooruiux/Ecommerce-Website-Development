@@ -12,7 +12,7 @@ import { HeroBadge } from "./HeroBadge";
 export function Hero() {
   return (
     <section aria-labelledby="hero-title" className="relative overflow-hidden bg-sage">
-      <div className="grid xl:h-133 xl:grid-cols-[36.8125rem_1fr]">
+      <div className="grid grid-cols-1 xl:h-133 xl:grid-cols-[36.8125rem_1fr]">
         <div className="relative aspect-[589/532] xl:aspect-auto xl:h-full">
           <AssetImage
             src={homeAssets.hero.src}
