@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { DeferredSpeedInsights } from "@/components/analytics/DeferredSpeedInsights";
 import { fontVariables } from "@/lib/fonts";
 import { ogBase } from "@/lib/seo";
 import { site } from "@/lib/site";
@@ -22,7 +23,11 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={fontVariables}>
-      <body>{children}</body>
+      <body>
+        {children}
+        {/* Real-user Core Web Vitals (LCP etc.) on Vercel; mounted after window load. */}
+        <DeferredSpeedInsights />
+      </body>
     </html>
   );
 }

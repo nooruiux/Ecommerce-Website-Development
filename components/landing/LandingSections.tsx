@@ -84,12 +84,7 @@ export function WhySection() {
       className="container-page grid grid-cols-1 items-start gap-12 xl:grid-cols-[43.625rem_1fr] xl:gap-0"
     >
       <div className="relative mx-auto aspect-[557/554] w-full max-w-139 xl:mx-0 xl:mt-10">
-        <AssetImage
-          {...landingAssets.whyFrame}
-          alt=""
-          className="absolute top-[2.2%] left-0 h-auto w-[93%]"
-          fallbackClassName="bg-transparent"
-        />
+        <span aria-hidden="true" className="why-frame" />
         <span className="absolute top-0 left-[45%] text-text">
           <Icon name="sparkle" size={20} />
         </span>

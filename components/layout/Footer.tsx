@@ -3,6 +3,7 @@ import { AssetImage } from "@/components/ui/AssetImage";
 import { Icon } from "@/components/ui/Icon";
 import { footerCompany, footerService, socialLinks } from "@/data/navigation";
 import { brandAssets } from "@/lib/assets";
+import { cn } from "@/lib/cn";
 import { site } from "@/lib/site";
 
 /*
@@ -18,7 +19,15 @@ export function Footer() {
   return (
     <footer className="bg-white-soft pt-12">
       <div className="container-page">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 xl:flex xl:gap-40.5">
+        <div
+          className={cn(
+            "grid grid-cols-1 gap-10 xl:flex",
+            // Figma: 4 columns, gap 162. Without the app column the 3 remaining spread across the row.
+            site.hasApp
+              ? "md:grid-cols-2 xl:gap-40.5"
+              : "md:grid-cols-[1fr_auto_auto] xl:justify-between",
+          )}
+        >
           <div className="flex shrink-0 flex-col gap-7">
             <div className="flex flex-col gap-4.5">
               <Link
@@ -80,35 +89,37 @@ export function Footer() {
             </ul>
           </nav>
 
-          <div className="flex shrink-0 flex-col gap-5">
-            <h2 className={heading}>Download Our App</h2>
-            <div className="flex flex-col gap-4">
-              <a
-                href="https://www.apple.com/app-store/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="self-start rounded-sm focus-ring"
-              >
-                <AssetImage
-                  {...brandAssets.appStore}
-                  alt="Download on the App Store"
-                  className="rounded-sm"
-                />
-              </a>
-              <a
-                href="https://play.google.com/store"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="self-start rounded-sm focus-ring"
-              >
-                <AssetImage
-                  {...brandAssets.googlePlay}
-                  alt="Get it on Google Play"
-                  className="rounded-sm"
-                />
-              </a>
+          {site.hasApp && (
+            <div className="flex shrink-0 flex-col gap-5">
+              <h2 className={heading}>Download Our App</h2>
+              <div className="flex flex-col gap-4">
+                <a
+                  href="https://www.apple.com/app-store/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="self-start rounded-sm focus-ring"
+                >
+                  <AssetImage
+                    {...brandAssets.appStore}
+                    alt="Download on the App Store"
+                    className="rounded-sm"
+                  />
+                </a>
+                <a
+                  href="https://play.google.com/store"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="self-start rounded-sm focus-ring"
+                >
+                  <AssetImage
+                    {...brandAssets.googlePlay}
+                    alt="Get it on Google Play"
+                    className="rounded-sm"
+                  />
+                </a>
+              </div>
             </div>
-          </div>
+          )}
         </div>
 
         <div className="mt-10 flex flex-col items-center border-t border-line pt-4 pb-3.75">

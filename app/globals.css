@@ -196,6 +196,10 @@
   --radius-pill: 60px; /* Buy Now */
   --radius-full: 9999px; /* avatars, category circles, badges, toggle */
 
+  /* ---------- Dashed frame (Landing Why 148:1205 = Rectangle 148:1196 minus 148:1199) ---------- */
+  --border-width-dashed: 1.2937px; /* stroke 1.29374814, align OUTSIDE (CSS border = stroke box) */
+  --color-frame-dashed: var(--color-black); /* stroke #000000, opacity 1 */
+
   /* ---------- Shadows ---------- */
   --shadow-card: 8px 8px 16px rgb(0 0 0 / 0.04); /* product card 317:519 */
   --shadow-modal: 12px 12px 28px rgb(0 0 0 / 0.16); /* question card 172:4145 */
@@ -254,6 +258,34 @@
   @media (width >= 90rem) {
     padding-inline: var(--spacing-gutter);
   }
+}
+
+/*
+ * Landing "Why" dashed arch (Figma 148:1205), drawn in CSS.
+ * Box = Rectangle 148:1196 + its OUTSIDE stroke, in the 557x554 photo frame:
+ * x 0, y 9.759 (11.053 - stroke), 518.64 x 543.33 → top 1.762%, width 93.113%, height 98.074%.
+ * Top radii 396.67 on a 516 px width clamp to a full semicircle, same as rounded-t-full.
+ * The 73.01 x 27.23 cut (148:1199, x 222.81–295.83, y to 27.14) is a mask gap behind the sparkle:
+ * x 42.96%–57.04% of the box, height 17.38 px = 3.2%.
+ */
+@utility why-frame {
+  position: absolute;
+  left: 0;
+  top: 1.762%;
+  width: 93.113%;
+  height: 98.074%;
+  border: var(--border-width-dashed) dashed var(--color-frame-dashed);
+  border-top-left-radius: var(--radius-full);
+  border-top-right-radius: var(--radius-full);
+  mask-image:
+    linear-gradient(90deg, #000 42.96%, transparent 42.96% 57.04%, #000 57.04%),
+    linear-gradient(#000 0 0);
+  mask-size:
+    100% 3.2%,
+    100% 96.8%;
+  mask-position: top, bottom;
+  mask-repeat: no-repeat;
+  pointer-events: none;
 }
 
 /* Focus = 2px primary ring with 2px offset */

@@ -8,4 +8,6 @@ export const site = {
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   copyrightYear: 2023,
   email: "support@nattoral.com",
+  // No published mobile app yet: hides the footer "Download Our App" block (no placeholder badges).
+  hasApp: false,
 } as const;
