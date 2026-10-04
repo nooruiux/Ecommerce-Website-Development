@@ -6,6 +6,7 @@ import { PriceTag } from "@/components/ui/PriceTag";
 import { QuantityStepper } from "@/components/ui/QuantityStepper";
 import type { ResolvedLine } from "@/lib/cart/totals";
 import { useCart } from "@/store/cart";
+import { useToast } from "@/store/toast";
 
 export function CartLineItem({
   line,
@@ -16,6 +17,20 @@ export function CartLineItem({
 }) {
   const setQuantity = useCart((s) => s.setQuantity);
   const remove = useCart((s) => s.remove);
+  const insert = useCart((s) => s.insert);
+  const toast = useToast((s) => s.show);
+  const removeWithUndo = () => {
+    const { productId, variantId, quantity } = line;
+    const index = useCart
+      .getState()
+      .lines.findIndex((l) => l.productId === productId && l.variantId === variantId);
+    remove(productId, variantId);
+    toast({
+      message: `${line.product.name} removed from cart`,
+      actionLabel: "Undo",
+      onAction: () => insert({ productId, variantId, quantity }, index),
+    });
+  };
   const { product, variant } = line;
   return (
     <li className="flex gap-4 py-4">
@@ -51,7 +66,7 @@ export function CartLineItem({
           />
           <button
             type="button"
-            onClick={() => remove(product.id, variant.id)}
+            onClick={removeWithUndo}
             className="min-h-touch rounded-xs px-2 text-body-md text-text-muted underline focus-ring hover:text-error"
           >
             Remove<span className="sr-only"> {product.name}</span>

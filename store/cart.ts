@@ -10,6 +10,7 @@ type CartState = {
   add: (productId: string, variantId: string, quantity?: number) => void;
   setQuantity: (productId: string, variantId: string, quantity: number) => void;
   remove: (productId: string, variantId: string) => void;
+  insert: (line: CartLine, index: number) => void;
   clear: () => void;
   open: () => void;
   close: () => void;
@@ -42,6 +43,13 @@ export const useCart = create<CartState>()(
         })),
       remove: (productId, variantId) =>
         set((state) => ({ lines: state.lines.filter((l) => !same(l, productId, variantId)) })),
+      insert: (line, index) =>
+        set((state) => {
+          if (state.lines.some((l) => same(l, line.productId, line.variantId))) return state;
+          const lines = [...state.lines];
+          lines.splice(Math.min(index, lines.length), 0, line);
+          return { lines };
+        }),
       clear: () => set({ lines: [] }),
       open: () => set({ isOpen: true }),
       close: () => set({ isOpen: false }),

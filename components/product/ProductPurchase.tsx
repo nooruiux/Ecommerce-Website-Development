@@ -31,13 +31,7 @@ export function ProductPurchase({ product }: { product: Product }) {
   );
 }
 
-function PurchasePanel({
-  product,
-  variant,
-}: {
-  product: Product;
-  variant: ProductVariant;
-}) {
+function PurchasePanel({ product, variant }: { product: Product; variant: ProductVariant }) {
   const [qty, setQty] = useState(1);
   const [added, setAdded] = useState(false);
   const add = useCart((s) => s.add);

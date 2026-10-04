@@ -4,7 +4,7 @@ import { useId, type ComponentProps, type ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
 // Figma "Ask Us A Question" (172:4145): label 18/30, field 48px, 1px border black/64, radius 4.
-const fieldBase = cn(
+export const fieldBase = cn(
   "w-full rounded-sm border border-border-field bg-surface px-4 font-body text-body-lg text-text",
   "placeholder:text-text-placeholder transition-colors duration-(--duration-fast)",
   "hover:border-accent focus-visible:border-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary",
@@ -44,6 +44,7 @@ function FieldShell({ label, error, hint, id, children, className, hideLabel }: 
 
 type InputProps = ComponentProps<"input"> & {
   label: string;
+  endAdornment?: ReactNode;
   error?: string;
   hint?: string;
   hideLabel?: boolean;
@@ -52,6 +53,7 @@ type InputProps = ComponentProps<"input"> & {
 
 export function Input({
   label,
+  endAdornment,
   error,
   hint,
   hideLabel,
@@ -71,13 +73,18 @@ export function Input({
       className={wrapperClassName}
       hideLabel={hideLabel}
     >
-      <input
-        id={inputId}
-        aria-invalid={error ? true : undefined}
-        aria-describedby={error ? `${inputId}-error` : hint ? `${inputId}-hint` : undefined}
-        className={cn(fieldBase, "h-12", className)}
-        {...props}
-      />
+      <div className="relative">
+        <input
+          id={inputId}
+          aria-invalid={error ? true : undefined}
+          aria-describedby={error ? `${inputId}-error` : hint ? `${inputId}-hint` : undefined}
+          className={cn(fieldBase, "h-12", endAdornment && "pr-14", className)}
+          {...props}
+        />
+        {endAdornment && (
+          <div className="absolute inset-y-0 right-1 flex items-center">{endAdornment}</div>
+        )}
+      </div>
     </FieldShell>
   );
 }

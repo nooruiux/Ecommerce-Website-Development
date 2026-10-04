@@ -1,6 +1,7 @@
 import { CartDrawer } from "@/components/cart/CartDrawer";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
+import { Toaster } from "@/components/ui/Toaster";
 
 export default function ShopLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -15,6 +16,7 @@ export default function ShopLayout({ children }: { children: React.ReactNode }) 
       <main id="main">{children}</main>
       <Footer />
       <CartDrawer />
+      <Toaster />
     </>
   );
 }
