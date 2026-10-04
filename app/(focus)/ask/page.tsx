@@ -15,7 +15,7 @@ export default function AskPage() {
   return (
     <div className="flex min-h-dvh flex-col border-b border-text-placeholder">
       <main id="main" className="flex flex-1 flex-col items-center gap-16 px-4 pt-14.5 pb-28">
-        <Logo variant="landing" width={300} />
+        <Logo variant="landing" width={300} priority />
         <AskForm />
       </main>
     </div>

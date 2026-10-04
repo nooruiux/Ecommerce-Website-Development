@@ -67,8 +67,8 @@ export function LandingHero() {
       <AssetImage
         {...landingAssets.heroIllustration}
         alt="Illustration of a woman with a face mask surrounded by skin care products"
-        fetchPriority="high"
         loading="eager"
+        sizes="(min-width: 90rem) 646px, 100vw"
         className="mx-auto h-auto w-full max-w-161.5"
         fallbackClassName="mx-auto w-full max-w-161.5 rounded-2xl bg-transparent"
       />

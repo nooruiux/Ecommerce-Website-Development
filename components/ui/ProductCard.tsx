@@ -43,7 +43,10 @@ export function ProductCard({
           src={product.images[0]}
           alt=""
           fill
-          loading={priority ? "eager" : "lazy"}
+          // LCP card: <link rel="preload"> in <head> + high fetch priority.
+          preload={priority}
+          loading={priority ? undefined : "lazy"}
+          fetchPriority={priority ? "high" : undefined}
           sizes="(min-width: 90rem) 200px, (min-width: 48rem) 30vw, 46vw"
           className="object-cover transition-transform duration-(--duration-base) ease-(--ease-standard) group-hover:scale-105"
         />
@@ -80,7 +83,11 @@ export function ProductCard({
               Buy Now
               <span className="sr-only">: {product.name}</span>
             </Link>
-            <AddToCartIcon product={product} />
+            <AddToCartIcon
+              productId={product.id}
+              productName={product.name}
+              variantId={(product.variants.find((v) => v.stock > 0) ?? product.variants[0]).id}
+            />
           </div>
         </div>
       </div>

@@ -9,10 +9,13 @@ export function Logo({
   className,
   width = 284,
   variant = "store",
+  priority = false,
 }: {
   className?: string;
   width?: number;
   variant?: "store" | "landing";
+  /** Set where the logo is the LCP element (e.g. /ask). */
+  priority?: boolean;
 }) {
   const {
     src,
@@ -31,7 +34,10 @@ export function Logo({
         width={width}
         height={Math.round((width * h) / w)}
         loading="eager"
-        className={variant === "landing" ? "object-cover" : undefined}
+        fetchPriority={priority ? "high" : undefined}
+        // Pin the Figma frame ratio: the landing variant crops the same raster (object-cover).
+        style={{ aspectRatio: `${w} / ${h}` }}
+        className={variant === "landing" ? "h-auto object-cover" : undefined}
       />
     </Link>
   );

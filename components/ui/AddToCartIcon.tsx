@@ -1,20 +1,27 @@
 "use client";
 
 import { Icon } from "./Icon";
-import type { Product } from "@/types";
 import { useCart } from "@/store/cart";
 
 // Plus-circle (Figma 317:537), 32px visual with a 44px hit area.
-export function AddToCartIcon({ product }: { product: Product }) {
+// Takes only scalars so product cards don't serialize the full product into the RSC payload.
+export function AddToCartIcon({
+  productId,
+  productName,
+  variantId,
+}: {
+  productId: string;
+  productName: string;
+  variantId: string;
+}) {
   const add = useCart((s) => s.add);
   const open = useCart((s) => s.open);
-  const variant = product.variants.find((v) => v.stock > 0) ?? product.variants[0];
   return (
     <button
       type="button"
-      aria-label={`Add ${product.name} to cart`}
+      aria-label={`Add ${productName} to cart`}
       onClick={() => {
-        add(product.id, variant.id);
+        add(productId, variantId);
         open();
       }}
       className="absolute -top-px -right-px size-8 rounded-full focus-ring transition-transform duration-(--duration-fast) before:absolute before:-inset-1.5 before:content-[''] hover:scale-110"

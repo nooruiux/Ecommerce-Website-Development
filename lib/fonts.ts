@@ -11,13 +11,14 @@ export const poppins = Poppins({
   variable: "--font-poppins",
 });
 
-// Body: Source Serif 4 instanced at opsz 40, latin subset, 400–700 (app/fonts/README.md). Preloaded.
+// Body: Source Serif 4 instanced at opsz 40, latin subset, 400–700 (app/fonts/README.md).
+// Not preloaded: headlines/images are the LCP elements, and the size-adjusted fallback keeps CLS at 0.
 export const sourceSerif = localFont({
   src: "../app/fonts/source-serif-4-opsz40-latin.woff2",
   weight: "400 700",
   style: "normal",
   display: "swap",
-  preload: true,
+  preload: false,
   adjustFontFallback: "Times New Roman",
   variable: "--font-source-serif",
 });

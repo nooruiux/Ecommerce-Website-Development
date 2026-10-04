@@ -61,9 +61,10 @@ export function CatalogView({
             </div>
           ) : (
             <ul className="grid grid-cols-2 gap-x-4 gap-y-6 md:grid-cols-3 xl:grid-cols-4">
-              {items.map((p) => (
+              {items.map((p, i) => (
                 <li key={p.id} className="flex min-w-0">
-                  <ProductCard product={p} />
+                  {/* First row on mobile holds the LCP image. */}
+                  <ProductCard product={p} priority={i < 2} />
                 </li>
               ))}
             </ul>

@@ -168,6 +168,31 @@ Changes in this pass:
 
 **LCP status: not yet < 2.5 s on 4 of 5 routes in the lab.** Every LCP element is text whose paint is gated by the web-font swap; the simulation is bimodal (≈2.3 s vs ≈3.0 s) depending on whether the swap lands before or after main-script evaluation. Once the Figma images are in, Home (hero photo), /shop and the product page (product photos) get image LCP elements, so they must be re-measured then. If text LCP remains above 2.5 s after that, next step: inline the Poppins 700 latin subset (8 KB) for the h1 as a data URI.
 
+### Lighthouse 13 — with Figma assets (mobile, simulated Slow 4G + 4× CPU, production build)
+
+Median of 5 runs (individual LCP runs in brackets). /shop also measured over 9 runs: median 2.65 s.
+
+| Route | Perf | A11y | BP | SEO | LCP | TBT | CLS | LCP element |
+|---|---|---|---|---|---|---|---|---|
+| / | 97 | 100 | 100 | 100 | **2.20 s** [2.65 2.27 2.20 2.20 2.20] | 136 ms | 0 | hero photo |
+| /shop | 96 | 100 | 100 | 100 | 2.64 s [2.64 2.59 2.64 2.65 2.57] | 72 ms | 0 | first product photo |
+| /product/bioderma-p03 | 99 | 100 | 100 | 100 | **2.21 s** [2.34 2.26 2.20 2.21 2.12] | 82 ms | 0.001 | gallery photo |
+| /checkout | 98 | 100 | 100 | 66* | **2.28 s** [2.32 2.26 2.93 2.20 2.28] | 49 ms | 0.002 | h1 "Checkout" |
+| /consultation | 97 | 100 | 100 | 100 | **2.49 s** [2.34 3.11 2.49 2.42 2.57] | 54 ms | 0 | h1 (Poppins) |
+| /ask | 97 | 100 | 100 | 100 | **2.28 s** [2.87 2.28 2.28 2.88 2.27] | 100 ms | 0 | logo |
+
+\* `is-crawlable` only: /checkout is intentionally `noindex`.
+
+Changes in this pass:
+- Product cards passed the whole product object (description, ingredients, gallery, variants) to the client add-to-cart button; it now receives only id, name and variant id (Home RSC payload −33 KB).
+- `experimental.inlineCss` removed: it inlined the 55 KB stylesheet once in `<style>` and twice more in the RSC payload (Home HTML 637 KB → 396 KB, /ask 256 KB → 55 KB). Measured both ways after the other fixes; the external stylesheet is faster on 5 of 6 routes.
+- `images.deviceSizes` / `imageSizes` trimmed to what the sources can serve (max export width 1440 px), shortening every srcset.
+- Source Serif 4 (body) no longer preloaded; headings/images are the LCP elements and the size-adjusted fallback keeps CLS at 0.
+- LCP images: hero `fetchPriority="high"` + preload; first two /shop cards `preload` + `fetchPriority="high"`; /ask logo `fetchPriority="high"`; Landing illustration gets `sizes` (47 KB → 27 KB on mobile) and normal priority (the h1 is the mobile LCP).
+- Logo: aspect ratio pinned to the Figma frame (the 2× raster's ratio had grown the Landing footer by 17 px).
+
+**LCP status: 5 of 6 routes under 2.5 s. /shop is at 2.64 s** (same CSS, fonts and scripts as the passing routes; the difference is simulated main-thread time before first paint, FCP 1.37 s vs 1.0 s on Home). Candidate next steps: render the desktop filter sidebar after the product grid in source order, or move /shop filtering to the client so the route can be prerendered.
+
 ## Figma asset export status
 
 Exported from Figma `IZu9OqsPkarImQz9n31q42` by rendering each node (www.figma.com is not reachable from the build container, so the REST image URLs could not be downloaded).
@@ -177,5 +202,5 @@ Exported from Figma `IZu9OqsPkarImQz9n31q42` by rendering each node (www.figma.c
 - **Lower than 2x (render size cap)**: hero 1.25x, consultation banner 0.9x, CTA right 1x (drop shadow cropped off, CSS shadow kept), newsletter 1x, why-photo 1.25x, privacy 1.25x. To be replaced with 2x exports.
 - **Landing hero illustration**: 2x WebP render (the SVG export is 111 KB of paths).
 - **Logo** (317:344 / 143:70) is a raster image fill in Figma (300x47 source), so no true SVG exists; stored as a 2x PNG.
-- **Licensing note**: product images 317:1229 and 317:1250 (best-3-4, best-3-5) carry "Unsplash+" watermarks in the Figma file itself. They need licensed copies before production.
-- **Still missing**: App Store / Google Play badges (317:1322, 317:1395), Why-section dashed frame (148:1205), and the `app/icon.png` / `app/apple-icon.png` pair. Brand logos strip (317:647) stays excluded.
+- **Unsplash+ watermarks — TEMPORARY SWAP**: Figma nodes 317:1229 and 317:1250 (Best Selling row 3, items 4 and 5) carry "Unsplash+" watermarks in the Figma file itself. Until licensed replacements are supplied, `public/images/products/best-3-4.webp` reuses the clean photo of best-1-4 (317:975) and `best-3-5.webp` reuses best-2-5 (317:1123); both are the same product name, so PDP galleries stay consistent. Replace the two files to restore the design images.
+- **Still missing**: App Store / Google Play badges (317:1322, 317:1395) and the Why-section dashed frame (148:1205): the user reported uploading them to `public/figma-export/`, but that folder is not on origin/dev (checked locally and via the GitHub API). Also pending: the `app/icon.png` / `app/apple-icon.png` pair. The brand logo strip (317:647) stays excluded.
