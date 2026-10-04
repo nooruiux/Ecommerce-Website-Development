@@ -49,3 +49,17 @@ export type CartLine = {
 };
 
 export type SortKey = "featured" | "newest" | "price-asc" | "price-desc" | "rating";
+
+export type CatalogFilters = {
+  q?: string;
+  category?: CategorySlug;
+  concern?: string;
+  brand?: string;
+  tag?: Product["tags"][number];
+  min?: number;
+  max?: number;
+  rating?: number;
+  inStock?: boolean;
+  sort: SortKey;
+  page: number;
+};

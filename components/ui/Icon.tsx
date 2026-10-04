@@ -13,6 +13,7 @@ export type IconName =
   | "plus-circle"
   | "star"
   | "calendar"
+  | "check"
   | "instagram"
   | "facebook"
   | "twitter"

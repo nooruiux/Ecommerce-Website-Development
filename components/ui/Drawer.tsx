@@ -17,13 +17,14 @@ export function Drawer({
 }: {
   open: boolean;
   onClose: () => void;
-  side?: "left" | "right";
+  side?: "left" | "right" | "bottom";
   title: string;
   children: ReactNode;
   footer?: ReactNode;
 }) {
   const panel = useRef<HTMLDivElement>(null);
   useFocusTrap(panel, open, onClose);
+  const axis = side === "bottom" ? "y" : "x";
   const offset = side === "left" ? "-100%" : "100%";
 
   return (
@@ -44,13 +45,17 @@ export function Drawer({
             aria-modal="true"
             aria-label={title}
             tabIndex={-1}
-            initial={{ x: offset }}
-            animate={{ x: 0 }}
-            exit={{ x: offset }}
+            initial={{ [axis]: offset }}
+            animate={{ [axis]: 0 }}
+            exit={{ [axis]: offset }}
             transition={{ type: "tween", duration: 0.25, ease: [0.2, 0, 0, 1] }}
             className={cn(
-              "absolute top-0 flex h-dvh w-[min(26rem,100vw)] flex-col bg-surface shadow-drawer focus:outline-none",
-              side === "left" ? "left-0" : "right-0",
+              "absolute flex flex-col bg-surface shadow-drawer focus:outline-none",
+              side === "bottom"
+                ? "inset-x-0 bottom-0 max-h-[85dvh] rounded-t-2xl"
+                : "top-0 h-dvh w-[min(26rem,100vw)]",
+              side === "left" && "left-0",
+              side === "right" && "right-0",
             )}
           >
             <div className="flex h-16 shrink-0 items-center justify-between border-b border-line px-4">

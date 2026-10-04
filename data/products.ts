@@ -1,4 +1,5 @@
 import type { CategorySlug, Product } from "@/types";
+import { brands } from "./brands";
 
 /*
  * Mock catalog built from the Home Page cards (Featured 317:514, New Arrivals 317:648,
@@ -46,6 +47,16 @@ const concernCycle = [
 const prices = [5.75, 7.5, 12.0, 9.25, 15.5, 6.8];
 const ratings = [4.7, 4.5, 4.8, 4.2, 4.6, 4.9];
 
+// Gallery: the other Figma photos of the same product name (Home shows each name in 6 slots).
+const gallery = (name: string, own: string) =>
+  rows
+    .flatMap(({ section, row }) =>
+      names.map((nm, i) => ({ nm, src: `/images/products/${section}-${row}-${i + 1}.webp` })),
+    )
+    .filter((x) => x.nm === name && x.src !== own)
+    .slice(0, 3)
+    .map((x) => x.src);
+
 const slugify = (value: string) =>
   value
     .toLowerCase()
@@ -60,11 +71,12 @@ export const products: Product[] = rows.flatMap(({ section, row, tag }, r) =>
       name === "Dry Shampoo" ? "hair-care" : categoryCycle[(i + r) % categoryCycle.length];
     const price = prices[(i + r) % prices.length];
     const image = `/images/products/${section}-${row}-${i + 1}.webp`;
+    const soldOut = n % 9 === 0;
     return {
       id,
       slug: `${slugify(name)}-${id}`,
       name,
-      brand: ["SVR", "Difa", "Bioderma", "Florga", "SVR", "Nattoral"][i],
+      brand: brands[(n - 1) % brands.length].slug,
       description,
       details:
         "A creamy foaming gel that cleanses gently without drying the skin. Suitable for daily use morning and evening.",
@@ -72,18 +84,18 @@ export const products: Product[] = rows.flatMap(({ section, row, tag }, r) =>
         "Aqua, Sodium Laureth Sulfate, Glycerin, Coco-Betaine, Zinc Gluconate, Citric Acid.",
       price,
       salePrice: n % 5 === 0 ? Math.round(price * 0.8 * 100) / 100 : undefined,
-      images: [image],
+      images: [image, ...gallery(name, image)],
       category,
       concern: name === "Dry Shampoo" ? "dandruff" : concernCycle[(i + r) % concernCycle.length],
       rating: ratings[(i + r) % ratings.length],
       reviewCount: 715 - n * 7,
       soldLabel: "500+ Sold",
       variants: [
-        { id: "100ml", label: "100 ml", priceDelta: 0, stock: 24 },
-        { id: "200ml", label: "200 ml", priceDelta: 3, stock: n % 4 === 0 ? 0 : 12 },
-        { id: "400ml", label: "400 ml", priceDelta: 7, stock: 6 },
+        { id: "100ml", label: "100 ml", priceDelta: 0, stock: soldOut ? 0 : 24 },
+        { id: "200ml", label: "200 ml", priceDelta: 3, stock: soldOut || n % 4 === 0 ? 0 : 12 },
+        { id: "400ml", label: "400 ml", priceDelta: 7, stock: soldOut ? 0 : 6 },
       ],
-      stock: 42,
+      stock: soldOut ? 0 : 42,
       tags: [tag],
       createdAt: new Date(Date.UTC(2026, 0, 1 + n * 3)).toISOString(),
     } satisfies Product;
