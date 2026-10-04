@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { Suspense, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { PriceTag } from "@/components/ui/PriceTag";
 import { QuantityStepper } from "@/components/ui/QuantityStepper";
@@ -11,7 +12,26 @@ import { useCompare, useWishlist } from "@/store/lists";
 import { useHydrated } from "@/store/useHydrated";
 import type { Product, ProductVariant } from "@/types";
 
-export function ProductPurchase({
+export const defaultVariant = (product: Product) =>
+  product.variants.find((v) => v.stock > 0) ?? product.variants[0];
+
+// ?variant= is read on the client so the page itself stays fully static.
+function PurchaseFromUrl({ product }: { product: Product }) {
+  const requested = useSearchParams().get("variant");
+  const variant = product.variants.find((v) => v.id === requested) ?? defaultVariant(product);
+  return <PurchasePanel product={product} variant={variant} />;
+}
+
+// Server/prerender output uses the default variant; the URL variant takes over after hydration.
+export function ProductPurchase({ product }: { product: Product }) {
+  return (
+    <Suspense fallback={<PurchasePanel product={product} variant={defaultVariant(product)} />}>
+      <PurchaseFromUrl product={product} />
+    </Suspense>
+  );
+}
+
+function PurchasePanel({
   product,
   variant,
 }: {

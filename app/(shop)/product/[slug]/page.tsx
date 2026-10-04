@@ -49,15 +49,9 @@ const trust = [
   { icon: "check", title: "Secure payment", text: "Encrypted checkout" },
 ] as const;
 
-export default async function ProductPage({ params, searchParams }: PageProps<"/product/[slug]">) {
+export default async function ProductPage({ params }: PageProps<"/product/[slug]">) {
   const product = getProduct((await params).slug);
   if (!product) notFound();
-  const sp = await searchParams;
-  const requested = Array.isArray(sp.variant) ? sp.variant[0] : sp.variant;
-  const variant =
-    product.variants.find((v) => v.id === requested) ??
-    product.variants.find((v) => v.stock > 0) ??
-    product.variants[0];
   const category = categories.find((c) => c.slug === product.category)!;
   const url = `/product/${product.slug}`;
   const crumbs = [
@@ -87,7 +81,7 @@ export default async function ProductPage({ params, searchParams }: PageProps<"/
               <p className="text-body-xl text-text-muted">{product.description}</p>
               <Rating value={product.rating} count={product.reviewCount} />
             </div>
-            <ProductPurchase product={product} variant={variant} />
+            <ProductPurchase product={product} />
             <ul className="grid gap-4 border-t border-line pt-6 md:grid-cols-3">
               {trust.map((t) => (
                 <li key={t.title} className="flex items-start gap-3">
