@@ -47,7 +47,7 @@ export const useCart = create<CartState>()(
       close: () => set({ isOpen: false }),
     }),
     {
-      name: "nattarol-cart",
+      name: "nattoral-cart",
       storage: createJSONStorage(() => localStorage),
       partialize: (state) => ({ lines: state.lines }),
     },

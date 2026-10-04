@@ -1,5 +1,5 @@
 // Single source for the brand name: logo alt, copy, metadata, JSON-LD.
-// Figma logo and copyright read "Nattoral". Final spelling pending confirmation.
+// Brand name confirmed: "Nattoral" (matches the Figma logo and copyright).
 export const site = {
   name: "Nattoral",
   tagline: "Skin Care, Hair Care & Personal Care",

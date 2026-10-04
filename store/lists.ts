@@ -28,5 +28,5 @@ function createIdList(name: string) {
 }
 
 // Header shows wishlist and compare counters (317:362, 317:370).
-export const useWishlist = createIdList("nattarol-wishlist");
-export const useCompare = createIdList("nattarol-compare");
+export const useWishlist = createIdList("nattoral-wishlist");
+export const useCompare = createIdList("nattoral-compare");

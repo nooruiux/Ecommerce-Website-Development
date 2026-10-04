@@ -1,4 +1,4 @@
-# Nattarol — QA Report
+# Nattoral — QA Report
 
 Reference: Figma `IZu9OqsPkarImQz9n31q42`. Screenshots in `/design-reference/` (git-ignored).
 
@@ -30,7 +30,7 @@ These pages and components have no Figma frame. They are built only from the exi
 | Body font is **Source Serif 4** | Figma names "Source Serif Pro", which Google Fonts now publishes as Source Serif 4 (one Figma style already references it). |
 | Product prices, ratings and sale prices vary | Figma shows $5.75 / 4.7 (715) on every card; filter and sort need varied data. |
 | Checkbox and radio drawn in CSS | Matches the Style Guide geometry (24px circle, gray-30 off ring, primary-hover fill); SVG exports were blocked. |
-| Brand name in one constant (`lib/site.ts`) | Currently "Nattoral" (Figma logo/copyright). Final spelling pending owner confirmation. |
+| Brand name in one constant (`lib/site.ts`) | "Nattoral", confirmed by the owner; matches the Figma logo and copyright. |
 | "Shop By Popular Brands" shows placeholder wordmarks | Figma tiles are real 3D-printer brand logos; replaced by neutral grayscale tiles (`data/brands.ts`) until real brands are supplied. Tile size, gap and border match 317:645. |
 | Product card on sale: current price + "−N%" chip on the image (badge-only) | Tested an inline struck compare-at price (text-body-xs, muted): the price row wraps and the card grows to 438px at 1440 (428 / 424 / 422 at 1024 / 768 / 375), stretching the whole grid row. Reverted to badge-only to keep the Figma 400px card. Struck price shows on PDP and cart. |
 | Body font uses `opsz` 20 | Source Serif 4 at opsz 20 reproduces the Source Serif Pro line breaks (default opsz 14 is ~7% wider and wraps card copy to 4 lines). |

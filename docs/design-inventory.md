@@ -1,4 +1,4 @@
-# Nattarol — Design Inventory
+# Nattoral — Design Inventory
 
 Source: Figma file `IZu9OqsPkarImQz9n31q42`, start node `317:338` (Home Page).
 Reference screenshots live in `/design-reference/` (git-ignored).
