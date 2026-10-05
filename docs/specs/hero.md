@@ -36,7 +36,7 @@ Coordinates are **relative to the panel 317:420** (Figma y − 5), in px at 1440
 ## Implementation notes
 
 - `components/sections/Hero.tsx` + `HeroBadge.tsx`; geometry in the `hero-*` rules of `app/globals.css`, written in Figma px × `--hu` (1 px at ≥1440).
-- Above 1440 the photo bleeds to the viewport's left edge (Figma: photo at x 0): `.hero-bleed` stretches the photo's own left-edge column (`hero-edge.webp`, 2 x 665, 0.3 KB) sideways, so it joins seamlessly without re-cropping the product group.
+- Above 1440 the photo background runs to the viewport's left edge (Figma: photo at x 0) and the product group is centred in that panel: `.hero-photo` moves left by (viewport − 1440) / 4, and `.hero-bleed` / `.hero-bleed-right` stretch the photo's own smoothed edge columns (`hero-edge.webp`, `hero-edge-right.webp`, 2 x 665) sideways to fill both sides seamlessly without re-cropping the products.
 - 768–1439: the same frame scaled proportionally with the viewport (`--hu = 100cqw / 1440`); the photo is 40.9 % of the width and its crop is unchanged, so the product group stays fully visible. From 1440 up: exact Figma px, frame centred (`margin-inline: auto`, same axis as the 1280 page container), sage panel full-bleed on both sides.
 - <768: the left 686 px of the frame (photo + watermark strip + badge) scaled to the viewport, copy stacked below (H1 32/40, full-width 56 px button).
 - Badge ring: each glyph placed at its Figma centre/rotation (computed from the `get_design_context` grid of 317:440).

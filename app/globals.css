@@ -391,21 +391,36 @@
   width: calc(589 * var(--hu));
   height: calc(532 * var(--hu));
 }
-.hero-bleed {
-  /* Wide screens (> 1440): the photo continues to the viewport's left edge, as in Figma where it
-     starts at x 0. The strip is the photo's own left-edge column stretched sideways, so it joins
-     the photo seamlessly without enlarging or re-cropping the product group. */
+.hero-bleed,
+.hero-bleed-right {
+  /* Wide screens (> 1440): the photo background runs to the viewport's left edge (Figma: photo at
+     x 0) and the product group is centred in that wider panel. The strips are the photo's own
+     edge columns stretched sideways, so they join seamlessly without re-cropping the products. */
   display: none;
+  --hero-bleed-overlap: 2px; /* covers the photo's light 1–2 px edge fringe */
   position: absolute;
   top: 0;
-  right: 100%;
   z-index: 1;
+  height: 100%;
+}
+.hero-bleed {
+  right: calc(100% - var(--hero-bleed-overlap));
   width: 50vw;
-  height: calc(532 * var(--hu));
   background: url("/images/home/hero-edge.webp") 0 0 / 100% 100% no-repeat;
 }
+.hero-bleed-right {
+  left: calc(100% - var(--hero-bleed-overlap));
+  width: calc(var(--hero-centre-shift) + var(--hero-bleed-overlap));
+  background: url("/images/home/hero-edge-right.webp") 0 0 / 100% 100% no-repeat;
+}
 @media (width > 90rem) {
-  .hero-bleed {
+  .hero-photo {
+    /* panel = viewport edge .. Figma x 589; the photo moves left by half the extra width */
+    --hero-centre-shift: calc((100vw - var(--hero-frame-max) * 1px) / 4);
+    left: calc(-1 * var(--hero-centre-shift));
+  }
+  .hero-bleed,
+  .hero-bleed-right {
     display: block;
   }
 }

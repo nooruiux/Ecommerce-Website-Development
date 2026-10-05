@@ -16,6 +16,7 @@ export const brandAssets = {
 export const homeAssets = {
   hero: { src: "/images/home/hero.webp", width: 589, height: 532 }, // 317:435
   heroEdge: { src: "/images/home/hero-edge.webp", width: 2, height: 665 }, // left-edge column of 317:435, stretched into the wide-screen bleed
+  heroEdgeRight: { src: "/images/home/hero-edge-right.webp", width: 2, height: 665 }, // right-edge column of 317:435
   consultation: { src: "/images/home/consultation.webp", width: 1280, height: 488 }, // 317:484
   ctaLeft: { src: "/images/home/cta-white-firm-face.webp", width: 622, height: 488 }, // 317:1294
   ctaRight: { src: "/images/home/cta-bright-soft.webp", width: 624, height: 488 }, // 317:1297
