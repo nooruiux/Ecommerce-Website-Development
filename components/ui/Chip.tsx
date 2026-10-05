@@ -10,8 +10,8 @@ const tones: Record<ChipTone, string> = {
   pending: "bg-pending-tint text-highlight",
   refund: "bg-warning-tint text-warning",
   unpaid: "bg-purple-tint text-purple",
-  // Derived product-card discount badge: brand orange fill + dark text (6.2:1)
-  sale: "bg-highlight text-text",
+  // Discount tag: sale red fill + white text (5.6:1)
+  sale: "bg-sale text-on-sale",
 };
 
 export function Chip({

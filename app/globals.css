@@ -87,6 +87,9 @@
   --color-secondary: var(--color-peach-100);
   --color-accent: var(--color-charcoal);
   --color-highlight: var(--color-orange);
+  /* Discount tag: deep sale red with white text (5.6:1, WCAG AA) */
+  --color-sale: #c62828;
+  --color-on-sale: var(--color-white);
 
   --color-surface: var(--color-white);
   --color-surface-muted: var(--color-gray-search);

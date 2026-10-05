@@ -48,7 +48,7 @@ export function ProductCard({
           className="object-cover transition-transform duration-(--duration-base) ease-(--ease-standard) group-hover:scale-105"
         />
         {discount > 0 && (
-          <span className="absolute top-2 left-2 rounded-full bg-highlight px-2.5 py-0.5 text-body-sm font-bold text-text">
+          <span className="absolute top-2 left-2 rounded-full bg-sale px-2.5 py-0.5 text-body-sm font-bold text-on-sale">
             −{discount}%
           </span>
         )}
