@@ -7,7 +7,7 @@ import { AddToCartButton } from "./AddToCartButton";
 
 /*
  * Product card (owner-requested retail style): white rounded card, padded square image with a
- * discount pill, two-line title, struck original + current price, full-width Add To Cart.
+ * discount pill, bold one-line title, two-line subheadline, struck original + current price, full-width Add To Cart.
  */
 export function ProductCard({
   product,
@@ -53,11 +53,14 @@ export function ProductCard({
           </span>
         )}
       </Link>
-      <h3 className="line-clamp-2 min-h-11 text-card-title font-semibold text-text">
-        <Link href={href} className="rounded-xs focus-ring hover:text-primary-hover-strong">
-          {product.name}
-        </Link>
-      </h3>
+      <div className="flex flex-col gap-1">
+        <h3 className="line-clamp-1 text-card-title font-bold text-text">
+          <Link href={href} className="rounded-xs focus-ring hover:text-primary-hover-strong">
+            {product.name}
+          </Link>
+        </h3>
+        <p className="line-clamp-2 min-h-10 text-body-sm text-text-muted">{product.description}</p>
+      </div>
       <p className="mt-auto flex h-6 items-center gap-x-2 overflow-hidden whitespace-nowrap">
         {onSale && (
           <s className="text-body-md leading-none text-text-muted">
