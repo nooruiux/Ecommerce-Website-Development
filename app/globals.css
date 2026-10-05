@@ -341,18 +341,19 @@
  * Home hero (Figma 317:419, spec: docs/specs/hero.md).
  * Every value below is a Figma px value from the 1440 x 532 panel (317:420), multiplied by
  * --hu = one Figma px in the current frame: proportional from 768 to 1440 (the photo is 40.9%
- * of the viewport), exactly 1px from 1440 up: wider screens keep the 1440 Figma frame flush
- * left on the full-bleed sage panel.
+ * of the viewport), exactly 1px from 1440 up: wider screens centre the 1440 Figma frame on the
+ * full-bleed sage panel (aligned with the centred page container).
  * Mobile shows the left 686 px of the frame (photo + watermark strip + badge) and stacks the copy.
  */
 .hero-frame {
   --hero-frame-w: 1440;
   --hero-frame-h: 532;
-  --hero-frame-max: 1440; /* scaling stops at the Figma size; wider screens keep it flush left */
+  --hero-frame-max: 1440; /* scaling stops at the Figma size; wider screens centre the frame */
   --hero-stage-w-mobile: 686; /* photo + watermark strip + badge (right edge 681.92) */
   position: relative;
   width: 100%;
   max-width: calc(var(--hero-frame-max) * 1px);
+  margin-inline: auto;
 }
 .hero-stage {
   --hu: calc(100cqw / var(--hero-stage-w-mobile));

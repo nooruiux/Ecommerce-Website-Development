@@ -9,7 +9,8 @@ import { HeroBadge } from "./HeroBadge";
  * (the hero-* rules in globals.css): photo 589 x 532 at 0,0 above the vertical "Skin Care"
  * watermark, discount badge on top, copy block at 796,135, slider dots at 710,484.
  * 768–1439 scales the same frame proportionally (the photo is 40.9% of the width); from 1440 up
- * it stays at the exact Figma size, flush left, on the full-bleed sage panel. Mobile shows the
+ * it stays at the exact Figma size, centred on the full-bleed sage panel (same axis as the
+ * page container). Mobile shows the
  * left 686 px of the frame (photo, watermark strip, badge) with the copy stacked below.
  * Only one slide is designed: the three dots are a static indicator.
  */
