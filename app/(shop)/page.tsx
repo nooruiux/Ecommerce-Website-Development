@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { ConsultationBanner } from "@/components/sections/ConsultationBanner";
 import { Hero } from "@/components/sections/Hero";
-import { Newsletter } from "@/components/sections/Newsletter";
 import { PopularBrands } from "@/components/sections/PopularBrands";
 import { ProductSection } from "@/components/sections/ProductSection";
 import { PromoBanners } from "@/components/sections/PromoBanners";
@@ -13,7 +12,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
-// Figma Home Page 317:338. Vertical rhythm: 96px between sections (64 after the 306px brands frame, 112 before newsletter).
+// Figma Home Page 317:338. Vertical rhythm: 96px between sections (64 after the 306px brands frame).
+// The Figma Bottom CTA / newsletter band (317:1456) was removed at the owner's request.
 export default function HomePage() {
   return (
     <>
@@ -56,10 +56,7 @@ export default function HomePage() {
           />
         </div>
       </div>
-      <div className="pt-16 xl:pt-28">
-        <Newsletter />
-      </div>
-      <div className="h-0 xl:h-20" aria-hidden="true" />
+      <div className="h-16 xl:h-24" aria-hidden="true" />
     </>
   );
 }

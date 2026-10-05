@@ -18,9 +18,6 @@ export const homeAssets = {
   consultation: { src: "/images/home/consultation.webp", width: 1280, height: 488 }, // 317:484
   ctaLeft: { src: "/images/home/cta-white-firm-face.webp", width: 622, height: 488 }, // 317:1294
   ctaRight: { src: "/images/home/cta-bright-soft.webp", width: 624, height: 488 }, // 317:1297
-  newsletter: { src: "/images/home/newsletter.webp", width: 1440, height: 248 }, // 317:1458
-  newsletterCart: { src: "/images/home/newsletter-cart.png", width: 110, height: 70 }, // 317:1467
-  newsletterHand: { src: "/images/home/newsletter-hand.png", width: 107, height: 72 }, // 317:1468
 } as const;
 
 // Landing frame 143:64

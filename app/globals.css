@@ -102,7 +102,6 @@
   --color-text-inverse-soft: rgb(255 255 255 / 0.72); /* Landing newsletter placeholder 143:807 */
   --color-tint-secondary: rgb(252 225 216 / 0.12); /* Our Story band 143:535 (logo peach) */
   --color-tint-primary: rgb(192 232 232 / 0.12); /* Testimonial band 143:707 (logo mint) */
-  --color-text-input-soft: rgb(0 0 0 / 0.56); /* newsletter placeholder 317:1465 */
   --color-on-accent: var(--color-white-soft);
   --color-text-strong: rgb(0 0 0 / 0.8); /* "Account" label */
   --color-text-subtle: rgb(0 0 0 / 0.72); /* "All Category" */
