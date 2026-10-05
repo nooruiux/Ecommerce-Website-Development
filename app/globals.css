@@ -391,6 +391,24 @@
   width: calc(589 * var(--hu));
   height: calc(532 * var(--hu));
 }
+.hero-bleed {
+  /* Wide screens (> 1440): the photo continues to the viewport's left edge, as in Figma where it
+     starts at x 0. The strip is the photo's own left-edge column stretched sideways, so it joins
+     the photo seamlessly without enlarging or re-cropping the product group. */
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 100%;
+  z-index: 1;
+  width: 50vw;
+  height: calc(532 * var(--hu));
+  background: url("/images/home/hero-edge.webp") 0 0 / 100% 100% no-repeat;
+}
+@media (width > 90rem) {
+  .hero-bleed {
+    display: block;
+  }
+}
 .hero-watermark {
   /* 317:434 — Poppins Bold 108/130, ls 0.5%, #F9F9F9 @ 88%, rotated 90° CCW, box 547,-5 130x534 (starts at y 529) */
   position: absolute;
