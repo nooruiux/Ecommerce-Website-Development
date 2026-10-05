@@ -6,21 +6,15 @@ export function Skeleton({ className }: { className?: string }) {
   );
 }
 
-// Matches ProductCard: 200 image + 200 body.
+// Matches ProductCard: padded square image, two-line title, price, button.
 export function ProductCardSkeleton() {
   return (
-    <div className="flex w-full flex-col overflow-hidden rounded-sm border border-border bg-surface">
-      <Skeleton className="aspect-square w-full rounded-none" />
-      <div className="flex flex-col gap-2 px-3.5 pt-1 pb-5">
-        <Skeleton className="mt-1 h-6 w-3/4" />
-        <Skeleton className="h-4 w-full" />
-        <Skeleton className="h-4 w-5/6" />
-        <Skeleton className="h-4 w-1/2" />
-        <div className="mt-3 flex items-center justify-between">
-          <Skeleton className="h-6 w-12" />
-          <Skeleton className="h-8 w-27 rounded-pill" />
-        </div>
-      </div>
+    <div className="flex w-full flex-col gap-3 rounded-lg border border-line bg-surface p-3">
+      <Skeleton className="aspect-square w-full rounded-md" />
+      <Skeleton className="h-4 w-full" />
+      <Skeleton className="h-4 w-2/3" />
+      <Skeleton className="mt-1 h-5 w-1/2" />
+      <Skeleton className="h-10 w-full rounded-md" />
     </div>
   );
 }

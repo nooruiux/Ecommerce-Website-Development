@@ -33,11 +33,3 @@ export const CloseIcon = ({ className, size = 24 }: GlyphProps) => (
     <path d="M6 6l12 12M18 6L6 18" />
   </svg>
 );
-
-export const CartGlyph = ({ className, size = 24 }: GlyphProps) => (
-  <svg {...base(size)} className={className}>
-    <path d="M3 4h2l2.2 10.2a1 1 0 0 0 1 .8h8.9a1 1 0 0 0 1-.76L20 7.5H6.1" />
-    <circle cx="9" cy="19" r="1.25" />
-    <circle cx="17" cy="19" r="1.25" />
-  </svg>
-);
