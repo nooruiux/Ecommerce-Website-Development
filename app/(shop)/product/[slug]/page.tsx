@@ -75,7 +75,6 @@ export default async function ProductPage({ params }: PageProps<"/product/[slug]
           <ProductGallery images={product.images} name={product.name} />
           <div className="flex flex-col gap-6">
             <div className="flex flex-col gap-3">
-              <p className="text-body-md font-semibold text-primary-strong">{product.soldLabel}</p>
               <h1 className="font-heading text-h4 font-semibold text-text xl:text-h3">
                 {product.name}
               </h1>

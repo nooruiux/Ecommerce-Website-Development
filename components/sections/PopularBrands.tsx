@@ -18,7 +18,7 @@ export function PopularBrands() {
     >
       <h2
         id="popular-brands"
-        className="font-heading text-h5 font-semibold text-text md:text-h4 xl:h-12.75 xl:w-124.75 xl:text-h3"
+        className="font-heading text-section font-semibold text-text xl:h-12.75"
       >
         Shop By Popular Brands
       </h2>

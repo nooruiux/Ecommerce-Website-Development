@@ -1,48 +1,17 @@
-import { Open_Sans, Plus_Jakarta_Sans, Poppins } from "next/font/google";
-import localFont from "next/font/local";
+import { Plus_Jakarta_Sans } from "next/font/google";
 
-// Headlines (LCP text on most routes): preloaded.
-export const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  display: "swap",
-  preload: true,
-  adjustFontFallback: true,
-  variable: "--font-poppins",
-});
-
-// Body: Source Serif 4 instanced at opsz 40, latin subset, 400–700 (app/fonts/README.md).
-// Not preloaded: headlines/images are the LCP elements, and the size-adjusted fallback keeps CLS at 0.
-export const sourceSerif = localFont({
-  src: "../app/fonts/source-serif-4-opsz40-latin.woff2",
-  weight: "400 700",
-  style: "normal",
-  display: "swap",
-  preload: false,
-  adjustFontFallback: "Times New Roman",
-  variable: "--font-source-serif",
-});
-
-// Search placeholder only: not preloaded.
-export const openSans = Open_Sans({
-  subsets: ["latin"],
-  weight: ["400"],
-  display: "swap",
-  preload: false,
-  adjustFontFallback: true,
-  variable: "--font-open-sans",
-});
-
-// Button labels: not preloaded.
+/*
+ * One family for the whole storefront: Plus Jakarta Sans (variable, 200–800).
+ * A geometric sans built for UI: compact figures for prices, clear at small sizes on product
+ * cards, and one preloaded file instead of four families.
+ */
 export const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  weight: ["600"],
+  weight: "variable",
   display: "swap",
-  preload: false,
+  preload: true,
   adjustFontFallback: true,
   variable: "--font-plus-jakarta",
 });
 
-export const fontVariables = [poppins, sourceSerif, openSans, plusJakarta]
-  .map((font) => font.variable)
-  .join(" ");
+export const fontVariables = plusJakarta.variable;

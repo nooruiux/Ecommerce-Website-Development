@@ -108,10 +108,11 @@
   --color-border-faint: rgb(0 0 0 / 0.04); /* promo cards 317:1293 */
 
   /* ---------- Typography ---------- */
-  --font-heading: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
-  --font-body: var(--font-source-serif), ui-serif, Georgia, serif;
-  --font-sans: var(--font-open-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-label: var(--font-plus-jakarta), ui-sans-serif, system-ui, sans-serif;
+  /* Single storefront family (lib/fonts.ts): headings, body, UI labels. */
+  --font-heading: var(--font-plus-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-plus-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-body);
+  --font-label: var(--font-body);
 
   /* Figma letterSpacing 0.5 = 0.5% of font size */
   --tracking-figma: 0.005em;
@@ -130,6 +131,10 @@
   --text-h4: 2rem; /* 32 */
   --text-h4--line-height: 2.5rem; /* 40 */
   --text-h4--letter-spacing: var(--tracking-figma);
+  /* Section titles (Top Categories, product sections, brands): 28 / 36 */
+  --text-section: 1.75rem;
+  --text-section--line-height: 2.25rem;
+  --text-section--letter-spacing: var(--tracking-figma);
   --text-h5: 1.5rem; /* 24 */
   --text-h5--line-height: 2rem; /* 32 */
   --text-h5--letter-spacing: var(--tracking-figma);

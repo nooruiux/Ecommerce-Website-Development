@@ -35,7 +35,6 @@ export type Product = {
   concern: string;
   rating: number;
   reviewCount: number;
-  soldLabel: string;
   variants: ProductVariant[];
   stock: number;
   tags: Array<"featured" | "new" | "bestseller">;

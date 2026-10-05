@@ -1,5 +1,7 @@
 # Home "Shop By Popular Brands" — Figma spec (317:645)
 
+> **Typography update (owner request):** the site now uses Plus Jakarta Sans everywhere; font families in the tables below are the original Figma values. Section titles are 28 / 36.
+
 Source: Figma `IZu9OqsPkarImQz9n31q42`, frame **Brands 317:645** under Home 317:338 (1441 × 306 at page x −1, y 2379).
 The section contains only two layers: the heading **317:646** and **one raster, 317:647 "image 8"**. That image is a screenshot that holds all 14 tiles, borders and logos. There are no per-logo nodes, so tile and logo geometry below is **measured from the raster's pixels**.
 Raster: source 1705 × 659, fill CROP, transform [[0.922,0,0.018],[0,0.381,0.602]] → visible source region 1572 × 251 drawn at 1441 × 239 (scale 0.9167; 1.0909 source px per CSS px). Measured on a native-resolution render (scale 1572/1441). Coordinates are page px at 1440 (section top = 2379).

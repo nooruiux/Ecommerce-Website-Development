@@ -23,6 +23,12 @@ These pages and components have no Figma frame. They are built only from the exi
 | /wishlist, /compare | header shows wishlist and compare counters; pages derived |
 | Menu, search and close glyphs | no Figma counterpart; 24px / 1.5px stroke |
 
+## Owner-requested changes (deviate from Figma)
+
+- **Typography**: the whole storefront uses **Plus Jakarta Sans** (Google Fonts, variable 200–800, one preloaded 27.6 KB file) instead of Poppins / Source Serif / Open Sans. Sizes, weights and line-heights keep the Figma tokens. Lighthouse `/` LCP median 2.35 s → 2.25 s.
+- **Section titles** (Top Categories, Featured Products, Shop By Popular Brands, New Arrivals, Best Selling): 28 / 36 (`--text-section`) instead of 48 / 40.
+- **Product card**: the "500+ Sold" label is removed (cards and product page); the "Buy Now" pill + plus icon is replaced by a full-width "Add to Cart" button (40 px, `--color-accent`, hover `--color-primary-hover-strong`; disabled "Out of Stock" when no variant is in stock). Cards grow from 400 to 450 px, so the Home page is taller than Figma's 6541 px.
+
 ## Intentional deviations
 
 | Deviation | Reason |

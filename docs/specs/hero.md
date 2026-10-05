@@ -1,5 +1,7 @@
 # Home hero — Figma spec (317:419)
 
+> **Typography update (owner request):** the site now uses Plus Jakarta Sans everywhere; font families in the tables below are the original Figma values. Section titles are 28 / 36.
+
 Source: Figma `IZu9OqsPkarImQz9n31q42`, frame **hero section 317:419** (1440 × 537 at y 139 of Header 317:339; its panel starts 5 px lower, so the visible hero is 1440 × 532 at page y 144).
 Extracted with `get_metadata`, `get_design_context` and a read-only Plugin API dump (fills, strokes, effects, text styles, image transform, original image size).
 Coordinates are **relative to the panel 317:420** (Figma y − 5), in px at 1440. Page y = 144 + y. Reference render: `design-reference/figma-hero-317-419@1x.png`.

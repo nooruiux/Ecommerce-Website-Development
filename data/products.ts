@@ -89,7 +89,6 @@ export const products: Product[] = rows.flatMap(({ section, row, tag }, r) =>
       concern: name === "Dry Shampoo" ? "dandruff" : concernCycle[(i + r) % concernCycle.length],
       rating: ratings[(i + r) % ratings.length],
       reviewCount: 715 - n * 7,
-      soldLabel: "500+ Sold",
       variants: [
         { id: "100ml", label: "100 ml", priceDelta: 0, stock: soldOut ? 0 : 24 },
         { id: "200ml", label: "200 ml", priceDelta: 3, stock: soldOut || n % 4 === 0 ? 0 : 12 },

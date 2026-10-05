@@ -5,12 +5,12 @@ import { cn } from "@/lib/cn";
 import { Chip } from "./Chip";
 import { PriceTag } from "./PriceTag";
 import { Rating } from "./Rating";
-import { AddToCartIcon } from "./AddToCartIcon";
+import { AddToCartButton } from "./AddToCartButton";
 
 /*
  * Figma 317:519 — 200x200 image (border l/r/t, radius-top 4) + 200 body
- * (bg white, border b/l/r). Title 18/30 semibold, description 14/22 muted,
- * "500+ Sold" primary + rating, price + "Buy Now" pill with plus icon.
+ * (bg white, border b/l/r). Title 18/30 semibold, description 14/22 muted, rating,
+ * price + "Add to Cart" button (replaces Figma's "Buy Now" pill + plus icon).
  */
 export function ProductCard({
   product,
@@ -22,6 +22,7 @@ export function ProductCard({
   className?: string;
 }) {
   const href = `/product/${product.slug}`;
+  const variant = product.variants.find((v) => v.stock > 0) ?? product.variants[0];
   // Sale: show the current price in the 172px row; the struck price lives on the PDP and cart.
   const discount = product.salePrice
     ? Math.round((1 - product.salePrice / product.price) * 100)
@@ -67,28 +68,17 @@ export function ProductCard({
             <p className="line-clamp-3 text-caption text-text-muted">{product.description}</p>
           </div>
           <div className="flex min-h-4.5 flex-wrap items-center gap-2">
-            <span className="text-body-md leading-none font-semibold text-primary-strong">
-              {product.soldLabel}
-            </span>
             <Rating value={product.rating} count={product.reviewCount} />
           </div>
         </div>
-        <div className="mt-auto flex flex-wrap items-center justify-between gap-2">
+        <div className="mt-auto flex flex-col gap-3">
           <PriceTag price={product.salePrice ?? product.price} />
-          <div className="relative flex h-8 items-center rounded-pill border border-border pr-8 pl-2">
-            <Link
-              href={href}
-              className="rounded-xs text-body-md leading-none font-semibold whitespace-nowrap text-text focus-ring hover:text-primary-hover-strong"
-            >
-              Buy Now
-              <span className="sr-only">: {product.name}</span>
-            </Link>
-            <AddToCartIcon
-              productId={product.id}
-              productName={product.name}
-              variantId={(product.variants.find((v) => v.stock > 0) ?? product.variants[0]).id}
-            />
-          </div>
+          <AddToCartButton
+            productId={product.id}
+            productName={product.name}
+            variantId={variant.id}
+            inStock={variant.stock > 0}
+          />
         </div>
       </div>
     </article>
