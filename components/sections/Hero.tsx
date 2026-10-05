@@ -45,7 +45,7 @@ export function Hero() {
           </p>
           <h1
             id="hero-title"
-            className="hero-title font-heading font-bold tracking-figma text-text max-md:text-h4"
+            className="hero-title font-bold tracking-figma text-text max-md:text-h4"
           >
             Shop Your Best
             <br />

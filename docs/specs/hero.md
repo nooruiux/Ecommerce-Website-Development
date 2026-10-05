@@ -1,6 +1,6 @@
 # Home hero — Figma spec (317:419)
 
-> **Typography update (owner request):** the site now uses Plus Jakarta Sans everywhere; font families in the tables below are the original Figma values. Section titles are 28 / 36.
+> **Typography (owner request):** the storefront uses Plus Jakarta Sans, but the hero keeps the exact Figma families from this table: Poppins 500/700 (H1, watermark, badge) and Source Serif (eyebrow, "Discounts"), via `--font-hero-display` / `--font-hero-serif`. The button uses Figma #414042 (`--color-hero-cta`) and its 222 px Figma width. Pixel diff vs the Figma render at 1440: 0.96 % (anti-aliasing only).
 
 Source: Figma `IZu9OqsPkarImQz9n31q42`, frame **hero section 317:419** (1440 × 537 at y 139 of Header 317:339; its panel starts 5 px lower, so the visible hero is 1440 × 532 at page y 144).
 Extracted with `get_metadata`, `get_design_context` and a read-only Plugin API dump (fills, strokes, effects, text styles, image transform, original image size).

@@ -86,6 +86,7 @@
   --color-error-strong: color-mix(in oklab, var(--color-error) 95%, black);
   --color-secondary: var(--color-peach-100);
   --color-accent: var(--color-charcoal);
+  --color-hero-cta: #414042; /* Figma hero button 317:427 */
   --color-highlight: var(--color-orange);
   /* Discount tag: deep sale red with white text (5.6:1, WCAG AA) */
   --color-sale: #c62828;
@@ -119,6 +120,9 @@
   --font-body: var(--font-plus-jakarta), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-body);
   --font-label: var(--font-body);
+  /* Home hero keeps the Figma families (317:419) */
+  --font-hero-display: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  --font-hero-serif: var(--font-source-serif), ui-serif, Georgia, serif;
 
   /* Figma letterSpacing 0.5 = 0.5% of font size */
   --tracking-figma: 0.005em;
@@ -395,7 +399,7 @@
   z-index: 0;
   transform-origin: 0 0;
   rotate: -90deg;
-  font-family: var(--font-heading);
+  font-family: var(--font-hero-display);
   font-weight: 700;
   font-size: calc(108 * var(--hu));
   line-height: calc(130 * var(--hu));
@@ -413,6 +417,18 @@
   z-index: 2;
   width: calc(195.92 * var(--hu));
   height: calc(195.92 * var(--hu));
+}
+.hero-title {
+  font-family: var(--font-hero-display);
+}
+.hero-eyebrow {
+  font-family: var(--font-hero-serif);
+}
+.hero-cta {
+  background-color: var(--color-hero-cta);
+}
+.hero-cta:hover {
+  background-color: var(--color-primary-hover-strong);
 }
 .hero-dot {
   display: block;
@@ -473,6 +489,7 @@
   .hero-cta {
     /* 317:427 — 56 high, padding 0 24, gap 16, radius 4, Plus Jakarta 600 16, icon 24 */
     margin-top: calc(32 * var(--hu));
+    width: calc(222 * var(--hu)); /* Figma box; the web label renders ~5 px wider than Figma's */
     height: calc(56 * var(--hu));
     padding-inline: calc(24 * var(--hu));
     gap: calc(16 * var(--hu));

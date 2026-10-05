@@ -58,7 +58,7 @@ export function HeroBadge({ className }: { className?: string }) {
       aria-label="20% discounts, offer available for limited time only"
     >
       <circle cx="98" cy="97" r="78" className="fill-surface" />
-      <g className="fill-text font-heading font-medium" fontSize="12.97" aria-hidden="true">
+      <g className="fill-text font-hero-display font-medium" fontSize="12.97" aria-hidden="true">
         {RING.map(([ch, x, y, a], i) =>
           ch === " " ? null : (
             <text
@@ -77,7 +77,7 @@ export function HeroBadge({ className }: { className?: string }) {
         x="99"
         y="98"
         textAnchor="middle"
-        className="fill-white font-heading font-bold"
+        className="fill-white font-hero-display font-bold"
         fontSize="29.73"
         letterSpacing="0.15"
       >
@@ -90,7 +90,7 @@ export function HeroBadge({ className }: { className?: string }) {
         x="98.5"
         y="117"
         textAnchor="middle"
-        className="fill-white font-body"
+        className="fill-white font-hero-serif"
         fontSize="12.39"
         letterSpacing="0.06"
       >
