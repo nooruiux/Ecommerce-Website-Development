@@ -340,7 +340,8 @@
 /*
  * Home hero (Figma 317:419, spec: docs/specs/hero.md).
  * Every value below is a Figma px value from the 1440 x 532 panel (317:420), multiplied by
- * --hu = one Figma px in the current frame: 1px at 1440, proportionally smaller below.
+ * --hu = one Figma px in the current frame: 1px at 1440, proportional at every width from 768 up
+ * (the photo stays 589/1440 = 40.9% of the viewport, text and badge scale with it).
  * Mobile shows the left 686 px of the frame (photo + watermark strip + badge) and stacks the copy.
  */
 .hero-frame {
@@ -349,7 +350,6 @@
   --hero-stage-w-mobile: 686; /* photo + watermark strip + badge (right edge 681.92) */
   position: relative;
   width: 100%;
-  max-width: calc(var(--hero-frame-w) * 1px);
 }
 .hero-stage {
   --hu: calc(100cqw / var(--hero-stage-w-mobile));
