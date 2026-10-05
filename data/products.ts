@@ -46,6 +46,7 @@ const concernCycle = [
 ];
 const prices = [5.75, 7.5, 12.0, 9.25, 15.5, 6.8];
 const ratings = [4.7, 4.5, 4.8, 4.2, 4.6, 4.9];
+const discounts = [36, 8, 14, 13, 34, 20, 25, 15, 30, 10, 18, 22]; // % off the original price
 
 // Gallery: the other Figma photos of the same product name (Home shows each name in 6 slots).
 const gallery = (name: string, own: string) =>
@@ -83,7 +84,8 @@ export const products: Product[] = rows.flatMap(({ section, row, tag }, r) =>
       ingredients:
         "Aqua, Sodium Laureth Sulfate, Glycerin, Coco-Betaine, Zinc Gluconate, Citric Acid.",
       price,
-      salePrice: n % 5 === 0 ? Math.round(price * 0.8 * 100) / 100 : undefined,
+      // Every product is discounted: `price` is the original (struck) price, `salePrice` the current one.
+      salePrice: Math.round(price * (1 - discounts[(n - 1) % discounts.length] / 100) * 100) / 100,
       images: [image, ...gallery(name, image)],
       category,
       concern: name === "Dry Shampoo" ? "dandruff" : concernCycle[(i + r) % concernCycle.length],

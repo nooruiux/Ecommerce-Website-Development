@@ -79,7 +79,7 @@ export default async function ProductPage({ params }: PageProps<"/product/[slug]
                 {product.name}
               </h1>
               <p className="text-body-xl text-text-muted">{product.description}</p>
-              <Rating value={product.rating} count={product.reviewCount} />
+              <Rating value={product.rating} count={product.reviewCount} className="mt-3" />
             </div>
             <ProductPurchase product={product} />
             <ul className="grid gap-4 border-t border-line pt-6 md:grid-cols-3">
