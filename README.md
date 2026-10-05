@@ -24,7 +24,7 @@ Optional environment variable:
 
 | Variable | Purpose |
 |---|---|
-| `NEXT_PUBLIC_SITE_URL` | Absolute site URL used for canonical links, Open Graph and JSON-LD (defaults to `http://localhost:3000`). |
+| `NEXT_PUBLIC_SITE_URL` | Absolute site URL used for canonical links, Open Graph and JSON-LD (defaults to `https://nattoral-zeta.vercel.app`). |
 
 ## Scripts
 
