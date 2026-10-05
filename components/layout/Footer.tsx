@@ -13,7 +13,7 @@ import { site } from "@/lib/site";
  */
 const heading = "text-body-xl font-semibold whitespace-nowrap text-text";
 const link =
-  "focus-ring rounded-xs text-body-lg whitespace-nowrap text-text-muted hover:text-primary-hover-strong";
+  "inline-block focus-ring rounded-xs text-body-lg whitespace-nowrap text-text-muted hover:text-primary-hover-strong";
 
 export function Footer() {
   return (

@@ -2,7 +2,8 @@ import { ButtonLink } from "@/components/ui/Button";
 import { cn } from "@/lib/cn";
 
 /*
- * Section title (28/36, `text-section`) + optional divider line + View All.
+ * Section title (28/36 `text-section`, 24 below 640 so it never pushes View All off-screen)
+ * + optional divider line + View All.
  * `size` is kept for API compatibility; both variants now share the 28px section style.
  */
 export function SectionHeader({
@@ -24,13 +25,13 @@ export function SectionHeader({
     <div className={cn("flex items-center gap-4", size === "h3" && "xl:min-h-12.75", className)}>
       <h2
         id={id}
-        className={cn("shrink-0 font-heading text-section font-semibold text-text-heading")}
+        className="min-w-0 font-heading text-h5 font-semibold text-balance text-text-heading sm:text-section"
       >
         {title}
       </h2>
       {divider && <span aria-hidden="true" className="hidden h-px flex-1 bg-gray-40 md:block" />}
       {href && (
-        <ButtonLink href={href} variant="outline" size="sm" className="ml-auto">
+        <ButtonLink href={href} variant="outline" size="sm" className="ml-auto shrink-0">
           View All<span className="sr-only"> {title}</span>
         </ButtonLink>
       )}

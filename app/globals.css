@@ -370,6 +370,12 @@
   --hero-frame-h: 532;
   --hero-frame-max: 1440; /* scaling stops at the Figma size; wider screens centre the frame */
   --hero-stage-w-mobile: 686; /* photo + watermark strip + badge (right edge 681.92) */
+  /* Readability floors for the proportional 768–1439 range (inactive at 1440, where hu = 1px) */
+  --hero-min-text: 0.875rem; /* 14 */
+  --hero-min-text-lh: 1.375rem; /* 22 */
+  --hero-min-cta-h: 2.75rem; /* 44 tap target */
+  --hero-min-cta-pad: 1rem;
+  --hero-min-cta-icon: 1.25rem;
   position: relative;
   width: 100%;
   max-width: calc(var(--hero-frame-max) * 1px);
@@ -412,6 +418,11 @@
   left: calc(100% - var(--hero-bleed-overlap));
   width: calc(var(--hero-centre-shift) + var(--hero-bleed-overlap));
   background: url("/images/home/hero-edge-right.webp") 0 0 / 100% 100% no-repeat;
+}
+@media (width >= 90rem) {
+  .hero-cta {
+    width: calc(222 * var(--hu)); /* Figma box; the web label renders ~5 px wider than Figma's */
+  }
 }
 @media (width > 90rem) {
   .hero-photo {
@@ -506,8 +517,8 @@
   .hero-eyebrow {
     /* 317:423 — 48 rule + 16 gap + Source Serif 18/30 ls 0.5%, black 72% */
     gap: calc(16 * var(--hu));
-    font-size: calc(18 * var(--hu));
-    line-height: calc(30 * var(--hu));
+    font-size: max(calc(18 * var(--hu)), var(--hero-min-text));
+    line-height: max(calc(30 * var(--hu)), var(--hero-min-text-lh));
   }
   .hero-rule {
     width: calc(48 * var(--hu));
@@ -522,16 +533,16 @@
   .hero-cta {
     /* 317:427 — 56 high, padding 0 24, gap 16, radius 4, Plus Jakarta 600 16, icon 24 */
     margin-top: calc(32 * var(--hu));
-    width: calc(222 * var(--hu)); /* Figma box; the web label renders ~5 px wider than Figma's */
-    height: calc(56 * var(--hu));
-    padding-inline: calc(24 * var(--hu));
+    min-width: calc(222 * var(--hu));
+    height: max(calc(56 * var(--hu)), var(--hero-min-cta-h));
+    padding-inline: max(calc(24 * var(--hu)), var(--hero-min-cta-pad));
     gap: calc(16 * var(--hu));
     border-radius: calc(4 * var(--hu));
-    font-size: calc(16 * var(--hu));
+    font-size: max(calc(16 * var(--hu)), var(--hero-min-text));
   }
   .hero-cta img {
-    width: calc(24 * var(--hu));
-    height: calc(24 * var(--hu));
+    width: max(calc(24 * var(--hu)), var(--hero-min-cta-icon));
+    height: max(calc(24 * var(--hu)), var(--hero-min-cta-icon));
   }
   .hero-dots {
     /* 317:428 — at 710,484, gap 8 */

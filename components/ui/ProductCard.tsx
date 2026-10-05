@@ -55,7 +55,10 @@ export function ProductCard({
       </Link>
       <div className="flex flex-col gap-1">
         <h3 className="line-clamp-1 text-card-title font-bold text-text">
-          <Link href={href} className="rounded-xs focus-ring hover:text-primary-hover-strong">
+          <Link
+            href={href}
+            className="rounded-xs focus-ring after:absolute after:inset-0 after:rounded-lg after:content-[''] hover:text-primary-hover-strong"
+          >
             {product.name}
           </Link>
         </h3>

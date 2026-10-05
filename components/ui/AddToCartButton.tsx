@@ -26,7 +26,7 @@ export function AddToCartButton({
         add(productId, variantId);
         open();
       }}
-      className="relative inline-flex h-10 w-full items-center justify-center rounded-md bg-primary-hover-strong px-3 text-body-md font-semibold whitespace-nowrap text-on-accent focus-ring transition-colors duration-(--duration-fast) hover:bg-primary-strong disabled:cursor-not-allowed disabled:opacity-(--opacity-disabled)"
+      className="relative z-10 inline-flex h-10 w-full items-center justify-center rounded-md bg-primary-hover-strong px-3 text-body-md font-semibold whitespace-nowrap text-on-accent focus-ring transition-colors duration-(--duration-fast) hover:bg-primary-strong disabled:cursor-not-allowed disabled:opacity-(--opacity-disabled)"
     >
       {inStock ? "Add To Cart" : "Out of Stock"}
     </button>

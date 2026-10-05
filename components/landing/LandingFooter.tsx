@@ -12,7 +12,7 @@ import { LandingNewsletter } from "./LandingNewsletter";
  */
 const heading = "text-body-lg font-bold text-text";
 const link =
-  "focus-ring rounded-xs text-body-lg whitespace-nowrap text-text-subtle hover:text-primary-hover-strong";
+  "inline-block focus-ring rounded-xs text-body-lg whitespace-nowrap text-text-subtle hover:text-primary-hover-strong";
 
 export function LandingFooter() {
   return (
