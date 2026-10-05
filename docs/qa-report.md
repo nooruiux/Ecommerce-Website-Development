@@ -29,6 +29,8 @@ These pages and components have no Figma frame. They are built only from the exi
 - **Section titles** (Top Categories, Featured Products, Shop By Popular Brands, New Arrivals, Best Selling): 28 / 36 (`--text-section`) instead of 48 / 40.
 - **Product card**: the "500+ Sold" label is removed (cards and product page); the "Buy Now" pill + plus icon is replaced by a full-width "Add to Cart" button (40 px, `--color-accent`, hover `--color-primary-hover-strong`; disabled "Out of Stock" when no variant is in stock). Cards grow from 400 to 450 px, so the Home page is taller than Figma's 6541 px.
 
+- **Brand colors from the logo**: primary palette re-derived from the logo check mark (mint #C0E8E8, peach #FCE1D8) and wordmark (charcoal #393939). Primary teal #3E9898 (mint hue), text/focus #2A6F6F (5.8:1), hover #2B7F7F (4.7:1), hover fill behind dark text #79C3C3 (8.1:1), light #C0E8E8 (nav bar, tints). Replaces the Figma cyan #3CB9D1 / blue #1AA9E5. Hover audit: 380 elements, 0 failing; axe 0 violations.
+
 ## Intentional deviations
 
 | Deviation | Reason |
@@ -115,7 +117,7 @@ Pending: image-level comparison once Figma assets are available.
 - `robots.txt`: allow `/`, disallow only `/primitives`; points to the sitemap. /cart and /checkout are deliberately crawlable so crawlers can read their `noindex` (a robots-blocked URL can still be indexed from external links).
 - JSON-LD: Organization + WebSite (SearchAction → `/shop?q=`) on home; Product + BreadcrumbList on product pages; BreadcrumbList on shop/category.
 - Open Graph image: `app/opengraph-image.tsx` (brand colours + wordmark), shared via `ogBase` on every page; product pages use the product photo.
-- Favicon and apple-touch-icon: "N" monogram (Josefin Sans, the closest Google Font to the logo lettering), white on `--color-primary-strong` (#267D8E), rounded square (rx 112/512). `app/icon.svg` (weight 400), `app/icon.png` 32×32 (weight 600 so the strokes survive at 32 px), `app/apple-icon.png` 180×180 (weight 400). Glyph outline embedded as a path, no font dependency. *Not in Figma – derived.*
+- Favicon and apple-touch-icon: "N" monogram (Josefin Sans, the closest Google Font to the logo lettering), white on `--color-primary-strong` (#2A6F6F, brand teal from the logo), rounded square (rx 112/512). `app/icon.svg` (weight 400), `app/icon.png` 32×32 (weight 600 so the strokes survive at 32 px), `app/apple-icon.png` 180×180 (weight 400). Glyph outline embedded as a path, no font dependency. *Not in Figma – derived.*
 
 ### Accessibility (axe-core 4, WCAG 2.2 AA + best practices)
 

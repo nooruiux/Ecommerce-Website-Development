@@ -22,11 +22,18 @@
   --color-black: #000000; /* used at alpha in Figma (text, borders) */
   --color-ink: #202020; /* Additional Colors/Black, Text */
 
-  --color-cyan-50: #c9e8ea; /* Main Colors/Primary */
-  --color-cyan-500: #3cb9d1; /* Primary (Home page) */
+  /* Brand palette from the logo (public/images/brand/logo.png): check-mark mint and peach,
+     wordmark charcoal. Teal shades are derived from the mint hue (180°) for AA contrast. */
+  --color-mint-50: #c0e8e8; /* logo check mark, mint stroke */
+  --color-teal-300: #79c3c3; /* derived: hover fill behind dark text (8.1:1) */
+  --color-teal-500: #3e9898; /* derived: brand primary (mint hue, 42% lightness) */
+  --color-teal-600: #2b7f7f; /* derived: hover for text / fills behind white text (4.7:1) */
+  --color-teal-700: #2a6f6f; /* derived: text, focus ring (5.8:1) */
+  --color-cyan-50: #c9e8ea; /* Figma Main Colors/Primary (superseded by the logo mint) */
+  --color-cyan-500: #3cb9d1; /* Figma Primary, Home page (superseded by brand teal) */
   --color-blue-500: #1aa9e5; /* Main Color/Primary (Style Guide) */
-  --color-peach-100: #fae1d8; /* Main Colors/Secondary */
-  --color-charcoal: #414042; /* Main Colors/Accent */
+  --color-peach-100: #fce1d8; /* logo check mark, peach stroke (Figma Secondary #FAE1D8) */
+  --color-charcoal: #393939; /* logo wordmark (Figma Accent #414042) */
   --color-orange: #ff784b; /* Additional Colors/Orange */
   --color-navy: #005085; /* Main Color/Secondary (Landing "Customers Story") */
   --color-amber: #ea9a28; /* Main Color/Accent 1 (Landing rating stars) */
@@ -67,15 +74,12 @@
   --color-purple-tint: #f4f0ff;
 
   /* ---------- Semantic colors ---------- */
-  --color-primary: var(--color-cyan-500);
-  --color-primary-light: var(--color-cyan-50);
-  --color-primary-hover: var(
-    --color-blue-500
-  ); /* background-only hovers behind dark text (6.1:1) */
-  /* AA-safe hover for text and for fills behind white text (#1AA9E5 is 2.7:1) → #107AA7, 4.8:1 */
-  --color-primary-hover-strong: color-mix(in oklab, var(--color-primary-hover) 79%, black);
-  /* AA-safe text / focus variant of the Figma primary (#3CB9D1 is 2.3:1 on white) → #267D8E, 4.8:1 */
-  --color-primary-strong: color-mix(in oklab, var(--color-primary) 75%, black);
+  /* Brand colors from the logo (owner request; replaces the Figma cyan/blue). */
+  --color-primary: var(--color-teal-500);
+  --color-primary-light: var(--color-mint-50);
+  --color-primary-hover: var(--color-teal-300); /* background-only hovers behind dark text */
+  --color-primary-hover-strong: var(--color-teal-600); /* hover text, fills behind white text */
+  --color-primary-strong: var(--color-teal-700); /* text, focus ring */
 
   /* AA-safe text variants of the Figma alert colors (success 2.3:1, error 4.0:1 on white) */
   --color-success-strong: color-mix(in oklab, var(--color-success) 75%, black);
@@ -93,8 +97,8 @@
   --color-text-footer: rgb(45 45 45 / 0.72); /* footer blurb 317:1487 */
   --color-text-soft: rgb(32 32 32 / 0.72); /* Landing hero paragraph 143:84 */
   --color-text-inverse-soft: rgb(255 255 255 / 0.72); /* Landing newsletter placeholder 143:807 */
-  --color-tint-secondary: rgb(250 225 216 / 0.12); /* Our Story band 143:535 */
-  --color-tint-primary: rgb(201 232 234 / 0.12); /* Testimonial band 143:707 */
+  --color-tint-secondary: rgb(252 225 216 / 0.12); /* Our Story band 143:535 (logo peach) */
+  --color-tint-primary: rgb(192 232 232 / 0.12); /* Testimonial band 143:707 (logo mint) */
   --color-text-input-soft: rgb(0 0 0 / 0.56); /* newsletter placeholder 317:1465 */
   --color-on-accent: var(--color-white-soft);
   --color-text-strong: rgb(0 0 0 / 0.8); /* "Account" label */
