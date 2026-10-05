@@ -8,9 +8,9 @@ import { HeroBadge } from "./HeroBadge";
  * Figma hero 317:419 (spec: docs/specs/hero.md). 1440 x 532 sage panel laid out in Figma px
  * (the hero-* rules in globals.css): photo 589 x 532 at 0,0 above the vertical "Skin Care"
  * watermark, discount badge on top, copy block at 796,135, slider dots at 710,484.
- * From 768 up the same frame scales proportionally with the viewport (exact at 1440; the photo
- * is always 40.9% of the width), up to 1920; wider screens centre the 1920 frame on the full-bleed panel. Mobile shows the left 686 px of the frame
- * (photo, watermark strip, badge) with the copy stacked below.
+ * 768–1439 scales the same frame proportionally (the photo is 40.9% of the width); from 1440 up
+ * it stays at the exact Figma size, flush left, on the full-bleed sage panel. Mobile shows the
+ * left 686 px of the frame (photo, watermark strip, badge) with the copy stacked below.
  * Only one slide is designed: the three dots are a static indicator.
  */
 export function Hero() {
@@ -29,7 +29,7 @@ export function Hero() {
               preload
               fetchPriority="high"
               loading="eager"
-              sizes="(min-width: 120rem) 785px, (min-width: 48rem) 41vw, 86vw"
+              sizes="(min-width: 90rem) 589px, (min-width: 48rem) 41vw, 86vw"
               className="object-cover"
               fallbackClassName="bg-gray-30"
             />

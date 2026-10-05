@@ -34,7 +34,7 @@ Coordinates are **relative to the panel 317:420** (Figma y − 5), in px at 1440
 ## Implementation notes
 
 - `components/sections/Hero.tsx` + `HeroBadge.tsx`; geometry in the `hero-*` rules of `app/globals.css`, written in Figma px × `--hu` (1 px at ≥1440).
-- ≥768 (including above 1440): same frame scaled proportionally with the viewport (`--hu = 100cqw / 1440`); the photo is always 40.9 % of the width and its crop is unchanged, so the product group stays fully visible. Exact Figma px at 1440; capped at 1920 (above that the 1920 frame is centred, panel background full-bleed).
+- 768–1439: the same frame scaled proportionally with the viewport (`--hu = 100cqw / 1440`); the photo is 40.9 % of the width and its crop is unchanged, so the product group stays fully visible. From 1440 up: exact Figma px, frame flush left, sage panel full-bleed to the right.
 - <768: the left 686 px of the frame (photo + watermark strip + badge) scaled to the viewport, copy stacked below (H1 32/40, full-width 56 px button).
 - Badge ring: each glyph placed at its Figma centre/rotation (computed from the `get_design_context` grid of 317:440).
-- Photo: `next/image` with `preload` (Next 16 replacement for `priority`), `fetchPriority="high"`, `sizes="(min-width: 120rem) 785px, (min-width: 48rem) 41vw, 86vw"`, `object-cover` (= Figma FILL).
+- Photo: `next/image` with `preload` (Next 16 replacement for `priority`), `fetchPriority="high"`, `sizes="(min-width: 90rem) 589px, (min-width: 48rem) 41vw, 86vw"`, `object-cover` (= Figma FILL).
