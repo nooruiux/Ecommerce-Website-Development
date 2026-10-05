@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
-// Figma Home Page 317:338. Vertical rhythm: 96px between sections (64 before New Arrivals, 112 before newsletter).
+// Figma Home Page 317:338. Vertical rhythm: 96px between sections (64 after the 306px brands frame, 112 before newsletter).
 export default function HomePage() {
   return (
     <>
@@ -36,7 +36,7 @@ export default function HomePage() {
         <div className="xl:pt-24">
           <PopularBrands />
         </div>
-        <div className="xl:pt-28">
+        <div className="xl:pt-16">
           <ProductSection
             id="new-arrivals"
             title="New Arrivals"

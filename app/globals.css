@@ -47,6 +47,11 @@
   --color-gray-toggle: #edf2f7; /* toggle off track */
   --color-sage: #e4eee4; /* hero background 317:420 */
   --color-watermark: rgb(249 249 249 / 0.88); /* hero "Skin Care" 317:434 */
+  --color-hero-rule: rgb(0 0 0 / 0.4); /* hero eyebrow line 317:424 */
+  --color-badge-disc: #404040; /* hero badge centre disc 317:479 */
+  --color-dot: #7d7d7d; /* hero slider dots 317:431–433 */
+  --color-dot-ring: rgb(0 0 0 / 0.32); /* active dot ring 317:430 */
+  --color-brand-tile-border: #e2e5e9; /* brand tiles, sampled from raster 317:647 */
 
   --color-line: #e3e7ec; /* Additional Colors/Line */
   --color-line-dark: #282837; /* Additional Colors/Line dark */
@@ -209,6 +214,9 @@
   --shadow-badge: 0 0 41.5px rgb(0 0 0 / 0.08); /* video badge 148:1415 */
   --shadow-drawer: var(--shadow-modal);
 
+  /* ---------- Aspect ratios ---------- */
+  --aspect-brand-tile: 171 / 85; /* brand tile 170.86 x 85 (317:647) */
+
   /* ---------- Layout ---------- */
   --container-content: 80rem; /* 1280 */
   --spacing-gutter: 5rem; /* 80 desktop gutter */
@@ -326,5 +334,150 @@
       animation-duration: 0.01ms !important;
       transition-duration: 0.01ms !important;
     }
+  }
+}
+
+/*
+ * Home hero (Figma 317:419, spec: docs/specs/hero.md).
+ * Every value below is a Figma px value from the 1440 x 532 panel (317:420), multiplied by
+ * --hu = one Figma px in the current frame: 1px at 1440, proportionally smaller below.
+ * Mobile shows the left 686 px of the frame (photo + watermark strip + badge) and stacks the copy.
+ */
+.hero-frame {
+  --hero-frame-w: 1440;
+  --hero-frame-h: 532;
+  --hero-stage-w-mobile: 686; /* photo + watermark strip + badge (right edge 681.92) */
+  position: relative;
+  width: 100%;
+  max-width: calc(var(--hero-frame-w) * 1px);
+}
+.hero-stage {
+  --hu: calc(100cqw / var(--hero-stage-w-mobile));
+  container-type: inline-size;
+  position: relative;
+  aspect-ratio: var(--hero-stage-w-mobile) / var(--hero-frame-h);
+  overflow: hidden;
+}
+.hero-photo {
+  /* 317:435 — 589 x 532 at 0,0; image fill FILL (cover); above the watermark, below the badge */
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  width: calc(589 * var(--hu));
+  height: calc(532 * var(--hu));
+}
+.hero-watermark {
+  /* 317:434 — Poppins Bold 108/130, ls 0.5%, #F9F9F9 @ 88%, rotated 90° CCW, box 547,-5 130x534 (starts at y 529) */
+  position: absolute;
+  left: calc(547 * var(--hu));
+  top: calc(529 * var(--hu));
+  z-index: 0;
+  transform-origin: 0 0;
+  rotate: -90deg;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: calc(108 * var(--hu));
+  line-height: calc(130 * var(--hu));
+  letter-spacing: 0.005em;
+  color: var(--color-watermark);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
+.hero-badge {
+  /* 317:436 — 195.92 square at 486,164 */
+  position: absolute;
+  left: calc(486 * var(--hu));
+  top: calc(164 * var(--hu));
+  z-index: 2;
+  width: calc(195.92 * var(--hu));
+  height: calc(195.92 * var(--hu));
+}
+.hero-dot {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: var(--color-dot);
+}
+.hero-dot-active {
+  /* 317:429 — 16 ring (1px inside stroke, black 32%) around an 8px dot */
+  display: grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--color-dot-ring);
+  border-radius: var(--radius-full);
+}
+@media (width >= 48rem) {
+  .hero-frame {
+    container-type: inline-size;
+    aspect-ratio: var(--hero-frame-w) / var(--hero-frame-h);
+  }
+  .hero-stage {
+    --hu: calc(100cqw / var(--hero-frame-w));
+    position: absolute;
+    inset: 0;
+    aspect-ratio: auto;
+    overflow: visible;
+  }
+  .hero-copy {
+    /* 317:421 — vertical stack at 796,135, width 562, gap 32 */
+    --hu: calc(100cqw / var(--hero-frame-w));
+    position: absolute;
+    left: calc(796 * var(--hu));
+    top: calc(135 * var(--hu));
+    width: calc(562 * var(--hu));
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .hero-eyebrow {
+    /* 317:423 — 48 rule + 16 gap + Source Serif 18/30 ls 0.5%, black 72% */
+    gap: calc(16 * var(--hu));
+    font-size: calc(18 * var(--hu));
+    line-height: calc(30 * var(--hu));
+  }
+  .hero-rule {
+    width: calc(48 * var(--hu));
+  }
+  .hero-title {
+    /* 317:426 — Poppins Bold 56/64 ls 0.5%, two lines */
+    width: 100%;
+    margin-top: calc(16 * var(--hu));
+    font-size: calc(56 * var(--hu));
+    line-height: calc(64 * var(--hu));
+  }
+  .hero-cta {
+    /* 317:427 — 56 high, padding 0 24, gap 16, radius 4, Plus Jakarta 600 16, icon 24 */
+    margin-top: calc(32 * var(--hu));
+    height: calc(56 * var(--hu));
+    padding-inline: calc(24 * var(--hu));
+    gap: calc(16 * var(--hu));
+    border-radius: calc(4 * var(--hu));
+    font-size: calc(16 * var(--hu));
+  }
+  .hero-cta img {
+    width: calc(24 * var(--hu));
+    height: calc(24 * var(--hu));
+  }
+  .hero-dots {
+    /* 317:428 — at 710,484, gap 8 */
+    --hu: calc(100cqw / var(--hero-frame-w));
+    position: absolute;
+    left: calc(710 * var(--hu));
+    top: calc(484 * var(--hu));
+    gap: calc(8 * var(--hu));
+    z-index: 2;
+  }
+  .hero-dots .hero-dot {
+    width: calc(8 * var(--hu));
+    height: calc(8 * var(--hu));
+  }
+  .hero-dots .hero-dot-active {
+    width: calc(16 * var(--hu));
+    height: calc(16 * var(--hu));
   }
 }
