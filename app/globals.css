@@ -53,7 +53,7 @@
   --color-gray-search: #f8f8f8; /* search category segment */
   --color-gray-toggle: #edf2f7; /* toggle off track */
   --color-sage: #e4eee4; /* hero background 317:420 */
-  --color-watermark: rgb(249 249 249 / 0.88); /* hero "Skin Care" 317:434 */
+  --color-watermark: var(--color-text); /* hero "Skin Care" 317:434 — owner request: solid near-black (#202020) instead of Figma #F9F9F9 @ 88% */
   --color-hero-rule: rgb(0 0 0 / 0.4); /* hero eyebrow line 317:424 */
   --color-badge-disc: #404040; /* hero badge centre disc 317:479 */
   --color-dot: #7d7d7d; /* hero slider dots 317:431–433 */
