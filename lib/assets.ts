@@ -18,8 +18,8 @@ export const homeAssets = {
   heroEdge: { src: "/images/home/hero-edge.webp", width: 2, height: 665 }, // left-edge column of 317:435, stretched into the wide-screen bleed
   heroEdgeRight: { src: "/images/home/hero-edge-right.webp", width: 2, height: 665 }, // right-edge column of 317:435
   consultation: { src: "/images/home/consultation.webp", width: 1280, height: 488 }, // 317:484
-  ctaLeft: { src: "/images/home/cta-white-firm-face-hc.webp", width: 622, height: 488 }, // 317:1294, baked-in copy contrast-boosted (checklist 2.1 → 9.3:1)
-  ctaRight: { src: "/images/home/cta-bright-soft-hc.webp", width: 624, height: 488 }, // 317:1297, baked-in copy contrast-boosted (≥ 4.6:1, was 1.9–3.7:1)
+  ctaLeft: { src: "/images/home/cta-white-firm-face-art.webp", width: 622, height: 488 }, // 317:1294 artwork with the baked-in copy removed (copy is live HTML)
+  ctaRight: { src: "/images/home/cta-bright-soft-art.webp", width: 624, height: 488 }, // 317:1297 artwork with the baked-in copy removed (copy is live HTML)
 } as const;
 
 // Landing frame 143:64

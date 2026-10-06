@@ -53,7 +53,9 @@
   --color-gray-search: #f8f8f8; /* search category segment */
   --color-gray-toggle: #edf2f7; /* toggle off track */
   --color-sage: #e4eee4; /* hero background 317:420 */
-  --color-watermark: rgb(32 32 32 / 0.12); /* hero "Skin Care" 317:434 — owner request: soft black watermark (#202020 @ 12%) instead of Figma #F9F9F9 @ 88% */
+  --color-watermark: rgb(
+    32 32 32 / 0.12
+  ); /* hero "Skin Care" 317:434 — owner request: soft black watermark (#202020 @ 12%) instead of Figma #F9F9F9 @ 88% */
   --color-hero-rule: rgb(0 0 0 / 0.4); /* hero eyebrow line 317:424 */
   --color-badge-disc: #404040; /* hero badge centre disc 317:479 */
   --color-dot: #7d7d7d; /* hero slider dots 317:431–433 */
@@ -87,6 +89,7 @@
   --color-secondary: var(--color-peach-100);
   --color-accent: var(--color-charcoal);
   --color-hero-cta: #414042; /* Figma hero button 317:427 */
+  --color-promo-scrim: rgb(14 48 72 / 0.74); /* backdrop behind the white promo copy */
   --color-highlight: var(--color-orange);
   /* Discount tag: deep sale red with white text (5.6:1, WCAG AA) */
   --color-sale: #c62828;
@@ -560,5 +563,156 @@
   .hero-dots .hero-dot-active {
     width: calc(16 * var(--hu));
     height: calc(16 * var(--hu));
+  }
+}
+
+/*
+ * Home promo cards (Figma CTA 317:1291). Copy is live HTML over artwork with its text removed.
+ * Narrow cards (< 34rem): copy stacks under the artwork. Wide cards: copy sits at its Figma
+ * position, in Figma px x --pu (one Figma px of the 622/624 card), with readable floors.
+ */
+.promo-card {
+  container-type: inline-size;
+  --promo-min-text: 0.875rem; /* 14 */
+}
+.promo-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.25rem 1.25rem 1.25rem;
+  color: var(--color-text);
+}
+.promo-title {
+  font-family: var(--font-hero-serif);
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.promo-subtitle {
+  font-family: var(--font-hero-serif);
+  font-size: 1rem;
+  line-height: 1.5rem;
+  color: var(--color-text-subtle);
+}
+.promo-body {
+  font-size: 0.9375rem;
+  line-height: 1.375rem;
+  color: var(--color-text-subtle);
+}
+.promo-list {
+  display: grid;
+  gap: 0.375rem;
+  font-family: var(--font-hero-serif);
+  font-size: 0.9375rem;
+  line-height: 1.375rem;
+  color: var(--color-text-subtle);
+}
+.promo-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+.promo-check {
+  width: 1.1em;
+  height: 1.1em;
+  flex-shrink: 0;
+}
+.promo-cta {
+  align-self: flex-start;
+  margin: auto 1.25rem 1.25rem; /* auto top: tabs line up at the bottom of equal-height cards */
+}
+@container (width >= 34rem) {
+  .promo-copy {
+    --pu: calc(100cqw / var(--promo-w));
+    position: absolute;
+    z-index: 1;
+    left: calc(var(--promo-x) * var(--pu));
+    top: calc(var(--promo-y) * var(--pu));
+    width: calc(var(--promo-cw) * var(--pu));
+    padding: 0;
+    gap: 0;
+  }
+  .promo-cta {
+    /* 317:1295 — 129 x 56 tab flush bottom-right, radius 4/4/24/4 */
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+    border-radius: var(--radius-sm) var(--radius-sm) var(--radius-2xl) var(--radius-sm);
+  }
+  .promo-card--firm .promo-copy {
+    /* copy block at 50,38 (title) and 52,158 (checklist), from the 2x artwork */
+    --promo-w: 622;
+    --promo-x: 50;
+    --promo-y: 38;
+    --promo-cw: 250;
+  }
+  .promo-card--firm .promo-title {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-areas: "a amp" "b amp";
+    justify-content: start;
+    align-items: center;
+    column-gap: calc(4 * var(--pu));
+    font-size: calc(26 * var(--pu));
+    line-height: calc(31 * var(--pu));
+  }
+  .promo-card--firm .promo-title-a {
+    grid-area: a;
+    padding-left: calc(56 * var(--pu));
+  }
+  .promo-card--firm .promo-title-b {
+    grid-area: b;
+  }
+  .promo-card--firm .promo-amp {
+    grid-area: amp;
+    font-size: calc(72 * var(--pu));
+    line-height: 1;
+    font-weight: 400;
+  }
+  .promo-card--firm .promo-list {
+    margin-top: calc(50 * var(--pu));
+    margin-left: calc(2 * var(--pu));
+    gap: calc(14 * var(--pu));
+    font-size: max(calc(15 * var(--pu)), var(--promo-min-text));
+    line-height: max(calc(21 * var(--pu)), 1.25rem);
+  }
+  .promo-card--tender .promo-art::after {
+    /* soft backdrop so the white copy reads on the pale sky (copy 317:1297 right column) */
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse 46% 70% at 88% 32%,
+      var(--color-promo-scrim) 0%,
+      transparent 100%
+    );
+    pointer-events: none;
+  }
+  .promo-card--tender .promo-copy {
+    --promo-w: 624;
+    --promo-x: 468;
+    --promo-y: 50;
+    --promo-cw: 144;
+    color: var(--color-on-accent);
+  }
+  .promo-card--tender .promo-title {
+    font-size: calc(17 * var(--pu));
+    line-height: calc(24 * var(--pu));
+    font-weight: 400;
+  }
+  .promo-card--tender .promo-subtitle {
+    margin-top: calc(10 * var(--pu));
+    font-size: max(calc(15 * var(--pu)), var(--promo-min-text));
+    line-height: max(calc(22 * var(--pu)), 1.25rem);
+    color: inherit;
+  }
+  .promo-card--tender .promo-body {
+    margin-top: calc(10 * var(--pu));
+    font-size: max(calc(13 * var(--pu)), var(--promo-min-text));
+    line-height: max(calc(19 * var(--pu)), 1.25rem);
+    color: inherit;
   }
 }
