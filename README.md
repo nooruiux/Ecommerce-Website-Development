@@ -1,69 +1,31 @@
-# Nattoral
+# Nattarol — Skincare & Beauty E-commerce Website (Next.js + Tailwind CSS)
 
-E-commerce storefront for skin care, hair care, personal care and mom & baby products, with a skincare consultation booking flow. Built from the Nattoral Figma design.
+A modern **skincare e-commerce storefront** for Nattarol — skin care, hair care, personal care and mom & baby products, shop-by-brand, and online skincare consultation booking. Designed in Figma and being built with Next.js, TypeScript and Tailwind CSS.
 
-## Stack
+> 🚧 **Status: in progress.** The Figma design inventory is in [`docs/design-inventory.md`](./docs/design-inventory.md). The live demo link will be added here when the site is deployed.
 
-- [Next.js 16](https://nextjs.org) (App Router, React Server Components) + TypeScript (strict)
-- Tailwind CSS v4 with design tokens mapped from the Figma variables (`app/globals.css`)
-- Zustand for cart, wishlist and compare state (persisted to `localStorage`)
-- Framer Motion for drawers and sheets
-- `next/font` (Poppins, Source Serif 4, Open Sans, Plus Jakarta Sans) and `next/image`
-- ESLint (flat config) + Prettier
+## ✨ Planned features
 
-## Getting started
+- ✅ E-commerce home page with category navigation (Skin Care, Hair Care, Personal Care, Mom & Baby Care)
+- ✅ Shop by popular brands and by ingredient
+- ✅ Skincare consultation landing page with appointment booking
+- ✅ "Ask Us A Question" form (page and modal)
+- ✅ Design tokens and components from the Figma style guide
+- ✅ Responsive, accessible and SEO-friendly
 
-Requirements: Node.js 20.9+ (22 recommended) and npm.
+## 🛠 Tech Stack
 
-```bash
-npm install
-npm run dev        # http://localhost:3000
-```
+Next.js (App Router) · TypeScript · Tailwind CSS · React · Vercel
 
-Optional environment variable:
+---
 
-| Variable | Purpose |
-|---|---|
-| `NEXT_PUBLIC_SITE_URL` | Absolute site URL used for canonical links, Open Graph and JSON-LD (defaults to `https://nattoral-zeta.vercel.app`). |
+## 👤 Designer & Developer
 
-## Scripts
+**Noor Hossain** — UI/UX Designer & Front-End Developer based in Dhaka, Bangladesh.
 
-| Script | What it does |
-|---|---|
-| `npm run dev` | Start the development server |
-| `npm run build` | Production build (regenerates the asset manifest first) |
-| `npm start` | Serve the production build |
-| `npm run lint` | ESLint |
-| `npm run typecheck` | Generate route types and run `tsc --noEmit` |
-| `npm run format` | Prettier |
-| `npm run assets` | Rebuild `lib/asset-manifest.json` from `/public` |
+[![WhatsApp](https://img.shields.io/badge/WhatsApp-Chat_now-0E7A45?style=flat-square&logo=whatsapp&logoColor=white)](https://wa.me/8801913264543)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-noorxtk-0A58A8?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/noorxtk/)
+[![Behance](https://img.shields.io/badge/Behance-noorxtk-0050D8?style=flat-square&logo=behance&logoColor=white)](https://www.behance.net/noorxtk)
+[![Dribbble](https://img.shields.io/badge/Dribbble-Noorxtk-C2185B?style=flat-square&logo=dribbble&logoColor=white)](https://dribbble.com/Noorxtk)
 
-## Folder structure
-
-```
-app/
-  (shop)/             storefront routes: home, shop, category, product, cart, checkout, …
-  globals.css         design tokens (@theme) and base styles
-components/
-  ui/                 primitives: Button, Field, Choice, ProductCard, Drawer, …
-  layout/             Header, Footer, navigation
-  sections/           Home page sections
-  catalog/            filters, sort, pagination
-  product/            gallery, purchase panel, tabs
-  cart/               cart drawer, line items, summary
-data/                 mock catalog, brands, navigation
-lib/                  utilities (assets, catalog query, cart totals, SEO, fonts)
-store/                Zustand stores
-types/                shared TypeScript types
-docs/                 design inventory and QA report
-public/               images and icons exported from Figma
-```
-
-## Assets
-
-Images and icons are registered in `lib/assets.ts` and rendered through `AssetImage` / `Icon`. A file that is not in `/public` yet renders as a neutral placeholder of the same size, so layouts never shift. Run `npm run assets` (or any build) after adding files.
-
-## Documentation
-
-- `docs/design-inventory.md`: pages, components, tokens and breakpoints extracted from Figma
-- `docs/qa-report.md`: pixel QA results and intentional deviations
+<sub>Keywords: skincare e-commerce website, beauty store website, cosmetics online shop template, Next.js e-commerce, Tailwind CSS store, Figma to code, UI/UX design.</sub>
